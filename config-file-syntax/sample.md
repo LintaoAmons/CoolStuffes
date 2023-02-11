@@ -48,6 +48,34 @@ inline_mapping: {key 1: value 1, key 2: value 2}
 null_value: null
 boolean_value: true
 date_value: 2022-12-31
+
+# 使用环境变量
+web:
+  image: "webapp:${TAG}"
+
+
+# 在 YAML 中，三个连续的破折号（---）被称为文档起始标记，用于标识一个独立的 YAML 文档。如果 YAML 文件包含多个文档，则每个文档都必须以三个连续的破折号开头。
+---
+# YAML 配置文件
+
+# 定义锚点
+address: &address
+  street: 123 Main St.
+  city: San Francisco
+  state: CA
+  zip: 94111
+
+# 使用锚点 (锚点不能跨文档使用)
+john:
+  name: John Doe
+  age: 30
+  address: *address
+
+jane:
+  name: Jane Doe
+  age: 25
+  address: *address
+
 ```
 
 ## 基本语法
