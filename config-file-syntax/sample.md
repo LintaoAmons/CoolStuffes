@@ -18,6 +18,9 @@ mapping_value:
   key 2: value 2
   Key 3: value 3
 
+# you can use inline styles to make the output more compact
+inline_mapping: {key 1: value 1, key 2: value 2}
+
 # A list of object
 Person:
   - name: John Doe
@@ -40,9 +43,6 @@ multiline_value: |
   This is a
   multi-line
   string value.
-
-# you can use inline styles to make the output more compact
-inline_mapping: {key 1: value 1, key 2: value 2}
 
 # you can also include null, boolean, and date values
 null_value: null
