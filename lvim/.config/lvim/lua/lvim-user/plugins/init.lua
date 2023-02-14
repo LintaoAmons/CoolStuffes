@@ -55,7 +55,7 @@ local plugins = {
     end
   },
   { "f-person/git-blame.nvim" },
-  -- { "shortcuts/no-neck-pain.nvim" },
+  { "shortcuts/no-neck-pain.nvim" },
   { "LintaoAmons/scratch.nvim" },
   -- { "/Users/lintao/Documents/projects/scratch.nvim"},
   { "ggandor/leap.nvim" },

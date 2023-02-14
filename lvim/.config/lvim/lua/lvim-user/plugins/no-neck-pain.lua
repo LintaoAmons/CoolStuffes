@@ -1,7 +1,7 @@
 require("no-neck-pain").setup({
   enableOnVimEnter = true,
   enableOnTabEnter = true,
-  width = 140,
+  width = 120,
   integrations = {
     -- By default, if NvimTree is open, we will close it and reopen it when enabling the plugin,
     -- this prevents having the side buffers wrongly positioned.

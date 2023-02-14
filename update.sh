@@ -5,6 +5,7 @@ source .local/source-paths.sh
 
 declare -A share_items=(
   [lvim]="$LVIM"
+  [tmux]="$TMUX"
 )
 
 for item in ${!share_items[@]}; do
