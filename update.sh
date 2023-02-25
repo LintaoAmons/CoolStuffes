@@ -6,9 +6,10 @@ source .local/source-paths.sh
 declare -A share_items=(
   [lvim]="$LVIM"
   [tmux]="$TMUX"
+  [karabiner]="$KARABINER"
 )
 
 for item in ${!share_items[@]}; do
-  rsync -avz ${share_items[$item]} ./"$item"
+  rsync -avz ${share_items[$item]} "./$item"
 done
 

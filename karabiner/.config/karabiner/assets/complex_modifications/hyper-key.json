@@ -1,0 +1,58 @@
+{
+  "title": "RightCommand : (HYPER) SHIFT+COMMAND+OPTION+CONTROL",
+  "rules": [
+    {
+      "description": "RightCommand : (HYPER) SHIFT+COMMAND+OPTION+CONTROL",
+      "manipulators": [
+        {
+          "from": {
+            "key_code": "right_command",
+            "modifiers": {
+              "optional": ["any"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "left_shift",
+              "modifiers": ["left_command", "left_control", "left_option"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "Avoid starting sysdiagnose with the built-in macOS shortcut cmd+shift+option+ctrl+,",
+          "from": {
+            "key_code": "comma",
+            "modifiers": {
+              "mandatory": ["command", "shift", "option", "control"]
+            }
+          },
+          "to": [],
+          "type": "basic"
+        },
+        {
+          "description": "Avoid starting sysdiagnose with the built-in macOS shortcut cmd+shift+option+ctrl+.",
+          "from": {
+            "key_code": "period",
+            "modifiers": {
+              "mandatory": ["command", "shift", "option", "control"]
+            }
+          },
+          "to": [],
+          "type": "basic"
+        },
+        {
+          "from": {
+            "description": "Avoid starting sysdiagnose with the built-in macOS shortcut cmd+shift+option+ctrl+/",
+            "key_code": "slash",
+            "modifiers": {
+              "mandatory": ["command", "shift", "option", "control"]
+            }
+          },
+          "to": [],
+          "type": "basic"
+        }
+      ]
+    }
+  ]
+}

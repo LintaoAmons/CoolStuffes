@@ -1,0 +1,57 @@
+{
+  "title": "WezTerm switch option with cmd",
+  "rules": [
+    {
+      "description": "WezTerm Left Option to Cmd",
+      "manipulators": [
+        {
+          "conditions": [
+            {
+              "bundle_identifiers": ["^com\\.github\\.wez\\.wezterm$"],
+              "type": "frontmost_application_if"
+            }
+          ],
+          "from": {
+            "key_code": "left_option",
+            "modifiers": {
+              "optional": ["any"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "left_command",
+              "lazy": true
+            }
+          ],
+          "type": "basic"
+        }
+      ]
+    },
+    {
+      "description": "WezTerm Left Cmd to Option",
+      "manipulators": [
+        {
+          "conditions": [
+            {
+              "bundle_identifiers": ["^com\\.github\\.wez\\.wezterm$"],
+              "type": "frontmost_application_if"
+            }
+          ],
+          "from": {
+            "key_code": "left_command",
+            "modifiers": {
+              "optional": ["any"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "left_option",
+              "lazy": true
+            }
+          ],
+          "type": "basic"
+        }
+      ]
+    }
+  ]
+}
