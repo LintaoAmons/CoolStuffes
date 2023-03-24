@@ -25,7 +25,6 @@ lvim.plugins = require("lvim-user.plugins")
 require("lvim-user.plugins.treesitter")
 require("lvim-user.plugins.codeium")
 require("lvim-user.plugins.nvimtree")
-require("lvim-user.plugins.no-neck-pain")
 require("lvim-user.polish")
 
 -- You probably also want to set a keymap to toggle aerial

@@ -7,15 +7,6 @@ local function closeWindowOrBuffer()
   if not isOk then vim.cmd "bd" end
 end
 
--- lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
--- add your own keymapping
--- lvim.keys.normal_mode["<S-l>"] = ":BufferLineCycleNext<CR>"
--- lvim.keys.normal_mode["<S-h>"] = ":BufferLineCyclePrev<CR>"
--- unmap a default keymapping
--- vim.keymap.del("n", "<C-Up>")
--- override a default keymapping
--- lvim.keys.normal_mode["<C-q>"] = ":q<cr>" -- or vim.keymap.set("n", "<C-q>", ":q<cr>" )
-
 local function unmapLvimDefault()
   lvim.keys.normal_mode["<M-w>"] = false
 
@@ -24,13 +15,13 @@ local function unmapLvimDefault()
 end
 
 local function bufferLineKeybindings()
-  lvim.keys.normal_mode["<S-l>"] = "<cmd>BufferLineCycleNext<cr>"
-  lvim.keys.normal_mode["<S-h>"] = "<cmd>BufferLineCyclePrev<cr>"
+  vim.api.nvim_set_keymap("n", "<S-l>", "<cmd>BufferLineCycleNext<cr>", { noremap = true, silent = true })
+  vim.api.nvim_set_keymap("n", "<S-h>", "<cmd>BufferLineCyclePrev<cr>", { noremap = true, silent = true })
 end
 
 local function explorer()
-  lvim.keys.normal_mode["<C-n>"] = "<cmd>NvimTreeToggle<cr>"
-  lvim.keys.normal_mode["<leader>fl"] = "<cmd>NvimTreeFocus<cr>" -- find location
+  vim.api.nvim_set_keymap("n", "<C-n>", "<cmd>NvimTreeToggle<cr>", { noremap = true, silent = true })
+  vim.api.nvim_set_keymap("n", "<leader>fl", "<cmd>NvimTreeFocus<cr>", { noremap = true, silent = true })
 end
 
 local function leap()
@@ -45,10 +36,10 @@ local function leap()
 end
 
 local function tab()
-  lvim.keys.normal_mode["tm"] = "<cmd>tabclose<cr>"
-  lvim.keys.normal_mode["tn"] = "<cmd>tabnew<cr>"
-  lvim.keys.normal_mode["tl"] = "<cmd> tabnext <CR>"
-  lvim.keys.normal_mode["th"] = "<cmd> tabprevious <CR>"
+  vim.api.nvim_set_keymap("n", "tm", "<cmd>tabclose<cr>", { noremap = true, silent = true })
+  vim.api.nvim_set_keymap("n", "tn", "<cmd>tabnew<cr>", { noremap = true, silent = true })
+  vim.api.nvim_set_keymap("n", "tl", "<cmd>tabnext<CR>", { noremap = true, silent = true })
+  vim.api.nvim_set_keymap("n", "th", "<cmd>tabprevious<CR>", { noremap = true, silent = true })
 end
 
 local function telescopeMappings()
@@ -99,41 +90,28 @@ local mappings = {
     -- mappings seen under group name "Buffer"
     ["<M-w>"] = { function() closeWindowOrBuffer() end, desc = "Close current window/split" },
     ["<M-q>"] = { "<cmd>qa!<CR>", desc = "quit nvim" },
-
     ["<leader>df"] = { "<cmd> DiffviewOpen <cr>", desc = "Open diffview" },
     -- ["<leader>dd"] = { "<cmd> DiffviewFileHistory %<cr>", desc = "diff current file" },
     ["<leader>dv"] = { ":call v:lua.compare_to_clipboard()<CR>", desc = "Diff selected with clipboard" },
-
-
     ["<leader>fm"] = { "<cmd>lua vim.lsp.buf.format { async = true } <cr>", desc = "Format" },
-
     ["<leader>gr"] = { function() require("gitsigns").reset_hunk() end, desc = "Reset git hunk" },
-
     -- Run
     ["<leader>rr"] = { "<cmd>GoTestFile<cr>", desc = "GoTestFile" },
     ["<leader>rt"] = { "<cmd>GoTest<cr>", desc = "RunAllGoTest: GoTestFile" },
     ["<leader>rl"] = { "<cmd>luafile %<cr>", desc = "Source current lua file" },
     ["<M-r>"] = { ":%SnipRun<CR>", desc = "Run current file" },
-
     ["<leader>zo"] = { "zR", desc = "Unfold all" },
     ["<leader>zc"] = { "zM", desc = "Fold all" },
-
-
     -- No
     ["<leader>nl"] = { "<cmd> nohl <CR>", desc = "nohl" },
-
     -- Show
     ["<leader>ss"] = { "<cmd>AerialToggle<CR>", desc = "Show outline" },
-
     ["<C-q>"] = { "<cmd>SessionManager load_session<CR>", desc = "Load session" }, -- <!>load_session
-
     -- Test KeyStroke
-    ["<C-M-m>"] = { '<cmd>lua vim.notify("heihei")<CR>' }, -- command+control+m
+    ["<C-M-m>"] = { '<cmd>lua vim.notify("heihei")<CR>' },                              -- command+control+m
     ["<M-m>"] = { '<cmd>lua vim.notify("<M> is CMD in Mac, achieve by wezterm")<CR>' }, -- command+m
-    ["<M-I>"] = { "<cmd>ToggleTerm<cr>", desc = "Toggle terminal" }, -- alt + shift + i --> tab + i --> by karabiner
-
+    ["<M-I>"] = { "<cmd>ToggleTerm<cr>", desc = "Toggle terminal" },                    -- alt + shift + i --> tab + i --> by karabiner
     ["<C-\\>"] = { "<cmd>ToggleTerm<cr>", desc = "Toggle terminal" },
-
     -- ["<leader>db"] = {
     --   "<cmd>lua require'dap'.toggle_breakpoint(); require'user.dap.dap-util'.store_breakpoints(true)<cr>",
     -- },
@@ -147,7 +125,6 @@ local mappings = {
   i = {
     ["<C-q>"] = { "<cmd>SessionManager load_session<CR>", desc = "Load session" }, -- <!>load_session
     ["<M-P>"] = { "<cmd>Telescope commands<CR>", desc = "Find commands" },
-
     [";;"] = { " := ", desc = "golang: assign value" },
     [";a"] = { " != ", desc = "!=" },
     [";s"] = { " += ", desc = "+=" },
