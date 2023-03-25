@@ -8,6 +8,7 @@ declare -A share_items=(
   [tmux]="$TMUX"
   [karabiner]="$KARABINER"
   [zsh]="$ZSH"
+  [hammerspoon]="$HAMMERSPOON"
 )
 
 for item in ${!share_items[@]}; do
