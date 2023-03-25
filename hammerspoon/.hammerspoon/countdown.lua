@@ -36,10 +36,12 @@ function startRemindTimer()
             remindTimer = hs.timer.doAfter(time, remindUser)
 
             -- Wait for 300ms before focusing on the popup window
-            local dialogWindow = hs.window.find("Remind Timer")
-            if dialogWindow then
-                dialogWindow:focus()
-            end
+            hs.timer.doAfter(0.3, function()
+                local dialogWindow = hs.window.find("Remind Timer")
+                if dialogWindow then
+                    dialogWindow:focus()
+                end
+            end)
         else
             hs.alert.show("Invalid input, please enter a time in the format of 5s, 10m, or 1h3m4s.")
         end
