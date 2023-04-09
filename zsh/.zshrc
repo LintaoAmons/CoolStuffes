@@ -134,6 +134,7 @@ alias df='vim +DiffviewOpen'
 alias lm="limactl"
 alias lt="lsgo | head -n 30"
 alias gonew="source go-new"
+alias awsprofileswither="source aws-profile-switcher"
 
 ########################## 🔼 ALIAS 🔼 ##########################
 

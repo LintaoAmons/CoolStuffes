@@ -9,6 +9,7 @@ declare -A share_items=(
   [karabiner]="$KARABINER"
   [zsh]="$ZSH"
   [hammerspoon]="$HAMMERSPOON"
+  [ideavim]="$IDEAVIM"
 )
 
 for item in ${!share_items[@]}; do

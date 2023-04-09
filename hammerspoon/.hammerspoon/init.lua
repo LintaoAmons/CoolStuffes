@@ -1,5 +1,5 @@
 require('windows')
-require('scenarioShortcuts')
+-- require('scenarioShortcuts')
 require('countdown')
 
 hs.loadSpoon("ReloadConfiguration")

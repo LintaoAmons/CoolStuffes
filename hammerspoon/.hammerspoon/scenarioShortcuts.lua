@@ -8,6 +8,7 @@ function showFocusAlert(content)
 	hs.alert.show(content, hs.alert.defaultStyle, hs.screen.mainScreen(), 0.5)
 end
 
+local hyperKey = { "shift", "alt", "ctrl", "cmd" }
 function showCurrentTime()
 	local prettyNow = os.date("%A              📅%B %d %Y              🕐%I:%M:%S %p")
 	hs.alert.show(prettyNow, hs.alert.defaultStyle, hs.screen.mainScreen(), 1.5)

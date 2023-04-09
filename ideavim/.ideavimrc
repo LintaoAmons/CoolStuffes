@@ -1,10 +1,12 @@
-" 视频讲解： https://www.bilibili.com/video/BV115411X7i4/
-
 " ================================================================================================
 " = Extensions =====================================
 " ================================================================================================
 Plug 'tpope/vim-surround'
 Plug 'preservim/nerdtree'
+Plug 'terryma/vim-multiple-cursors'
+map mc <A-n>
+map mx <A-x>
+map mv <A-p>
 
 " ================================================================================================
 " = Basic settings =====================================
@@ -27,21 +29,18 @@ set keep-english-in-normal
 nmap ge <action>(GotoNextError)
 nmap gt <action>(GotoTest)
 nmap gm <action>(MethodUp)
-nmap gi <action>(GotoImplementation)
 " last changed in current buffer(file)
-nmap ga '.
+nmap ga <action>(GotoImplementation)
 
-" bookmark in whole program
+" paste multiple times. Thanks @mutoa
+vmap p \"_dP
+
+" bookmark
 nmap ma <action>(ToggleBookmark)
-nmap ms mS
-nmap 's 'S
-nmap md mD
-nmap 'd 'D
-nmap mf mF
-nmap 'f 'F
 
 nmap L <action>(NextTab)
 nmap H <action>(PreviousTab)
+
 
 " ================================================================================================
 " = Leader Keymaps =====================================

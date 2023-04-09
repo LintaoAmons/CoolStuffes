@@ -97,6 +97,14 @@ function getRemainTime()
     end
 end
 
+local hyperKey = { "shift", "alt", "ctrl", "cmd" }
+function showCurrentTime()
+	local prettyNow = os.date("%A              📅%B %d %Y              🕐%I:%M:%S %p")
+	hs.alert.show(prettyNow, hs.alert.defaultStyle, hs.screen.mainScreen(), 1.5)
+end
+
+hs.hotkey.bind(hyperKey, "T", showCurrentTime)
+
 -- Set a hotkey to get the remaining time of the timer
 hs.hotkey.bind({"cmd", "ctrl", "alt"}, "R", getRemainTime)
 
