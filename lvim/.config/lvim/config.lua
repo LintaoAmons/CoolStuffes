@@ -11,6 +11,7 @@ require("lintao.keymappings")
 
 require("lintao.cmp")
 require("lintao.telescope")
+require("lintao.copilot")
 
 -- vim options
 vim.opt.shiftwidth = 2

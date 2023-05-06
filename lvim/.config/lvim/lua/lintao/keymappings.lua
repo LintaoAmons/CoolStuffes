@@ -82,6 +82,11 @@ local function git()
   lvim.keys.normal_mode["<leader>ge"] = { "<CMD>Git commit<CR>" }
 end
 
+local function scratch()
+  vim.keymap.set("n", "<M-C-n>", "<cmd>Scratch<cr>")
+  vim.keymap.set("n", "<M-C-o>", "<cmd>ScratchOpen<cr>")
+end
+
 local mappings = {
   -- first key is the mode
   n = {
@@ -158,6 +163,7 @@ function Setup()
   lspsaga()
   git()
   window()
+  scratch()
 
   -- migrate my old configs
   for mode, keybinding in pairs(mappings) do
