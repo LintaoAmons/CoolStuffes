@@ -14,6 +14,10 @@ Please give a little star if you found it useful, because some of them spend me 
 
 - [Ideavim](https://www.bilibili.com/video/BV115411X7i4/?share_source=copy_web&vd_source=b47bb912e09be24910f4ffaad92dba1b)
 
+# Nvim
+
+- [Nvim with copilot](https://www.bilibili.com/video/BV1eL41187cw/)
+
 # Hammerspoon
 
 - [倒计时提醒](https://www.bilibili.com/video/BV1jM411g71R/)
