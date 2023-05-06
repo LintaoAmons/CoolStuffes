@@ -1,4 +1,4 @@
--- keymappings [view all the defaults by pressing <leader>Lk]
+-- keymappings <https://www.lunarvim.org/docs/configuration/keybindings>
 lvim.leader = "space"
 
 local function closeWindowOrBuffer()
@@ -36,8 +36,7 @@ local function leap()
 end
 
 local function tab()
-  vim.api.nvim_set_keymap("n", "tm", "<cmd>tabclose<cr>", { noremap = true, silent = true })
-  vim.api.nvim_set_keymap("n", "tn", "<cmd>tabnew<cr>", { noremap = true, silent = true })
+  vim.api.nvim_set_keymap("n", "tn", "<cmd>tabclose<cr>", { noremap = true, silent = true })
   vim.api.nvim_set_keymap("n", "tl", "<cmd>tabnext<CR>", { noremap = true, silent = true })
   vim.api.nvim_set_keymap("n", "th", "<cmd>tabprevious<CR>", { noremap = true, silent = true })
 end
@@ -80,7 +79,7 @@ local function git()
   lvim.keys.normal_mode["<leader>gf"] = { "<CMD>DiffviewFileHistory %<CR>" }
   lvim.keys.normal_mode["<leader>gh"] = { "<CMD>DiffviewFileHistory<CR>" }
   lvim.keys.normal_mode["<leader>gd"] = { "<CMD>DiffviewOpen<CR>" }
-  lvim.keys.normal_mode["<leader>cc"] = { "<CMD>Git commit<CR>" }
+  lvim.keys.normal_mode["<leader>ge"] = { "<CMD>Git commit<CR>" }
 end
 
 local mappings = {
@@ -106,7 +105,7 @@ local mappings = {
     ["<leader>nl"] = { "<cmd> nohl <CR>", desc = "nohl" },
     -- Show
     ["<leader>ss"] = { "<cmd>AerialToggle<CR>", desc = "Show outline" },
-    ["<C-q>"] = { "<cmd>SessionManager load_session<CR>", desc = "Load session" }, -- <!>load_session
+    ["<C-q>"] = { "<cmd>SessionManager load_session<CR>", desc = "Load session" },      -- <!>load_session
     -- Test KeyStroke
     ["<C-M-m>"] = { '<cmd>lua vim.notify("heihei")<CR>' },                              -- command+control+m
     ["<M-m>"] = { '<cmd>lua vim.notify("<M> is CMD in Mac, achieve by wezterm")<CR>' }, -- command+m
@@ -150,6 +149,7 @@ vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
 
 function Setup()
   unmapLvimDefault()
+
   bufferLineKeybindings()
   explorer()
   leap()

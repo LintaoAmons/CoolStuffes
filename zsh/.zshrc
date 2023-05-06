@@ -60,9 +60,11 @@ compinit
 # Addtional completions can be found in: https://github.com/zsh-users/zsh-completions
 _comp_options+=(globdots)		# Include hidden files.
 fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
+fpath+=$HOME/.oh-my-zsh/custom/zsh-completions
 
 complete -C '/usr/local/bin/aws_completer' aws
-########################## 🔽 AUTO COMP 🔽 ###########################
+source <(kubectl completion zsh)
+########################## 🔼 AUTO COMP 🔼 ###########################
 
 # vi mode
 bindkey -v
@@ -135,6 +137,7 @@ alias lm="limactl"
 alias lt="lsgo | head -n 30"
 alias gonew="source go-new"
 alias awsprofileswither="source aws-profile-switcher"
+alias kl="minikube kubectl --"
 
 ########################## 🔼 ALIAS 🔼 ##########################
 

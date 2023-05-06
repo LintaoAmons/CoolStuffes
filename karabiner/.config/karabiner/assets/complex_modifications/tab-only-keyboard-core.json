@@ -500,7 +500,7 @@
           },
           "to": [
             {
-              "key_code": "end"
+              "key_code": "home"
             }
           ],
           "type": "basic"
@@ -523,7 +523,7 @@
           },
           "to": [
             {
-              "key_code": "home"
+              "key_code": "end"
             }
           ],
           "type": "basic"
