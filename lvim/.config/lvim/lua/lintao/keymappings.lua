@@ -1,4 +1,6 @@
 -- keymappings <https://www.lunarvim.org/docs/configuration/keybindings>
+require("lintao.commands")
+
 lvim.leader = "space"
 
 local function closeWindowOrBuffer()
@@ -24,33 +26,22 @@ local function explorer()
   vim.api.nvim_set_keymap("n", "<leader>fl", "<cmd>NvimTreeFocus<cr>", { noremap = true, silent = true })
 end
 
-local function leap()
-  lvim.keys.normal_mode["s"] = function()
-    require("leap").leap {
-      target_windows = vim.tbl_filter(
-        function(win) return vim.api.nvim_win_get_config(win).focusable end,
-        vim.api.nvim_tabpage_list_wins(0)
-      ),
-    }
-  end
-end
-
 local function tab()
   vim.api.nvim_set_keymap("n", "tn", "<cmd>tabclose<cr>", { noremap = true, silent = true })
   vim.api.nvim_set_keymap("n", "tl", "<cmd>tabnext<CR>", { noremap = true, silent = true })
   vim.api.nvim_set_keymap("n", "th", "<cmd>tabprevious<CR>", { noremap = true, silent = true })
 end
 
-local function telescopeMappings()
-  lvim.keys.normal_mode["<leader>fE"] = { "<cmd>Telescope oldfiles<cr>" }
-  lvim.keys.normal_mode["<C-p>"] = { "<cmd> Telescope find_files <CR>" }
-  lvim.keys.normal_mode["<C-M-p>"] = { "<cmd>Telescope keymaps<cr>" }
-  lvim.keys.normal_mode["<M-e>"] = { "<cmd>Telescope oldfiles<cr>" }
+local function finderMappings()
+  lvim.keys.normal_mode["<C-p>"] = { "<cmd>FzfLua files<CR>" }
+  lvim.keys.normal_mode["<C-M-p>"] = { "<cmd>FzfLua commands<cr>" } -- TODO: define personal commands
+  lvim.keys.normal_mode["<M-e>"] = { "<cmd>Telescope buffers<cr>" }
+  lvim.keys.normal_mode["<C-f>"] = { "<cmd>FzfLua live_grep<cr>" }
+
   lvim.keys.normal_mode["<leader>fk"] = { "<cmd>Telescope keymaps<cr>" }
   lvim.keys.normal_mode["gr"] = { "<CMD>lua require'telescope.builtin'.lsp_references{}<CR>" }
   lvim.keys.normal_mode["gd"] = { "<CMD>Telescope lsp_definitions<CR>" }
   lvim.keys.normal_mode["<leader>fw"] = { ":Telescope live_grep<cr>" }
-  lvim.keys.normal_mode["<C-M-f>"] = { ":Telescope live_grep<cr>" }
 end
 
 local function window()
@@ -73,15 +64,6 @@ local function lspsaga()
   lvim.keys.normal_mode["<leader>rn"] = { "<CMD>Lspsaga rename<CR>" }
 end
 
-local function git()
-  lvim.keys.normal_mode["gj"] = { "<cmd>lua require 'gitsigns'.next_hunk({navigation_message = false})<cr>" }
-  lvim.keys.normal_mode["gk"] = { "<cmd>lua require 'gitsigns'.prev_hunk({navigation_message = false})<cr>" }
-  lvim.keys.normal_mode["<leader>gf"] = { "<CMD>DiffviewFileHistory %<CR>" }
-  lvim.keys.normal_mode["<leader>gh"] = { "<CMD>DiffviewFileHistory<CR>" }
-  lvim.keys.normal_mode["<leader>gd"] = { "<CMD>DiffviewOpen<CR>" }
-  lvim.keys.normal_mode["<leader>ge"] = { "<CMD>Git commit<CR>" }
-end
-
 local function scratch()
   vim.keymap.set("n", "<M-C-n>", "<cmd>Scratch<cr>")
   vim.keymap.set("n", "<M-C-o>", "<cmd>ScratchOpen<cr>")
@@ -94,8 +76,6 @@ local mappings = {
     -- mappings seen under group name "Buffer"
     ["<M-w>"] = { function() closeWindowOrBuffer() end, desc = "Close current window/split" },
     ["<M-q>"] = { "<cmd>qa!<CR>", desc = "quit nvim" },
-    ["<leader>df"] = { "<cmd> DiffviewOpen <cr>", desc = "Open diffview" },
-    -- ["<leader>dd"] = { "<cmd> DiffviewFileHistory %<cr>", desc = "diff current file" },
     ["<leader>dv"] = { ":call v:lua.compare_to_clipboard()<CR>", desc = "Diff selected with clipboard" },
     ["<leader>fm"] = { "<cmd>lua vim.lsp.buf.format { async = true } <cr>", desc = "Format" },
     ["<leader>gr"] = { function() require("gitsigns").reset_hunk() end, desc = "Reset git hunk" },
@@ -157,11 +137,9 @@ function Setup()
 
   bufferLineKeybindings()
   explorer()
-  leap()
   tab()
-  telescopeMappings()
+  finderMappings()
   lspsaga()
-  git()
   window()
   scratch()
 
