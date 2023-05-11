@@ -1,6 +1,7 @@
 -- keymappings <https://www.lunarvim.org/docs/configuration/keybindings>
 require("lintao.commands")
 
+-- TODO: move all the contents into commands
 lvim.leader = "space"
 
 local function closeWindowOrBuffer()
@@ -9,12 +10,6 @@ local function closeWindowOrBuffer()
   if not isOk then vim.cmd "bd" end
 end
 
-local function unmapLvimDefault()
-  lvim.keys.normal_mode["<M-w>"] = false
-
-  lvim.builtin.which_key.mappings['w'] = {}
-  lvim.builtin.which_key.mappings['f'] = {}
-end
 
 local function bufferLineKeybindings()
   vim.api.nvim_set_keymap("n", "<S-l>", "<cmd>BufferLineCycleNext<cr>", { noremap = true, silent = true })
@@ -24,6 +19,17 @@ end
 local function explorer()
   vim.api.nvim_set_keymap("n", "<C-n>", "<cmd>NvimTreeToggle<cr>", { noremap = true, silent = true })
   vim.api.nvim_set_keymap("n", "<leader>fl", "<cmd>NvimTreeFocus<cr>", { noremap = true, silent = true })
+end
+
+local function leap()
+  lvim.keys.normal_mode["s"] = function()
+    require("leap").leap {
+      target_windows = vim.tbl_filter(
+        function(win) return vim.api.nvim_win_get_config(win).focusable end,
+        vim.api.nvim_tabpage_list_wins(0)
+      ),
+    }
+  end
 end
 
 local function tab()
@@ -133,8 +139,6 @@ end
 vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
 
 function Setup()
-  unmapLvimDefault()
-
   bufferLineKeybindings()
   explorer()
   tab()
@@ -142,6 +146,7 @@ function Setup()
   lspsaga()
   window()
   scratch()
+  leap()
 
   -- migrate my old configs
   for mode, keybinding in pairs(mappings) do

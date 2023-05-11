@@ -9,9 +9,26 @@ local plugins = {
       })
     end,
   },
+  {
+    'kevinhwang91/nvim-ufo',
+    dependencies = { 'kevinhwang91/promise-async' }
+  },
+  {
+    "luukvbaal/statuscol.nvim",
+    config = function()
+      -- local builtin = require("statuscol.builtin")
+      require("statuscol").setup({
+      })
+    end,
+  },
   { "christoomey/vim-tmux-navigator" },
   { "LintaoAmons/scratch.nvim" },
-  { "stevearc/aerial.nvim" },
+  {
+    "stevearc/aerial.nvim",
+    config = function()
+      require('aerial').setup()
+    end
+  },
   { 'stevearc/dressing.nvim' },
   {
     'sindrets/diffview.nvim',
@@ -56,6 +73,7 @@ local plugins = {
     end,
   },
   { 'ibhagwan/fzf-lua' },
+  { "ggandor/leap.nvim" },
   -- 🔥 Golang
   -- {
   --   "ray-x/go.nvim",
