@@ -1,5 +1,11 @@
 local M = {}
 
+function M.closeWindowOrBuffer()
+  local isOk, _ = pcall(vim.cmd, "close")
+
+  if not isOk then vim.cmd "bd" end
+end
+
 local function copyToSystemClipboard(content)
   local copy_cmd = 'pbcopy'
   -- Copy the absolute path to the clipboard

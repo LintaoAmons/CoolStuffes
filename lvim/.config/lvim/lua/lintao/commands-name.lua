@@ -21,6 +21,7 @@ return {
     GoToTestFile = "GoToTestFile",
   },
   other = {
+    CloseWindowOrBuffer = "CloseWindowOrBuffer",
     FzfLuaBuiltin = "FzfLuaBuiltin",
     FindInWholeProject = "FindInWholeProject",
     CopyBufferAbsolutePath = "CopyBufferAbsolutePath",

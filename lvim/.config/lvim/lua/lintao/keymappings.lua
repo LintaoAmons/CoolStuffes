@@ -4,21 +4,10 @@ require("lintao.commands")
 -- TODO: move all the contents into commands
 lvim.leader = "space"
 
-local function closeWindowOrBuffer()
-  local isOk, _ = pcall(vim.cmd, "close")
-
-  if not isOk then vim.cmd "bd" end
-end
-
 
 local function bufferLineKeybindings()
   vim.api.nvim_set_keymap("n", "<S-l>", "<cmd>BufferLineCycleNext<cr>", { noremap = true, silent = true })
   vim.api.nvim_set_keymap("n", "<S-h>", "<cmd>BufferLineCyclePrev<cr>", { noremap = true, silent = true })
-end
-
-local function explorer()
-  vim.api.nvim_set_keymap("n", "<C-n>", "<cmd>NvimTreeToggle<cr>", { noremap = true, silent = true })
-  vim.api.nvim_set_keymap("n", "<leader>fl", "<cmd>NvimTreeFocus<cr>", { noremap = true, silent = true })
 end
 
 local function leap()
@@ -41,8 +30,6 @@ end
 local function finderMappings()
   lvim.keys.normal_mode["<C-p>"] = { "<cmd>FzfLua files<CR>" }
   lvim.keys.normal_mode["<C-M-p>"] = { "<cmd>FzfLua commands<cr>" } -- TODO: define personal commands
-  lvim.keys.normal_mode["<M-e>"] = { "<cmd>Telescope buffers<cr>" }
-  lvim.keys.normal_mode["<C-f>"] = { "<cmd>FzfLua live_grep<cr>" }
 
   lvim.keys.normal_mode["<leader>fk"] = { "<cmd>Telescope keymaps<cr>" }
   lvim.keys.normal_mode["gr"] = { "<CMD>lua require'telescope.builtin'.lsp_references{}<CR>" }
@@ -80,7 +67,7 @@ local mappings = {
   n = {
     -- second key is the lefthand side of the map
     -- mappings seen under group name "Buffer"
-    ["<M-w>"] = { function() closeWindowOrBuffer() end, desc = "Close current window/split" },
+    -- ["<M-w>"] = { function() closeWindowOrBuffer() end, desc = "Close current window/split" },
     ["<M-q>"] = { "<cmd>qa!<CR>", desc = "quit nvim" },
     ["<leader>dv"] = { ":call v:lua.compare_to_clipboard()<CR>", desc = "Diff selected with clipboard" },
     ["<leader>fm"] = { "<cmd>lua vim.lsp.buf.format { async = true } <cr>", desc = "Format" },
@@ -140,7 +127,6 @@ vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
 
 function Setup()
   bufferLineKeybindings()
-  explorer()
   tab()
   finderMappings()
   lspsaga()

@@ -10,6 +10,22 @@ local commands_name = require("lintao.commands-name")
 
 local commands_implementation = {
   {
+    name = commands_name.other.CloseWindowOrBuffer,
+    callback = 'lua require("lintao.command-functions").closeWindowOrBuffer()',
+    keybinding = {
+      mode = 'n',
+      keys = '<M-w>'
+    }
+  },
+  {
+    name = commands_name.navigation.OpenChangedFiles,
+    callback = "FzfLua git_status",
+    keybinding = {
+      mode = 'n',
+      keys = '<M-e>'
+    }
+  },
+  {
     name = commands_name.git.GitDiff,
     callback = "DiffviewOpen",
     keybinding = {
@@ -86,8 +102,12 @@ local commands_implementation = {
     callback = 'lua require("fzf-lua").builtin()'
   },
   {
-    name     = commands_name.other.FindInWholeProject,
-    callback = 'FzfLua grep_project',
+    name       = commands_name.other.FindInWholeProject,
+    callback   = 'FzfLua grep_project',
+    keybinding = {
+      mode = 'n',
+      keys = '<C-f>'
+    }
   },
   {
     name = commands_name.other.CopyBufferAbsolutePath,
@@ -101,7 +121,7 @@ local commands_implementation = {
 
 local function register_commands_and_keybinding(commands)
   for _, v in ipairs(commands) do
-    print(v.name)
+    -- print(v.name)
     vim.api.nvim_create_user_command(v.name, v.callback, {})
 
     if v.keybinding then
