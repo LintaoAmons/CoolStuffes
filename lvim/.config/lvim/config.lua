@@ -14,7 +14,6 @@ require("lintao.telescope")
 require("lintao.copilot")
 require("lintao.ufo")
 require("lintao.fzf")
-require("lintao.dap")
 
 -- vim options
 vim.opt.shiftwidth = 2

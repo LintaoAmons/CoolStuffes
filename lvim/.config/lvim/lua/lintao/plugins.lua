@@ -2,6 +2,19 @@ lvim.builtin.alpha.active = false
 
 local plugins = {
   {
+    "folke/todo-comments.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim"
+    },
+    config       = function()
+      require("todo-comments").setup {
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+      }
+    end
+  },
+  {
     "Pocco81/auto-save.nvim",
     config = function()
       require("auto-save").setup({
@@ -73,22 +86,59 @@ local plugins = {
     end,
   },
   { 'ibhagwan/fzf-lua' },
-  { "ggandor/leap.nvim" },
+  { 'ggandor/leap.nvim' },
+  {
+    "nvim-neotest/neotest",
+    dependencies = {
+      "nvim-neotest/neotest-go",
+      -- Your other test adapters here
+    },
+    config = function()
+      -- get neotest namespace (api call creates or returns namespace)
+      local neotest_ns = vim.api.nvim_create_namespace("neotest")
+      vim.diagnostic.config({
+        virtual_text = {
+          format = function(diagnostic)
+            local message =
+                diagnostic.message:gsub("\n", " "):gsub("\t", " "):gsub("%s+", " "):gsub("^%s+", "")
+            return message
+          end,
+        },
+      }, neotest_ns)
+      require("neotest").setup({
+        -- your neotest config here
+        adapters = {
+          require("neotest-go")({
+            -- experimental = {
+            --   test_table = true,
+            -- },
+            args = { "-count=1", "-timeout=60s" }
+          })
+        },
+      })
+    end,
+  },
   -- 🔥 Golang
-  -- {
-  --   "ray-x/go.nvim",
-  --   dependencies = { -- optional packages
-  --     "ray-x/guihua.lua",
-  --     "neovim/nvim-lspconfig",
-  --     "nvim-treesitter/nvim-treesitter",
-  --   },
-  --   config = function()
-  --     require("go").setup()
-  --   end,
-  --   event = { "CmdlineEnter" },
-  --   ft = { "go", 'gomod' },
-  --   build = ':lua require("go.install").update_all_sync()' -- if you need to install/update all binaries
-  -- },
+  {
+    'leoluz/nvim-dap-go',
+    config = function()
+      require('dap-go').setup()
+    end
+  },
+  {
+    "ray-x/go.nvim",
+    dependencies = { -- optional packages
+      "ray-x/guihua.lua",
+      "neovim/nvim-lspconfig",
+      "nvim-treesitter/nvim-treesitter",
+    },
+    config = function()
+      require("go").setup()
+    end,
+    event = { "CmdlineEnter" },
+    ft = { "go", 'gomod' },
+    build = ':lua require("go.install").update_all_sync()' -- if you need to install/update all binaries
+  },
   -- 🔥 Copilot
   {
     "zbirenbaum/copilot.lua",
