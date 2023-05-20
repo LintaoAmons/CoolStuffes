@@ -7,7 +7,9 @@ lvim.plugins = require("lintao.plugins")
 lvim.colorscheme = "material"
 vim.g.material_style = "darker"
 
-require("lintao.keymappings")
+lvim.leader = "space"
+require("lintao.commands")
+
 require("lintao.cmp")
 require("lintao.telescope")
 require("lintao.copilot")

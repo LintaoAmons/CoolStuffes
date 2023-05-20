@@ -8,6 +8,7 @@ return {
     GitListCurrentFileCommits = "GitListCurrentFileCommits",
     GitNextHunk = "GitNextHunk",
     GitPrevHunk = "GitPrevHunk",
+    GitResetHunk = "GitResetHunk",
     GitListBranches = "GitListBranches",
     GitChangedFiles = "GitChangedFiles",
     GitSomething = "GitSomething", -- TODO
@@ -28,6 +29,11 @@ return {
 
     BufferNext = "BufferNext",
     BufferPrev = "BufferPrev",
+
+    SplitVertically = "SplitVertically",
+    MaximiseBufferAndCloseOthers = "MaximiseBufferAndCloseOthers",
+    IncreaseSplitWidth = "IncreaseSplitWidth",
+    DecreaseSplitWidth = "DecreaseSplitWidth",
   },
   test = {
     TestRunNearest = "TestRunNearest",
@@ -42,13 +48,23 @@ return {
     FindInWholeProject = "FindInWholeProject",
     FzfLuaBuiltin = "FzfLuaBuiltin",
   },
-  -- view = {
-  -- TODO   
-
-  -- },
+  scratch = {
+    Scratch = "Scratch",
+    ScratchOpen = "ScratchOpen",
+  },
   other = {
+    QuitNvim = "QuitNvim",
+    DiffWithClipboard = "DiffWithClipboard",
+    RunCurrentBuffer = "RunCurrentBuffer",
+    FormatCode = "FormatCode",
+    NoHighlight = "NoHighlight",
+    ToggleOutline = "ToggleOutline",
+    ToggleTerminal = "ToggleTerminal", -- TODO
     CloseWindowOrBuffer = "CloseWindowOrBuffer",
     CopyBufferAbsolutePath = "CopyBufferAbsolutePath",
     CopyBufferDirectoryPath = "CopyBufferDirectoryPath",
+  },
+  nvim = {
+    SourceCurrentBuffer = "SourceCurrentBuffer",
   }
 }

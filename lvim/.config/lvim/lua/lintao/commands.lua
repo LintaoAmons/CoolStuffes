@@ -10,6 +10,107 @@ local commands_name = require("lintao.commands-name")
 
 local commands_implementation = {
   {
+    name = commands_name.navigation.DecreaseSplitWidth,
+    callback = 'vertical resize -5',
+    keybinding = {
+      mode = "n",
+      keys = '<C-M-k>',
+    }
+  },
+  {
+    name = commands_name.navigation.IncreaseSplitWidth,
+    callback = 'vertical resize +5',
+    keybinding = {
+      mode = "n",
+      keys = '<C-M-j>',
+    }
+  },
+  -- { TODO: Why notCmd not working
+  --   name = commands_name.navigation.MaximiseBufferAndCloseOthers,
+  --   notCmd = true,
+  --   callback = '<c-w>o',
+  --   keybinding = {
+  --     mode = "n",
+  --     keys = '<leader>wo',
+  --   }
+  -- },
+  {
+    name = commands_name.navigation.SplitVertically,
+    callback = 'vsplit',
+    keybinding = {
+      mode = "n",
+      keys = '<leader>wl',
+    }
+  },
+  {
+    name = commands_name.nvim.SourceCurrentBuffer,
+    callback = 'luafile %',
+  },
+  {
+    name = commands_name.other.ToggleOutline,
+    callback = 'AerialToggle',
+    keybinding = {
+      mode = "n",
+      keys = '<leader>ss',
+    }
+  },
+  {
+    name = commands_name.other.NoHighlight,
+    callback = 'nohl',
+    keybinding = {
+      mode = "n",
+      keys = '<leader>nl',
+    }
+  },
+  {
+    name = commands_name.other.FormatCode,
+    callback = 'lua vim.lsp.buf.format { async = true }',
+    keybinding = {
+      mode = "n",
+      keys = '<leader>fm',
+    }
+  },
+  {
+    name = commands_name.other.RunCurrentBuffer,
+    callback = '%SnipRun',
+    keybinding = {
+      mode = "n",
+      keys = '<M-r>',
+    }
+  },
+  {
+    name = commands_name.other.QuitNvim,
+    callback = 'qa!',
+    keybinding = {
+      mode = "n",
+      keys = '<M-q>',
+    }
+  },
+  {
+    name = commands_name.git.GitResetHunk,
+    callback = 'lua require("gitsigns").reset_hunk()',
+    keybinding = {
+      mode = "n",
+      keys = '<leader>rl',
+    }
+  },
+  {
+    name = commands_name.scratch.ScratchOpen,
+    callback = "ScratchOpen",
+    keybinding = {
+      mode = 'n',
+      keys = '<M-C-o>'
+    }
+  },
+  {
+    name = commands_name.scratch.Scratch,
+    callback = "Scratch",
+    keybinding = {
+      mode = 'n',
+      keys = '<M-C-n>'
+    }
+  },
+  {
     name = commands_name.navigation.BufferPrev,
     callback = "BufferLineCyclePrev",
     keybinding = {
@@ -60,17 +161,20 @@ local commands_implementation = {
     keybinding = {
       mode = 'n',
       keys = 'tn'
-
     }
   },
   {
     name = commands_name.navigation.MaximiseBuffer,
     callback = 'lua require("lintao.command-functions").MaximiseBuffer()',
   },
-  -- {
-  --   name = commands_name.navigation.LeapJump,
-  --   callback = 'lua require("lintao.command-functions").search_ref()'
-  -- },
+  {
+    name = commands_name.navigation.LeapJump,
+    callback = 'lua require("lintao.command-functions").LeapJump()',
+    keybinding = {
+      mode = 'n',
+      keys = 's'
+    }
+  },
   {
     name = commands_name.git.GitPush,
     callback = 'Git push'
@@ -232,6 +336,14 @@ local function register_commands_and_keybinding(commands)
 
     if v.keybinding then
       if v.keybinding.mode == "n" then
+        -- if v.notCmd then
+        --   print(v.name)
+        --   print("NotCmd")
+        --   print(v.keybinding.keys)
+        --   print(v.callback)
+        --   -- lvim.keys.normal_mode[v.keybinding.keys] = { v.callback, desc = "Maximize window" }
+        --   vim.api.nvim_set_keymap('n', "<leader>wo", '<c-w>o', {noremap = true})
+        -- end
         lvim.keys.normal_mode[v.keybinding.keys] = "<CMD>" .. v.callback .. "<CR>"
       elseif v.keybinding.mode == "v" then
         lvim.keys.visual_mode[v.keybinding.keys] = "<CMD>" .. v.callback .. "<CR>"
@@ -253,3 +365,4 @@ end
 unmapLvimDefault()
 init_default_behaviour(commands_name)
 register_commands_and_keybinding(commands_implementation)
+lvim.keys.normal_mode["<leader>wo"] = { "<c-w>o", desc = "Maximize window" }
