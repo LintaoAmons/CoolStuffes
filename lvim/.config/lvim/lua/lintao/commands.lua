@@ -10,6 +10,88 @@ local commands_name = require("lintao.commands-name")
 
 local commands_implementation = {
   {
+    name = commands_name.navigation.BufferPrev,
+    callback = "BufferLineCyclePrev",
+    keybinding = {
+      mode = 'n',
+      keys = '<S-h>'
+
+    }
+  },
+  {
+    name = commands_name.navigation.BufferNext,
+    callback = "BufferLineCycleNext",
+    keybinding = {
+      mode = 'n',
+      keys = '<S-l>'
+
+    }
+  },
+  {
+    name = commands_name.navigation.TabPrev,
+    callback = "tabprevious",
+    keybinding = {
+      mode = 'n',
+      keys = 'th'
+
+    }
+  },
+  {
+    name = commands_name.navigation.TabNext,
+    callback = "tabnext",
+    keybinding = {
+      mode = 'n',
+      keys = 'tl'
+
+    }
+  },
+  {
+    name = commands_name.navigation.TabClose,
+    callback = "tabclose",
+    keybinding = {
+      mode = 'n',
+      keys = 'tt'
+
+    }
+  },
+  {
+    name = commands_name.navigation.TabNew,
+    callback = "tabnew",
+    keybinding = {
+      mode = 'n',
+      keys = 'tn'
+
+    }
+  },
+  {
+    name = commands_name.navigation.MaximiseBuffer,
+    callback = 'lua require("lintao.command-functions").MaximiseBuffer()',
+  },
+  -- {
+  --   name = commands_name.navigation.LeapJump,
+  --   callback = 'lua require("lintao.command-functions").search_ref()'
+  -- },
+  {
+    name = commands_name.git.GitPush,
+    callback = 'Git push'
+  },
+  {
+    name = commands_name.git.GitStash,
+    callback = 'Git stash'
+  },
+  {
+    name = commands_name.navigation.OpenRecentFiles,
+    callback = 'FzfLua oldfiles'
+  },
+  {
+    name = commands_name.test.GoToTestFile,
+    callback = 'lua require("lintao.command-functions").GoToTestFile()',
+    keybinding = {
+      mode = 'n',
+      keys = 'gt',
+    }
+  },
+  {
     name = commands_name.other.CloseWindowOrBuffer,
     callback = 'lua require("lintao.command-functions").closeWindowOrBuffer()',
     keybinding = {
@@ -90,6 +172,10 @@ local commands_implementation = {
     }
   },
   {
+    name = commands_name.test.TestDebugNearest,
+    callback = 'lua require("dap-go").debug_test()'
+  },
+  {
     name = commands_name.test.TestRunNearest,
     callback = 'lua require("neotest").run.run()'
   },
@@ -98,11 +184,31 @@ local commands_implementation = {
     callback = 'lua require("neotest").output_panel.open()'
   },
   {
-    name = commands_name.other.FzfLuaBuiltin,
+    name = commands_name.finder.FindFiles,
+    callback = 'FzfLua files',
+    keybinding = {
+      mode = 'n',
+      keys = '<C-p>'
+    }
+  },
+  {
+    name = commands_name.finder.FindCommands,
+    callback = 'FzfLua commands',
+    keybinding = {
+      mode = 'n',
+      keys = '<C-M-p>'
+    }
+  },
+  {
+    name = commands_name.finder.FindKeymappins,
+    callback = 'FzfLua keymaps',
+  },
+  {
+    name = commands_name.finder.FzfLuaBuiltin,
     callback = 'lua require("fzf-lua").builtin()'
   },
   {
-    name       = commands_name.other.FindInWholeProject,
+    name       = commands_name.finder.FindInWholeProject,
     callback   = 'FzfLua grep_project',
     keybinding = {
       mode = 'n',

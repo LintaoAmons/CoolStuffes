@@ -5,11 +5,6 @@ require("lintao.commands")
 lvim.leader = "space"
 
 
-local function bufferLineKeybindings()
-  vim.api.nvim_set_keymap("n", "<S-l>", "<cmd>BufferLineCycleNext<cr>", { noremap = true, silent = true })
-  vim.api.nvim_set_keymap("n", "<S-h>", "<cmd>BufferLineCyclePrev<cr>", { noremap = true, silent = true })
-end
-
 local function leap()
   lvim.keys.normal_mode["s"] = function()
     require("leap").leap {
@@ -21,21 +16,15 @@ local function leap()
   end
 end
 
-local function tab()
-  vim.api.nvim_set_keymap("n", "tn", "<cmd>tabclose<cr>", { noremap = true, silent = true })
-  vim.api.nvim_set_keymap("n", "tl", "<cmd>tabnext<CR>", { noremap = true, silent = true })
-  vim.api.nvim_set_keymap("n", "th", "<cmd>tabprevious<CR>", { noremap = true, silent = true })
-end
+-- local function finderMappings()
+--   lvim.keys.normal_mode["<C-p>"] = { "<cmd>FzfLua files<CR>" }
+--   lvim.keys.normal_mode["<C-M-p>"] = { "<cmd>FzfLua commands<cr>" } -- TODO: define personal commands
 
-local function finderMappings()
-  lvim.keys.normal_mode["<C-p>"] = { "<cmd>FzfLua files<CR>" }
-  lvim.keys.normal_mode["<C-M-p>"] = { "<cmd>FzfLua commands<cr>" } -- TODO: define personal commands
-
-  lvim.keys.normal_mode["<leader>fk"] = { "<cmd>Telescope keymaps<cr>" }
-  lvim.keys.normal_mode["gr"] = { "<CMD>lua require'telescope.builtin'.lsp_references{}<CR>" }
-  lvim.keys.normal_mode["gd"] = { "<CMD>Telescope lsp_definitions<CR>" }
-  lvim.keys.normal_mode["<leader>fw"] = { ":Telescope live_grep<cr>" }
-end
+--   lvim.keys.normal_mode["<leader>fk"] = { "<cmd>Telescope keymaps<cr>" }
+--   lvim.keys.normal_mode["gr"] = { "<CMD>lua require'telescope.builtin'.lsp_references{}<CR>" }
+--   lvim.keys.normal_mode["gd"] = { "<CMD>Telescope lsp_definitions<CR>" }
+--   lvim.keys.normal_mode["<leader>fw"] = { ":Telescope live_grep<cr>" }
+-- end
 
 local function window()
   lvim.keys.normal_mode["<leader>wl"] = { "<cmd>vsplit<cr>", desc = "Split window vertically" }
@@ -46,16 +35,16 @@ local function window()
   lvim.keys.normal_mode["<C-M-k>"] = { "<CMD>vertical resize -5<CR>" }
 end
 
-local function lspsaga()
-  lvim.keys.normal_mode["ge"] = { "<CMD>Lspsaga diagnostic_jump_next<CR>" }
-  lvim.keys.normal_mode["gt"] = { "<CMD>GoAlt<CR>" }
-  lvim.keys.normal_mode["K"] = { "<CMD>Lspsaga hover_doc<CR>" }
-  lvim.keys.normal_mode["<M-k>"] = { "<CMD>Lspsaga code_action<CR>" }
-  lvim.keys.normal_mode["<leader>lf"] = { "<CMD>Lspsaga lsp_finder<CR>" }
-  lvim.keys.normal_mode["gl"] = { "<CMD>Lspsaga lsp_finder<CR>" }
-  lvim.keys.normal_mode["<M-l>"] = { "<CMD>Lspsaga lsp_finder<CR>" }
-  lvim.keys.normal_mode["<leader>rn"] = { "<CMD>Lspsaga rename<CR>" }
-end
+-- local function lspsaga()
+--   lvim.keys.normal_mode["ge"] = { "<CMD>Lspsaga diagnostic_jump_next<CR>" }
+--   lvim.keys.normal_mode["gt"] = { "<CMD>GoAlt<CR>" }
+--   lvim.keys.normal_mode["K"] = { "<CMD>Lspsaga hover_doc<CR>" }
+--   lvim.keys.normal_mode["<M-k>"] = { "<CMD>Lspsaga code_action<CR>" }
+--   lvim.keys.normal_mode["<leader>lf"] = { "<CMD>Lspsaga lsp_finder<CR>" }
+--   lvim.keys.normal_mode["gl"] = { "<CMD>Lspsaga lsp_finder<CR>" }
+--   lvim.keys.normal_mode["<M-l>"] = { "<CMD>Lspsaga lsp_finder<CR>" }
+--   lvim.keys.normal_mode["<leader>rn"] = { "<CMD>Lspsaga rename<CR>" }
+-- end
 
 local function scratch()
   vim.keymap.set("n", "<M-C-n>", "<cmd>Scratch<cr>")
@@ -126,10 +115,7 @@ end
 vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
 
 function Setup()
-  bufferLineKeybindings()
-  tab()
-  finderMappings()
-  lspsaga()
+  -- finderMappings()
   window()
   scratch()
   leap()

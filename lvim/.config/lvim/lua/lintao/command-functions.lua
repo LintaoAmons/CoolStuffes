@@ -1,5 +1,53 @@
 local M = {}
 
+-- Put all dependences here
+
+-- from: https://www.reddit.com/r/neovim/comments/13l0p0p/leapnvim_meets_vimilluminate/
+-- function M.search_ref()
+--   local ref = require("illuminate.reference").buf_get_references(vim.api.nvim_get_current_buf())
+--   if not ref or #ref == 0 then
+--     return false
+--   end
+
+--   local targets = {}
+--   for _, v in pairs(ref) do
+--     table.insert(targets, {
+--       pos = { v[1][1] + 1, v[1][2] + 1 },
+--     })
+--   end
+
+--   require("leap").leap({ targets = targets, target_windows = { vim.api.nvim_get_current_win() } })
+
+--   return true
+-- end
+
+function M.MaximiseBuffer()
+  local bufnr = vim.api.nvim_get_current_buf()
+  local winnr = vim.api.nvim_get_current_win()
+
+  -- Get the current buffer name
+  local bufname = vim.api.nvim_buf_get_name(bufnr)
+
+  -- Create a new tab
+  vim.api.nvim_command('tabnew')
+
+  -- Set the current window's buffer to the buffer we want to open
+  vim.api.nvim_win_set_buf(winnr, bufnr)
+
+  -- Optionally, if you want to set the buffer name in the new tab to the same as the old one
+  vim.api.nvim_buf_set_name(bufnr, bufname)
+end
+
+function M.GoToTestFile()
+  local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
+
+  if buf_ft == 'go' then
+    vim.api.nvim_command('GoAlt')
+  else
+    vim.notify("Not implemented yet")
+  end
+end
+
 function M.closeWindowOrBuffer()
   local isOk, _ = pcall(vim.cmd, "close")
 
@@ -33,10 +81,9 @@ function M.copyBufferDirectoryPath()
   copyToSystemClipboard(buffer_dir_path)
 end
 
-local function stashAndCommit()
+function M.stashAndCommit()
   vim.api.nvim_command('Git add .')
   vim.api.nvim_command('Git commit')
 end
-M.stashAndCommit = stashAndCommit
 
 return M

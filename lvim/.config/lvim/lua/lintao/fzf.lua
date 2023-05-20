@@ -1,5 +1,6 @@
-require'fzf-lua'.setup({
+require 'fzf-lua'.setup({
   commands = {
-    actions = { ["default"] =  require'fzf-lua'.actions.ex_run_cr },
+    actions = { ["default"] = require 'fzf-lua'.actions.ex_run_cr },
+    sort_lastused = true,
   },
 })
