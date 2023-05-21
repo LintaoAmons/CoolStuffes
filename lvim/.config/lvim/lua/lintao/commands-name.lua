@@ -37,6 +37,9 @@ return {
   },
   test = {
     TestRunNearest = "TestRunNearest",
+    TestRunCurrentFile = "TestRunCurrentFile", -- TODO
+    TestRunLast = "TestRunLast",
+    TestToggleOutputPanel = "TestToggleOutputPanel",
     TestDebugNearest = "TestDebugNearest",
     TestOutputPanel = "TestOutputPanel",
     GoToTestFile = "GoToTestFile",

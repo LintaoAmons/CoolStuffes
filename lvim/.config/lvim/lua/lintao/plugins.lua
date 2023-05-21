@@ -19,7 +19,7 @@ local plugins = {
   },
   {
     "folke/todo-comments.nvim",
-    lazy = true,
+    event = 'VimEnter',
     dependencies = {
       "nvim-lua/plenary.nvim"
     },
@@ -30,10 +30,6 @@ local plugins = {
         -- refer to the configuration section below
       }
     end
-  },
-  {
-    "LintaoAmons/auto-save.nvim",
-    event = 'VimEnter',
   },
   {
     "christoomey/vim-tmux-navigator",
@@ -181,7 +177,7 @@ local plugins = {
   },
   {
     "olexsmir/gopher.nvim",
-    lazy = true,
+    event = 'VimEnter',
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
@@ -218,6 +214,13 @@ local plugins = {
     end,
   },
   -- 🔥 Color scheme
+  {
+    "levouh/tint.nvim",
+    event = 'VimEnter',
+    config = function()
+      require("tint").setup()
+    end
+  },
   {
     "lintaoAmons/material.nvim",
     config = function()

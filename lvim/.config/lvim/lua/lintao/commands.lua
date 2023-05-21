@@ -188,6 +188,18 @@ local commands_implementation = {
     callback = 'FzfLua oldfiles'
   },
   {
+    name = commands_name.test.TestToggleOutputPanel,
+    callback = 'lua require("neotest").output_panel.toggle()',
+  },
+  {
+    name = commands_name.test.TestRunCurrentFile,
+    callback = 'lua require("neotest").run.run(vim.fn.expand("%"))',
+  },
+  {
+    name = commands_name.test.TestRunLast,
+    callback = 'lua require("neotest").run.run_last()'
+  },
+  {
     name = commands_name.test.GoToTestFile,
     callback = 'lua require("lintao.command-functions").GoToTestFile()',
     keybinding = {
