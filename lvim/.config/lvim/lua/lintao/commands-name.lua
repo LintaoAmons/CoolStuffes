@@ -11,7 +11,11 @@ return {
     GitResetHunk = "GitResetHunk",
     GitListBranches = "GitListBranches",
     GitChangedFiles = "GitChangedFiles",
-    GitSomething = "GitSomething", -- TODO
+  },
+  refactor = {
+    ExtractFunction = "ExtractFunction",
+    ExtractVariable = "ExtractVariable",
+    InlineVariable = "InlineVariable",
   },
   explorer = {
     ExplorerLocateCurrentFile = "ExplorerLocateCurrentFile",
@@ -34,6 +38,9 @@ return {
     MaximiseBufferAndCloseOthers = "MaximiseBufferAndCloseOthers",
     IncreaseSplitWidth = "IncreaseSplitWidth",
     DecreaseSplitWidth = "DecreaseSplitWidth",
+
+    Mark = "Mark",
+    MarkJump = "MarkJump",
   },
   test = {
     TestRunNearest = "TestRunNearest",
@@ -66,6 +73,8 @@ return {
     CloseWindowOrBuffer = "CloseWindowOrBuffer",
     CopyBufferAbsolutePath = "CopyBufferAbsolutePath",
     CopyBufferDirectoryPath = "CopyBufferDirectoryPath",
+    CopyBufferAbsolutePathFromProjectRoot = "CopyBufferAbsolutePathFromProjectRoot",   -- TODO
+    CopyBufferDirectoryPathFromProjectRoot = "CopyBufferDirectoryPathFromProjectRoot", -- TODO
   },
   nvim = {
     SourceCurrentBuffer = "SourceCurrentBuffer",

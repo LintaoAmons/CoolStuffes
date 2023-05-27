@@ -12,6 +12,7 @@ export GOPATH=$HOME/go
 export LANG=en_US.UTF-8
 export EDITOR="lvim"
 export TMUX_TMPDIR=~/.tmux
+export GRAVEYARD="~/.local/share/Trash." # for rip command
 
 # History in cache directory:
 export HISTSIZE=10000

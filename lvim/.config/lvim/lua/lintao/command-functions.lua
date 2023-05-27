@@ -31,20 +31,26 @@ function M.LeapJump()
 end
 
 function M.MaximiseBuffer()
-  local bufnr = vim.api.nvim_get_current_buf()
-  local winnr = vim.api.nvim_get_current_win()
+  -- Get the current buffer number
+  local current_bufnr = vim.api.nvim_get_current_buf()
 
-  -- Get the current buffer name
-  local bufname = vim.api.nvim_buf_get_name(bufnr)
-
-  -- Create a new tab
+  -- Create a new tab and switch to it
   vim.api.nvim_command('tabnew')
 
-  -- Set the current window's buffer to the buffer we want to open
-  vim.api.nvim_win_set_buf(winnr, bufnr)
+  -- Get the new tab's buffer number
+  local new_bufnr = vim.api.nvim_get_current_buf()
 
-  -- Optionally, if you want to set the buffer name in the new tab to the same as the old one
-  vim.api.nvim_buf_set_name(bufnr, bufname)
+  -- Copy the contents of the current buffer to the new buffer
+  vim.api.nvim_buf_set_lines(new_bufnr, 0, -1, false, vim.api.nvim_buf_get_lines(current_bufnr, 0, -1, false))
+
+  -- Set the file type of the new buffer to match the current buffer
+  vim.api.nvim_buf_set_option(new_bufnr, 'filetype', vim.api.nvim_buf_get_option(current_bufnr, 'filetype'))
+
+  -- Set the modified flag of the new buffer to match the current buffer
+  vim.api.nvim_buf_set_option(new_bufnr, 'modified', vim.api.nvim_buf_get_option(current_bufnr, 'modified'))
+
+  -- Switch back to the original buffer in the new tab
+  vim.api.nvim_set_current_buf(current_bufnr)
 end
 
 function M.GoToTestFile()

@@ -1,6 +1,17 @@
 lvim.builtin.alpha.active = false
 
 local plugins = {
+  -- TODO: harpoon and refactor into commands
+  {
+    'ThePrimeagen/harpoon',
+    event = 'VimEnter'
+  },
+  {
+    'ThePrimeagen/refactoring.nvim',
+    event = 'VimEnter',
+  },
+  { 'preservim/vimux' },
+  { 'ibhagwan/fzf-lua' },
   {
     "RRethy/vim-illuminate",
     lazy = true
@@ -54,7 +65,6 @@ local plugins = {
     'sindrets/diffview.nvim',
     dependencies = 'nvim-lua/plenary.nvim',
     event = 'VimEnter',
-    -- lazy = true,
   },
   {
     "tpope/vim-fugitive",
@@ -89,7 +99,7 @@ local plugins = {
   },
   {
     "michaelb/sniprun",
-    lazy = true,
+    event = 'VimEnter',
     build = "bash ./install.sh",
     config = function()
       require("sniprun").setup {
@@ -101,14 +111,13 @@ local plugins = {
     end,
   },
 
-  { 'ibhagwan/fzf-lua' },
   {
     'ggandor/leap.nvim',
     lazy = true
   },
   {
     "nvim-neotest/neotest",
-    lazy = true,
+    event = 'VimEnter',
     dependencies = {
       "nvim-neotest/neotest-go",
       -- Your other test adapters here
@@ -170,14 +179,14 @@ local plugins = {
   -- 🔥 Golang
   {
     'leoluz/nvim-dap-go',
-    lazy = true,
+    ft = "go",
     config = function()
       require('dap-go').setup()
     end
   },
   {
     "olexsmir/gopher.nvim",
-    event = 'VimEnter',
+    ft = "go",
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",

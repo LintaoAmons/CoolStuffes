@@ -10,6 +10,43 @@ local commands_name = require("lintao.commands-name")
 
 local commands_implementation = {
   {
+    name = commands_name.refactor.InlineVariable,
+    callback = "lua require('refactoring').refactor('Inline Variable')",
+  },
+  {
+    name = commands_name.refactor.ExtractVariable,
+    callback = "lua require('refactoring').refactor('Extract Variable')",
+    keybinding = {
+      mode = "n",
+      keys = '<leader>ev',
+    }
+  },
+  {
+    -- TODO: How to make a command working in defferent mode, or filetype?
+    name = commands_name.refactor.ExtractFunction,
+    callback = "lua require('refactoring').refactor('Extract Function')",
+    keybinding = {
+      mode = "n",
+      keys = '<leader>em',
+    }
+  },
+  {
+    name = commands_name.navigation.MarkJump,
+    callback = 'lua require("harpoon.ui").toggle_quick_menu()',
+    keybinding = {
+      mode = "n",
+      keys = '<C-M-i>',
+    }
+  },
+  {
+    name = commands_name.navigation.Mark,
+    callback = 'lua require("harpoon.mark").add_file()',
+    keybinding = {
+      mode = 'n',
+      keys = 'm'
+    }
+  },
+  {
     name = commands_name.navigation.DecreaseSplitWidth,
     callback = 'vertical resize -5',
     keybinding = {
@@ -197,7 +234,7 @@ local commands_implementation = {
   },
   {
     name = commands_name.test.TestRunLast,
-    callback = 'lua require("neotest").run.run_last()'
+    callback = 'lua require("neotest").run.run_last()',
   },
   {
     name = commands_name.test.GoToTestFile,
@@ -293,7 +330,11 @@ local commands_implementation = {
   },
   {
     name = commands_name.test.TestRunNearest,
-    callback = 'lua require("neotest").run.run()'
+    callback = 'lua require("neotest").run.run()',
+    keybinding = {
+      mode = 'n',
+      keys = '<leader>rt'
+    }
   },
   {
     name = commands_name.test.TestOutputPanel,
@@ -378,3 +419,5 @@ unmapLvimDefault()
 init_default_behaviour(commands_name)
 register_commands_and_keybinding(commands_implementation)
 lvim.keys.normal_mode["<leader>wo"] = { "<c-w>o", desc = "Maximize window" }
+lvim.keys.normal_mode["<leader>zo"] = { "zR", desc = "Unfold all" }
+lvim.keys.normal_mode["<leader>zc"] = { "zM", desc = "Fold all" }
