@@ -10,6 +10,46 @@ local commands_name = require("lintao.commands-name")
 
 local commands_implementation = {
   {
+    name = commands_name.refactor.ToSnakeCase,
+    callback = 'lua require("lintao.command-functions").toSnakeCase()',
+    allow_visual_mode = true,
+    keybinding = {
+      mode = "n",
+      keys = '<leader>uu',
+    }
+  },
+  {
+    name = commands_name.refactor.ToKebabCase,
+    callback = 'lua require("lintao.command-functions").toKebabCase()',
+    allow_visual_mode = true,
+  },
+  {
+    name = commands_name.refactor.ToConstantCase,
+    callback = 'lua require("lintao.command-functions").toConstantCase()',
+    allow_visual_mode = true,
+  },
+  {
+    name = commands_name.refactor.ToCamelCase,
+    callback = 'lua require("lintao.command-functions").toCamelCase()',
+    allow_visual_mode = true,
+  },
+  {
+    name = commands_name.navigation.MarkPrev,
+    callback = "lua require('harpoon.ui').nav_prev()",
+    keybinding = {
+      mode = "n",
+      keys = '<M-C-h>',
+    }
+  },
+  {
+    name = commands_name.navigation.MarkNext,
+    callback = "lua require('harpoon.ui').nav_next()",
+    keybinding = {
+      mode = "n",
+      keys = '<M-C-l>',
+    }
+  },
+  {
     name = commands_name.refactor.InlineVariable,
     callback = "lua require('refactoring').refactor('Inline Variable')",
   },
@@ -32,7 +72,7 @@ local commands_implementation = {
   },
   {
     name = commands_name.navigation.MarkJump,
-    callback = 'lua require("harpoon.ui").toggle_quick_menu()',
+    callback = 'Telescope harpoon marks',
     keybinding = {
       mode = "n",
       keys = '<C-M-i>',
@@ -108,7 +148,15 @@ local commands_implementation = {
     }
   },
   {
-    name = commands_name.other.RunCurrentBuffer,
+    name = commands_name.run.RunLiveToggle,
+    callback = 'SnipLive',
+    keybinding = {
+      mode = "n",
+      keys = '<M-r>',
+    }
+  },
+  {
+    name = commands_name.run.RunCurrentBuffer,
     callback = '%SnipRun',
     keybinding = {
       mode = "n",
@@ -373,11 +421,23 @@ local commands_implementation = {
     }
   },
   {
-    name = commands_name.other.CopyBufferAbsolutePath,
+    name = commands_name.other.CopyProjectDir,
+    callback = 'lua require("lintao.command-functions").copyProjectDir()'
+  },
+  {
+    name = commands_name.other.CopyBufRelativePath,
+    callback = 'lua require("lintao.command-functions").CopyBufRelativePath()'
+  },
+  {
+    name = commands_name.other.CopyBufRelativeDirPath,
+    callback = 'lua require("lintao.command-functions").CopyBufRelativeDirPath()'
+  },
+  {
+    name = commands_name.other.CopyBufAbsPath,
     callback = 'lua require("lintao.command-functions").copyBufferAbsolutePath()'
   },
   {
-    name = commands_name.other.CopyBufferDirectoryPath,
+    name = commands_name.other.CopyBufAbsDirPath,
     callback = 'lua require("lintao.command-functions").copyBufferDirectoryPath()'
   }
 }
@@ -385,7 +445,12 @@ local commands_implementation = {
 local function register_commands_and_keybinding(commands)
   for _, v in ipairs(commands) do
     -- print(v.name)
-    vim.api.nvim_create_user_command(v.name, v.callback, {})
+    if v.allow_visual_mode then
+      -- https://github.com/ray-x/go.nvim/blob/711b3b84cf59d3c43a9d1b02fdf12152b397e7b1/lua/go/commands.lua#LL443C7-L443C20
+      vim.api.nvim_create_user_command(v.name, v.callback, { range = true })
+    else
+      vim.api.nvim_create_user_command(v.name, v.callback, {})
+    end
 
     if v.keybinding then
       if v.keybinding.mode == "n" then

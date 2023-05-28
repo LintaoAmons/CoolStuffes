@@ -1,7 +1,16 @@
 lvim.builtin.alpha.active = false
 
 local plugins = {
-  -- TODO: harpoon and refactor into commands
+  {
+    "theHamsta/nvim-dap-virtual-text",
+    config = function()
+      require("nvim-dap-virtual-text").setup()
+    end
+  },
+  {
+    "folke/neodev.nvim",
+    ft = 'lua',
+  },
   {
     'ThePrimeagen/harpoon',
     event = 'VimEnter'
@@ -102,11 +111,14 @@ local plugins = {
     event = 'VimEnter',
     build = "bash ./install.sh",
     config = function()
+      -- HACK: https://michaelb.github.io/sniprun/sources/README.html#usage
       require("sniprun").setup {
         live_mode_toggle = "enable",
         display = {
-          "Terminal",
+          "Classic",       --# display results in the command-line  area
+          "VirtualTextOk", --# display ok results as virtual text (multiline is shortened)
         },
+        live_display = { "VirtualTextOk" },
       }
     end,
   },

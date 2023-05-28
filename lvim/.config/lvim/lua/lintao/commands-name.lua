@@ -16,6 +16,11 @@ return {
     ExtractFunction = "ExtractFunction",
     ExtractVariable = "ExtractVariable",
     InlineVariable = "InlineVariable",
+
+    ToCamelCase = "ToCamelCase",
+    ToConstantCase = "ToConstantCase",
+    ToKebabCase = "ToKebabCase",
+    ToSnakeCase = "ToSnakeCase",
   },
   explorer = {
     ExplorerLocateCurrentFile = "ExplorerLocateCurrentFile",
@@ -41,6 +46,8 @@ return {
 
     Mark = "Mark",
     MarkJump = "MarkJump",
+    MarkNext = "MarkNext",
+    MarkPrev = "MarkPrev",
   },
   test = {
     TestRunNearest = "TestRunNearest",
@@ -62,19 +69,22 @@ return {
     Scratch = "Scratch",
     ScratchOpen = "ScratchOpen",
   },
+  run = {
+    RunCurrentBuffer = "RunCurrentBuffer",
+    RunLiveToggle = "RunLiveToggle",
+  },
   other = {
     QuitNvim = "QuitNvim",
     DiffWithClipboard = "DiffWithClipboard",
-    RunCurrentBuffer = "RunCurrentBuffer",
     FormatCode = "FormatCode",
     NoHighlight = "NoHighlight",
     ToggleOutline = "ToggleOutline",
-    ToggleTerminal = "ToggleTerminal", -- TODO
     CloseWindowOrBuffer = "CloseWindowOrBuffer",
-    CopyBufferAbsolutePath = "CopyBufferAbsolutePath",
-    CopyBufferDirectoryPath = "CopyBufferDirectoryPath",
-    CopyBufferAbsolutePathFromProjectRoot = "CopyBufferAbsolutePathFromProjectRoot",   -- TODO
-    CopyBufferDirectoryPathFromProjectRoot = "CopyBufferDirectoryPathFromProjectRoot", -- TODO
+    CopyBufAbsPath = "CopyBufAbsPath",
+    CopyBufAbsDirPath = "CopyBufAbsDirPath",
+    CopyProjectDir = "CopyProjectDir",
+    CopyBufRelativePath = "CopyBufRelativePath",
+    CopyBufRelativeDirPath = "CopyBufRelativeDirPath",
   },
   nvim = {
     SourceCurrentBuffer = "SourceCurrentBuffer",

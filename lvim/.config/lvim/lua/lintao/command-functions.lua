@@ -101,4 +101,116 @@ function M.stashAndCommit()
   vim.api.nvim_command('Git commit')
 end
 
+local function contains_marker_file(path)
+  local marker_files = { ".git", ".gitignore" } -- list of marker files
+  for _, file in ipairs(marker_files) do
+    local full_path = path .. "/" .. file
+    if vim.fn.filereadable(full_path) == 1 or vim.fn.isdirectory(full_path) == 1 then
+      return true
+    end
+  end
+  return false
+end
+
+local function is_homedir(path)
+  local home_dir = vim.loop.os_homedir()
+  return path == home_dir
+end
+
+---@return string|nil
+local function find_project_path()
+  for i = 1, 30, 1 do
+    local dir = vim.fn.expand("%:p" .. string.rep(":h", i))
+    print(dir)
+    if contains_marker_file(dir) then
+      return dir
+    end
+    if is_homedir(dir) then
+      return print("didn't found project_path")
+    end
+  end
+  return print("excide the max depth")
+end
+
+---@return string
+function M.copyProjectDir()
+  copyToSystemClipboard(find_project_path())
+end
+
+function M.CopyBufRelativePath()
+  local buf_path = vim.fn.expand("%:p")
+  local project_path = find_project_path() or ""
+  local r = string.sub(buf_path, string.len(project_path) + 2, string.len(buf_path))
+  copyToSystemClipboard(r)
+end
+
+function M.CopyBufRelativeDirPath()
+  local buf_path = vim.fn.expand("%:p:h")
+  local project_path = find_project_path() or ""
+  local r = string.sub(buf_path, string.len(project_path) + 2, string.len(buf_path))
+  copyToSystemClipboard(r)
+end
+
+---@param cmd string
+---@return string|nil
+local function call_sys_cmd(cmd)
+  local handle = io.popen(cmd)
+  local result = handle:read("*a")
+  handle:close()
+  return result
+end
+
+-- https://gitlab.com/jrop/dotfiles/-/blob/master/.config/nvim/lua/my/utils.lua#L13
+---@return string
+local function buf_vtext()
+  local a_orig = vim.fn.getreg('a')
+  local mode = vim.fn.mode()
+  if mode ~= 'v' and mode ~= 'V' then
+    vim.cmd([[normal! gv]])
+  end
+  vim.cmd([[silent! normal! "aygv]])
+  local text = vim.fn.getreg('a')
+  vim.fn.setreg('a', a_orig)
+  return text
+end
+
+local function trim(s)
+  return (s:gsub("^%s*(.-)%s*$", "%1"))
+end
+
+local function replace_selected_text_with_clipboard()
+  vim.cmd([[normal! gv"_dP]])
+end
+
+local function perform_cmd_to_selected_text(cmdFunc)
+  local selectedText = buf_vtext()
+  local output = call_sys_cmd(cmdFunc(selectedText))
+  copyToSystemClipboard(trim(output))
+  replace_selected_text_with_clipboard()
+end
+
+function M.toCamelCase()
+  perform_cmd_to_selected_text(function(selectedText)
+    return 'toolbox formatConvert toCamelCase "' .. selectedText .. '"'
+  end)
+end
+
+function M.toConstantCase()
+  perform_cmd_to_selected_text(function(selectedText)
+    return 'toolbox formatConvert toConstantCase "' .. selectedText .. '"'
+  end)
+end
+
+function M.toKebabCase()
+  perform_cmd_to_selected_text(function(selectedText)
+    return 'toolbox formatConvert ToKebabCase "' .. selectedText .. '"'
+  end)
+end
+
+function M.toSnakeCase()
+    perform_cmd_to_selected_text(function(selectedText)
+    return 'toolbox formatConvert toSnakeCase "' .. selectedText .. '"'
+  end)
+end
+
 return M

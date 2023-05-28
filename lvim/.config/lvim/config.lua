@@ -19,6 +19,8 @@ require("lintao.null-ls")
 require("lintao.lsp")
 require("lintao.treesitter")
 
+require("telescope").load_extension('harpoon')
+
 -- vim options
 vim.opt.shiftwidth = 2
 vim.opt.tabstop = 2
