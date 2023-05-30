@@ -2,6 +2,9 @@ lvim.builtin.alpha.active = false
 
 local plugins = {
   {
+    dir = "/Users/lintao/Documents/oatnil/beta/easy-commands.nvim"
+  },
+  {
     "theHamsta/nvim-dap-virtual-text",
     config = function()
       require("nvim-dap-virtual-text").setup()
