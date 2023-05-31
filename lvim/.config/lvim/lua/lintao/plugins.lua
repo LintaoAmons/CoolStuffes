@@ -2,7 +2,8 @@ lvim.builtin.alpha.active = false
 
 local plugins = {
   {
-    dir = "/Users/lintao/Documents/oatnil/beta/easy-commands.nvim",
+    dir = "/Users/lintao.zhang/Documents/oatnil/release/easy-commands.nvim",
+    event = 'VimEnter',
     config = function()
       require("easy-commands").Setup({
         ["RunSelectedAndOutputWithPrePostFix"] = {

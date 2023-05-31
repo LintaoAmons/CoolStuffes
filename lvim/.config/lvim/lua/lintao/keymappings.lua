@@ -22,7 +22,9 @@ local command_keymappings = {
   ['TabClose'] = "tt",
   ['TabPrev'] = 'th',
   ['TabNext'] = 'tl',
-  ['ExplorerLocateCurrentFile'] = "<leader>fl"
+  ['ExplorerLocateCurrentFile'] = "<leader>fl",
+  ['GoToTestFile'] = 'gt',
+  ['TestRunNearest'] = '<leader>rt',
 }
 
 local function unmapLvimDefault()
