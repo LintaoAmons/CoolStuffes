@@ -14,6 +14,15 @@ local command_keymappings = {
   ['Scratch'] = '<M-C-n>',
   ['ScratchOpen'] = '<M-C-o>',
   ['FindInWholeProject'] = '<C-f>',
+  ['GitNextHunk'] = 'gj',
+  ['GitPrevHunk'] = 'gk',
+  ['GitDiff'] = '<leader>df',
+  ['BufferPrev'] = '<S-h>',
+  ['BufferNext'] = '<S-l>',
+  ['TabClose'] = "tt",
+  ['TabPrev'] = 'th',
+  ['TabNext'] = 'tl',
+  ['ExplorerLocateCurrentFile'] = "<leader>fl"
 }
 
 local function unmapLvimDefault()

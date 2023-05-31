@@ -416,26 +416,26 @@ local commands_implementation = {
   --     keys = '<C-f>'
   --   }
   -- },
-  -- [commands_name.other.CopyProjectDir] =
-  -- {
-  --   callback = 'lua require("lintao.command-functions").copyProjectDir()'
-  -- },
-  -- [commands_name.other.CopyBufRelativePath] =
-  -- {
-  --   callback = 'lua require("lintao.command-functions").CopyBufRelativePath()'
-  -- },
-  -- [commands_name.other.CopyBufRelativeDirPath] =
-  -- {
-  --   callback = 'lua require("lintao.command-functions").CopyBufRelativeDirPath()'
-  -- },
-  -- [commands_name.other.CopyBufAbsPath] =
-  -- {
-  --   callback = 'lua require("lintao.command-functions").copyBufferAbsolutePath()'
-  -- },
-  -- [commands_name.other.CopyBufAbsDirPath] =
-  -- {
-  --   callback = 'lua require("lintao.command-functions").copyBufferDirectoryPath()'
-  -- }
+  [commands_name.other.CopyProjectDir] =
+  {
+    callback = 'lua require("lintao.command-functions").copyProjectDir()'
+  },
+  [commands_name.other.CopyBufRelativePath] =
+  {
+    callback = 'lua require("lintao.command-functions").CopyBufRelativePath()'
+  },
+  [commands_name.other.CopyBufRelativeDirPath] =
+  {
+    callback = 'lua require("lintao.command-functions").CopyBufRelativeDirPath()'
+  },
+  [commands_name.other.CopyBufAbsPath] =
+  {
+    callback = 'lua require("lintao.command-functions").copyBufferAbsolutePath()'
+  },
+  [commands_name.other.CopyBufAbsDirPath] =
+  {
+    callback = 'lua require("lintao.command-functions").copyBufferDirectoryPath()'
+  }
 }
 
 local function register_commands_and_keybinding(commands)

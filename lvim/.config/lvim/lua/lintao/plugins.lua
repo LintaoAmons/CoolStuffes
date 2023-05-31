@@ -2,7 +2,15 @@ lvim.builtin.alpha.active = false
 
 local plugins = {
   {
-    dir = "/Users/lintao/Documents/oatnil/beta/easy-commands.nvim"
+    dir = "/Users/lintao/Documents/oatnil/beta/easy-commands.nvim",
+    config = function()
+      require("easy-commands").Setup({
+        ["RunSelectedAndOutputWithPrePostFix"] = {
+          prefix = "```lua",
+          postfix = "```"
+        }
+      })
+    end
   },
   {
     "theHamsta/nvim-dap-virtual-text",
