@@ -2,6 +2,14 @@ lvim.builtin.alpha.active = false
 
 local plugins = {
   {
+    "glepnir/lspsaga.nvim",
+    event = "LspAttach",
+    config = function()
+      require("lspsaga").setup({})
+    end,
+    dependencies = { { "nvim-tree/nvim-web-devicons" } }
+  },
+  {
     dir = "/Users/lintao.zhang/Documents/oatnil/release/easy-commands.nvim",
     event = 'VimEnter',
     config = function()
@@ -70,13 +78,6 @@ local plugins = {
   {
     "LintaoAmons/scratch.nvim",
     event = 'VimEnter',
-  },
-  {
-    "stevearc/aerial.nvim",
-    event = 'VimEnter',
-    config = function()
-      require('aerial').setup()
-    end
   },
   {
     'stevearc/dressing.nvim',

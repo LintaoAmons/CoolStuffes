@@ -25,6 +25,12 @@ local command_keymappings = {
   ['ExplorerLocateCurrentFile'] = "<leader>fl",
   ['GoToTestFile'] = 'gt',
   ['TestRunNearest'] = '<leader>rt',
+  ['GoToDefinition'] = "gd",
+  ['LspFinder'] = "gf",
+  ['ExtractVariable'] = '<leader>ev',
+
+  ['Mark'] = 'm',
+  ['MarkList'] = "<C-M-i>",
 }
 
 local function unmapLvimDefault()

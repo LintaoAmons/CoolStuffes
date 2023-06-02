@@ -8,7 +8,6 @@ lvim.colorscheme = "material"
 vim.g.material_style = "darker"
 
 lvim.leader = "space"
--- require("lintao.commands")
 require("lintao.keymappings")
 
 require("lintao.cmp")
