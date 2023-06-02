@@ -1,4 +1,5 @@
 local command_keymappings = {
+  ['LeapJump'] = 's',
   ['FindCommands'] = '<C-M-p>',
   ['FindFiles'] = '<C-p>',
   ['OpenRecentFiles'] = '<M-e>',
