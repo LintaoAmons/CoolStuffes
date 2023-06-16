@@ -2,6 +2,13 @@ lvim.builtin.alpha.active = false
 
 local plugins = {
   {
+    "folke/noice.nvim",
+    vent = "VeryLazy",
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+    }
+  },
+  {
     "glepnir/lspsaga.nvim",
     event = "LspAttach",
     config = function()
@@ -10,7 +17,7 @@ local plugins = {
     dependencies = { { "nvim-tree/nvim-web-devicons" } }
   },
   {
-    dir = "/Users/lintao.zhang/Documents/oatnil/release/easy-commands.nvim",
+    "LintaoAmons/easy-commands.nvim",
     event = 'VimEnter',
     config = function()
       require("easy-commands").Setup({
@@ -23,6 +30,7 @@ local plugins = {
   },
   {
     "theHamsta/nvim-dap-virtual-text",
+    event = "VeryLazy",
     config = function()
       require("nvim-dap-virtual-text").setup()
     end
@@ -39,7 +47,7 @@ local plugins = {
     'ThePrimeagen/refactoring.nvim',
     event = 'VimEnter',
   },
-  { 'preservim/vimux' },
+  -- { 'preservim/vimux' },
   { 'ibhagwan/fzf-lua' },
   {
     "RRethy/vim-illuminate",

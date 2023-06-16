@@ -56,3 +56,4 @@ for command, keybinding in pairs(command_keymappings) do
 end
 
 lvim.keys.normal_mode["<leader>wo"] = { "<c-w>o", desc = "Maximize window" }
+-- lvim.keys.visual_mode["p"] = {'"_dp'} -- HACK: keep the clipboard unchanged when replace the selected with clipboard

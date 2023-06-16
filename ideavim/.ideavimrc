@@ -32,9 +32,6 @@ nmap gm <action>(MethodUp)
 " last changed in current buffer(file)
 nmap ga <action>(GotoImplementation)
 
-" paste multiple times. Thanks @mutoa
-vmap p \"_dp
-
 " bookmark
 nmap ma <action>(ToggleBookmark)
 
