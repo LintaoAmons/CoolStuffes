@@ -17,7 +17,7 @@ local plugins = {
     dependencies = { { "nvim-tree/nvim-web-devicons" } }
   },
   {
-    dir = "/Users/lintao.zhang/Documents/oatnil/release/easy-commands.nvim",
+    "LintaoAmons/easy-commands.nvim",
     event = 'VimEnter',
     config = function()
       require("easy-commands").Setup({
