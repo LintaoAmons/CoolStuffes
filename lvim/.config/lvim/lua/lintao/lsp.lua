@@ -31,7 +31,7 @@ lsp_manager.setup("gopls", {
   capabilities = require("lvim.lsp").common_capabilities(),
   settings = {
     gopls = {
-      usePlaceholders = true,
+      usePlaceholders = false,
       gofumpt = true,
       codelenses = {
         generate = false,
@@ -46,8 +46,8 @@ lsp_manager.setup("gopls", {
 -- https://github.com/kevinhwang91/nvim-ufo/issues/72
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.foldingRange = {
-    dynamicRegistration = false,
-    lineFoldingOnly = true
+  dynamicRegistration = false,
+  lineFoldingOnly = true
 }
 
 -- generic LSP settings <https://www.lunarvim.org/docs/configuration/language-features/language-servers>

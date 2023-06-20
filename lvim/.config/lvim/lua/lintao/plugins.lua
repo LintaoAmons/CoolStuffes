@@ -2,8 +2,27 @@ lvim.builtin.alpha.active = false
 
 local plugins = {
   {
+    "nvim-pack/nvim-spectre",
+    event = "VeryLazy",
+    dependencies = {
+      "nvim-lua/plenary.nvim"
+    },
+  },
+  {
+    "ray-x/lsp_signature.nvim",
+    event = "VeryLazy",
+    config = function()
+      require "lsp_signature".setup({
+        bind = true, -- This is mandatory, otherwise border config won't get registered.
+        handler_opts = {
+          border = "rounded"
+        }
+      })
+    end
+  },
+  {
     "folke/noice.nvim",
-    vent = "VeryLazy",
+    event = "VeryLazy",
     dependencies = {
       "MunifTanjim/nui.nvim",
     }
@@ -17,7 +36,9 @@ local plugins = {
     dependencies = { { "nvim-tree/nvim-web-devicons" } }
   },
   {
+    -- dir = "/Users/lintao.zhang/Documents/oatnil/release/easy-commands.nvim",
     "LintaoAmons/easy-commands.nvim",
+    -- dir = "/Users/lintao/Documents/oatnil/beta/easy-commands.nvim",
     event = 'VimEnter',
     config = function()
       require("easy-commands").Setup({
@@ -225,21 +246,21 @@ local plugins = {
       "nvim-treesitter/nvim-treesitter",
     }
   },
-  -- {
-  --   "ray-x/go.nvim",
-  --   dependencies = { -- optional packages
-  --     "ray-x/guihua.lua",
-  --     "neovim/nvim-lspconfig",
-  --     "nvim-treesitter/nvim-treesitter",
-  --     "theHamsta/nvim-dap-virtual-text",
-  --   },
-  --   config = function()
-  --     require("go").setup()
-  --   end,
-  --   event = { "CmdlineEnter" },
-  --   ft = { "go", 'gomod' },
-  --   build = ':lua require("go.install").update_all_sync()' -- if you need to install/update all binaries
-  -- },
+  {
+    "ray-x/go.nvim",
+    dependencies = { -- optional packages
+      "ray-x/guihua.lua",
+      "neovim/nvim-lspconfig",
+      "nvim-treesitter/nvim-treesitter",
+      "theHamsta/nvim-dap-virtual-text",
+    },
+    config = function()
+      require("go").setup()
+    end,
+    event = { "CmdlineEnter" },
+    ft = { "go", 'gomod' },
+    build = ':lua require("go.install").update_all_sync()' -- if you need to install/update all binaries
+  },
   -- 🔥 Copilot
   {
     "zbirenbaum/copilot.lua",
