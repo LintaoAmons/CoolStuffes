@@ -1,4 +1,6 @@
 local command_keymappings = {
+  ['FoldAll'] = '<leader>zc',
+  ['UnFoldAll'] = '<leader>zo',
   ['SwitchProject'] = '<C-q>',
   ['LeapJump'] = 's',
   ['FindCommands'] = {
@@ -12,13 +14,20 @@ local command_keymappings = {
   ['QuitNvim'] = '<M-q>',
   ['CloseWindowOrBuffer'] = '<M-w>',
   ['SplitVertically'] = '<leader>wl',
-  ['DecreaseSplitWidth'] = '<C-M-h>',
-  ['IncreaseSplitWidth'] = '<C-M-l>',
+  ['DecreaseSplitWidth'] = '<C-M-j>',
+  ['IncreaseSplitWidth'] = '<C-M-k>',
   ['ToggleOutline'] = '<leader>ss',
   ['RunCurrentBuffer'] = '<M-r>',
   ['Scratch'] = '<M-C-n>',
   ['ScratchOpen'] = '<M-C-o>',
-  ['FindInWholeProject'] = '<C-f>',
+  ['FindInProject'] = {
+    mode = 'nv',
+    keys = '<C-f>',
+  },
+  ['SearchOrReplace'] = {
+    mode = 'nv',
+    keys = '<C-M-f>',
+  },
 
   -- HACK: GIT
   ['GitNextHunk'] = 'gj',

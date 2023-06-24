@@ -6,6 +6,10 @@ lvim.plugins = require("lintao.plugins")
 
 lvim.colorscheme = "material"
 vim.g.material_style = "darker"
+vim.api.nvim_set_hl(0, 'FlashCurrent', { fg = "#FF0000", bg = "#FF0000" })
+vim.api.nvim_set_hl(0, 'FlashLabel', { fg = "#FBF3CB", bg = "#FF007C" })
+vim.api.nvim_set_hl(0, 'FlashMatch', { fg = "#000000", bg = "#000000"})
+
 
 lvim.leader = "space"
 require("lintao.keymappings")

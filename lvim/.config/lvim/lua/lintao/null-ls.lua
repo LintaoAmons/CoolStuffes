@@ -1,6 +1,7 @@
 -- linters, formatters and code actions <https://www.lunarvim.org/docs/configuration/language-features/linting-and-formatting>
 local formatters = require "lvim.lsp.null-ls.formatters"
 formatters.setup {
+  { name = "shfmt" },
   {
     command = "prettier",
     extra_args = { "--print-width", "100" },

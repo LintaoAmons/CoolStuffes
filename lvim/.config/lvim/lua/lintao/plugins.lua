@@ -2,6 +2,29 @@ lvim.builtin.alpha.active = false
 
 local plugins = {
   {
+    "folke/flash.nvim",
+    event = "VeryLazy",
+    ---@type Flash.Config
+    opts = {},
+    keys = {
+      {
+        "s",
+        mode = { "n", "x", "o" },
+        function()
+          -- default options: exact mode, multi window, all directions, with a backdrop
+          require("flash").jump()
+        end,
+      },
+      {
+        "S",
+        mode = { "o", "x" },
+        function()
+          require("flash").treesitter()
+        end,
+      },
+    },
+  },
+  {
     "nvim-pack/nvim-spectre",
     event = "VeryLazy",
     dependencies = {
@@ -36,10 +59,10 @@ local plugins = {
     dependencies = { { "nvim-tree/nvim-web-devicons" } }
   },
   {
-    -- dir = "/Users/lintao.zhang/Documents/oatnil/release/easy-commands.nvim",
-    "LintaoAmons/easy-commands.nvim",
+    dir = "/Users/lintao.zhang/Documents/oatnil/release/easy-commands.nvim",
+    -- "LintaoAmons/easy-commands.nvim",
     -- dir = "/Users/lintao/Documents/oatnil/beta/easy-commands.nvim",
-    event = 'VimEnter',
+    event = 'VeryLazy',
     config = function()
       require("easy-commands").Setup({
         ["RunSelectedAndOutputWithPrePostFix"] = {
@@ -62,11 +85,11 @@ local plugins = {
   },
   {
     'ThePrimeagen/harpoon',
-    event = 'VimEnter'
+    event = 'VeryLazy'
   },
   {
     'ThePrimeagen/refactoring.nvim',
-    event = 'VimEnter',
+    event = 'VeryLazy',
   },
   -- { 'preservim/vimux' },
   { 'ibhagwan/fzf-lua' },
@@ -88,7 +111,7 @@ local plugins = {
   },
   {
     "folke/todo-comments.nvim",
-    event = 'VimEnter',
+    event = 'VeryLazy',
     dependencies = {
       "nvim-lua/plenary.nvim"
     },
@@ -102,28 +125,28 @@ local plugins = {
   },
   {
     "christoomey/vim-tmux-navigator",
-    event = 'VimEnter',
+    event = 'VeryLazy',
   },
   {
     "LintaoAmons/scratch.nvim",
-    event = 'VimEnter',
+    event = 'VeryLazy',
   },
   {
     'stevearc/dressing.nvim',
-    event = 'VimEnter',
+    event = 'VeryLazy',
   },
   {
     'sindrets/diffview.nvim',
     dependencies = 'nvim-lua/plenary.nvim',
-    event = 'VimEnter',
+    event = 'VeryLazy',
   },
   {
     "tpope/vim-fugitive",
-    event = 'VimEnter',
+    event = 'VeryLazy',
   },
   {
     "kylechui/nvim-surround",
-    event = 'VimEnter',
+    event = 'VeryLazy',
     config = function() require("nvim-surround").setup {} end,
   },
   {
@@ -150,28 +173,24 @@ local plugins = {
   },
   {
     "michaelb/sniprun",
-    event = 'VimEnter',
+    event = 'VeryLazy',
     build = "bash ./install.sh",
     config = function()
       -- HACK: https://michaelb.github.io/sniprun/sources/README.html#usage
       require("sniprun").setup {
         live_mode_toggle = "enable",
         display = {
-          "Classic",       --# display results in the command-line  area
-          "VirtualTextOk", --# display ok results as virtual text (multiline is shortened)
+          "Classic",     --# display results in the command-line  area
+          "VirtualText", --# display ok results as virtual text (multiline is shortened)
+          "Terminal",
         },
-        live_display = { "VirtualTextOk" },
+        live_display = { "VirtualText", "Terminal" },
       }
     end,
   },
-
-  {
-    'ggandor/leap.nvim',
-    lazy = true
-  },
   {
     "nvim-neotest/neotest",
-    event = 'VimEnter',
+    event = 'VeryLazy',
     dependencies = {
       "nvim-neotest/neotest-go",
       -- Your other test adapters here
@@ -201,15 +220,15 @@ local plugins = {
       })
     end,
   },
-  -- 🔥 Fold
+  -- HACK: Fold
   {
     'kevinhwang91/nvim-ufo',
-    event = 'VimEnter',
+    event = 'VeryLazy',
     dependencies = { 'kevinhwang91/promise-async' }
   },
   {
     "luukvbaal/statuscol.nvim",
-    event = 'VimEnter',
+    event = 'VeryLazy',
     config = function()
       local builtin = require("statuscol.builtin")
       require("statuscol").setup({
@@ -230,7 +249,7 @@ local plugins = {
       })
     end,
   },
-  -- 🔥 Golang
+  -- HACK: Golang
   {
     'leoluz/nvim-dap-go',
     ft = "go",
@@ -261,25 +280,25 @@ local plugins = {
     ft = { "go", 'gomod' },
     build = ':lua require("go.install").update_all_sync()' -- if you need to install/update all binaries
   },
-  -- 🔥 Copilot
-  {
-    "zbirenbaum/copilot.lua",
-    lazy = true,
-    cmd = "Copilot",
-    event = "InsertEnter",
-  },
-  {
-    "zbirenbaum/copilot-cmp",
-    lazy = true,
-    after = { "copilot.lua" },
-    config = function()
-      require("copilot_cmp").setup()
-    end,
-  },
-  -- 🔥 Color scheme
+  -- -- 🔥 Copilot
+  -- {
+  --   "zbirenbaum/copilot.lua",
+  --   lazy = true,
+  --   cmd = "Copilot",
+  --   event = "InsertEnter",
+  -- },
+  -- {
+  --   "zbirenbaum/copilot-cmp",
+  --   lazy = true,
+  --   after = { "copilot.lua" },
+  --   config = function()
+  --     require("copilot_cmp").setup()
+  --   end,
+  -- },
+  -- HACK: Color scheme
   {
     "levouh/tint.nvim",
-    event = 'VimEnter',
+    event = 'VeryLazy',
     config = function()
       require("tint").setup()
     end
