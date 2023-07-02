@@ -32,19 +32,27 @@ local plugins = {
     },
   },
   {
-    "ray-x/lsp_signature.nvim",
-    event = "VeryLazy",
-    config = function()
-      require "lsp_signature".setup({
-        bind = true, -- This is mandatory, otherwise border config won't get registered.
-        handler_opts = {
-          border = "rounded"
-        }
-      })
-    end
-  },
-  {
     "folke/noice.nvim",
+    config = function()
+      require("noice").setup({
+        lsp = {
+          -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
+          override = {
+            ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+            ["vim.lsp.util.stylize_markdown"] = true,
+            ["cmp.entry.get_documentation"] = true,
+          },
+        },
+        -- you can enable a preset for easier configuration
+        presets = {
+          bottom_search = true,         -- use a classic bottom cmdline for search
+          command_palette = true,       -- position the cmdline and popupmenu together
+          long_message_to_split = true, -- long messages will be sent to a split
+          inc_rename = false,           -- enables an input dialog for inc-rename.nvim
+          lsp_doc_border = false,       -- add a border to hover docs and signature help
+        },
+      })
+    end,
     event = "VeryLazy",
     dependencies = {
       "MunifTanjim/nui.nvim",
@@ -59,9 +67,9 @@ local plugins = {
     dependencies = { { "nvim-tree/nvim-web-devicons" } }
   },
   {
-    dir = "/Users/lintao.zhang/Documents/oatnil/release/easy-commands.nvim",
+    -- dir = "/Users/lintao.zhang/Documents/oatnil/release/easy-commands.nvim",
     -- "LintaoAmons/easy-commands.nvim",
-    -- dir = "/Users/lintao/Documents/oatnil/beta/easy-commands.nvim",
+    dir = "/Users/lintao/Documents/oatnil/beta/easy-commands.nvim",
     event = 'VeryLazy',
     config = function()
       require("easy-commands").Setup({

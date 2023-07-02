@@ -126,7 +126,7 @@ source "/opt/homebrew/Cellar/fzf/0.38.0/shell/key-bindings.zsh"
 ########################## 🔼 NVM 🔼 ##########################
 
 ########################## 🔽 ALIAS 🔽 ###########################
-alias vim="lvim"
+alias vim="nvim"
 alias gp!="git push --no-verify"
 alias v="lvim +\"Telescope oldfiles\""
 alias glog="git log --pretty=format:'%C(auto)%h%C(blue) %<|(19)%as%C(auto)%d %s' --graph"

@@ -17,6 +17,7 @@ local command_keymappings = {
   ['DecreaseSplitWidth'] = '<C-M-j>',
   ['IncreaseSplitWidth'] = '<C-M-k>',
   ['ToggleOutline'] = '<leader>ss',
+  ['ToggleLf'] = '<leader>oo',
   ['RunCurrentBuffer'] = '<M-r>',
   ['Scratch'] = '<M-C-n>',
   ['ScratchOpen'] = '<M-C-o>',
@@ -102,6 +103,7 @@ for command, keybinding in pairs(command_keymappings) do
 end
 
 lvim.keys.normal_mode["<leader>wo"] = { "<c-w>o", desc = "Maximize window" }
+lvim.keys.normal_mode["S"] = {"<CMD>lua require('flash').treesitter()<CR>"}
 
 -- HACK: `uo` to exit terminal insert mode
 function _G.set_terminal_keymaps()
@@ -110,3 +112,4 @@ function _G.set_terminal_keymaps()
 end
 
 vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
+vim.keymap.set("v", 'p', 'P', {})
