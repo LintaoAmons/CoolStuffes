@@ -17,6 +17,7 @@ fi
 # Declare an associative array containing the tools and their configuration paths
 declare -A share_items=(
   [lvim]="$LVIM"
+  [lazyvim]="$LAZYVIM"
   [tmux]="$TMUX"
   [karabiner]="$KARABINER"
   [zsh]="$ZSH"
