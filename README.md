@@ -17,6 +17,7 @@ Please give a little star if you found it useful, because some of them spend me 
 
 # Nvim
 
+- [Lazyvim Config](https://github.com/LintaoAmons/CoolStuffes/tree/main/lazyvim/.config/nvim)
 - [Nvim with copilot](https://www.bilibili.com/video/BV1eL41187cw/)
 - [像 IDE 一样的 Nvim Commands Panel](https://www.bilibili.com/video/BV1rm4y187oP)
 
