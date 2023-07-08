@@ -8,7 +8,6 @@ local command_keymappings = {
   ["TmuxNavigateRight"] = "<C-l>",
   ["TmuxNavigateUp"] = "<C-k>",
   ["TmuxNavigateDown"] = "<C-j>",
-
   ["FoldAll"] = "<leader>zc",
   ["UnFoldAll"] = "<leader>zo",
   ["SwitchProject"] = "<C-q>",
@@ -39,6 +38,7 @@ local command_keymappings = {
     mode = "nv",
     keys = "<C-M-f>",
   },
+  ["Rename"] = "<leader>rn",
 
   -- HACK: GIT
   ["GitNextHunk"] = "gj",
@@ -47,16 +47,13 @@ local command_keymappings = {
   ["GitStatus"] = "<leader>gs",
   -- ["GitLazygit"] = "<leader>gg",
   ["BlameLine"] = "<leader>gl",
-
   ["BufferPrev"] = "<S-h>",
   ["BufferNext"] = "<S-l>",
   ["TabClose"] = "tt",
   ["TabPrev"] = "th",
   ["TabNext"] = "tl",
-
   ["NvimTreeToggle"] = "<leader>e",
   ["ExplorerLocateCurrentFile"] = "<leader>fl",
-
   ["GoToTestFile"] = "gt",
   ["TestRunNearest"] = "<leader>rt",
   ["GoToDefinition"] = "gd",
@@ -65,7 +62,6 @@ local command_keymappings = {
 
   ["Mark"] = "m",
   ["MarkList"] = "<C-M-i>",
-
   ["ToNextCase"] = {
     mode = "nv",
     keys = "<leader>nc",
@@ -155,3 +151,5 @@ map("t", "<C-\\>", "<cmd>close<cr>", { desc = "Hide Terminal" })
 
 -- if you only want these mappings for toggle term use term://*toggleterm#* instead
 vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
+
+vim.keymap.set("v", "p", "P")

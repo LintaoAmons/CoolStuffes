@@ -22,3 +22,7 @@ vim.api.nvim_create_autocmd({ "InsertLeave", "TextChanged" }, {
   pattern = "*",
   group = "AutoSave",
 })
+
+-- HACK: don't wrap in markdown
+vim.api.nvim_create_augroup("lazyvim_wrap_spell", {clear = true})
+
