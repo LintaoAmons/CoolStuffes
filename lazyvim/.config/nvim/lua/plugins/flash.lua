@@ -19,5 +19,13 @@ return {
         require("flash").treesitter()
       end,
     },
+    {
+      "r",
+      mode = "o",
+      function()
+        require("flash").remote()
+      end,
+      desc = "Remote Flash",
+    },
   },
 }

@@ -4,6 +4,7 @@
 vim.keymap.del("n", "<leader>l", {})
 
 local command_keymappings = {
+  ["NewFile"] = "<C-n>",
   ["TmuxNavigateLeft"] = "<C-h>",
   ["TmuxNavigateRight"] = "<C-l>",
   ["TmuxNavigateUp"] = "<C-k>",
