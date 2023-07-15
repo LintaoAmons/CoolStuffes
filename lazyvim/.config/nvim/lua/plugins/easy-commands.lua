@@ -1,6 +1,6 @@
 return {
-  -- "LintaoAmons/easy-commands.nvim",
-  dir = vim.loop.os_homedir() .. "/Documents/oatnil/beta/easy-commands.nvim",
+  "LintaoAmons/easy-commands.nvim",
+  -- dir = vim.loop.os_homedir() .. "/Documents/oatnil/beta/easy-commands.nvim",
   event = "VeryLazy",
   config = function()
     require("easy-commands").Setup({
@@ -8,6 +8,7 @@ return {
       myCommands = {
         ["MyCommand"] = "lua vim.print('easy command user command')",
         ["EasyCommand"] = "lua vim.print('Over write easy-command builtin command')",
+        ["Git"] = "Neogit",
         ["CopyCdCommand"] = function()
           local editor = require("easy-commands.impl.util.editor")
           local cmd = "cd " .. editor.get_buf_abs_dir_path()

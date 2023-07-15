@@ -46,6 +46,7 @@ local command_keymappings = {
   ["GitPrevHunk"] = "gk",
   ["GitDiff"] = "<leader>df",
   ["GitStatus"] = "<leader>gs",
+  ["Git"] = "<leader>gg",
   -- ["GitLazygit"] = "<leader>gg",
   ["BlameLine"] = "<leader>gl",
   ["BufferPrev"] = "<S-h>",
@@ -106,28 +107,6 @@ function _G.set_terminal_keymaps()
   vim.keymap.set("t", "jk", [[<C-\><C-n>]], opts)
   vim.keymap.set("t", "<C-w>", [[<C-\><C-n><C-w>]], opts)
 end
-
-_lazygit_toggle = function()
-  local Terminal = require("toggleterm.terminal").Terminal
-  local lazygit = Terminal:new({
-    cmd = "lazygit",
-    hidden = true,
-    direction = "float",
-    float_opts = {
-      border = "none",
-      width = 100000,
-      height = 100000,
-    },
-    on_open = function(_)
-      vim.cmd("startinsert!")
-    end,
-    on_close = function(_) end,
-    count = 99,
-  })
-  lazygit:toggle()
-end
-
-vim.keymap.set("n", "<leader>gg", "<cmd>lua _lazygit_toggle()<CR>", { noremap = true, silent = true })
 
 local function map(mode, lhs, rhs, opts)
   local keys = require("lazy.core.handler").handlers.keys
