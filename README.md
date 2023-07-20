@@ -23,5 +23,6 @@ Please give a little star if you found it useful, because some of them spend me 
 
 # Hammerspoon
 
+- [一键切换软件](https://www.bilibili.com/video/BV1nx4y1d7yD)
 - [倒计时提醒](https://www.bilibili.com/video/BV1jM411g71R/)
 - [显示当前时间](https://www.bilibili.com/video/BV1fF411j7Lf)
