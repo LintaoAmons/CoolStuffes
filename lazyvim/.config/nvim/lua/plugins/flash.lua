@@ -1,6 +1,7 @@
 return {
   "folke/flash.nvim",
   event = "VeryLazy",
+  tag = "v1.1.0",
   ---@type Flash.Config
   opts = {},
   keys = {

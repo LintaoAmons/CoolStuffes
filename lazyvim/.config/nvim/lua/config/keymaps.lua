@@ -2,8 +2,14 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 vim.keymap.del("n", "<leader>l", {})
+-- vim.keymap.del("n", "<C-w>k", {})
 
 local command_keymappings = {
+  ["Twilight"] = "<C-w>m",
+  ["GpChatNew"] = "<C-g>n",
+  ["GpChatRespond"] = "<C-g>k",
+  ["GpVisualAppend"] = { keys = "<C-g>i", mode = "v" },
+  ["GpAppend"] = "<C-g>o",
   ["NewFile"] = "<C-n>",
   ["TmuxNavigateLeft"] = "<C-h>",
   ["TmuxNavigateRight"] = "<C-l>",
@@ -12,11 +18,7 @@ local command_keymappings = {
   ["FoldAll"] = "<leader>zc",
   ["UnFoldAll"] = "<leader>zo",
   ["SwitchProject"] = "<C-q>",
-  ["LeapJump"] = "s",
-  ["FindCommands"] = {
-    mode = "niv",
-    keys = "<C-M-p>",
-  },
+  ["FindCommands"] = { mode = "niv", keys = "<C-M-p>" },
   ["FindFiles"] = "<C-p>",
   ["OpenRecentFiles"] = "<M-e>",
   ["NoHighlight"] = "<leader>nl",
@@ -31,23 +33,15 @@ local command_keymappings = {
   ["RunCurrentBuffer"] = "<M-r>",
   ["Scratch"] = "<M-C-n>",
   ["ScratchOpen"] = "<M-C-o>",
-  ["FindInProject"] = {
-    mode = "nv",
-    keys = "<C-f>",
-  },
-  ["SearchOrReplace"] = {
-    mode = "nv",
-    keys = "<C-M-f>",
-  },
+  ["FindInProject"] = { mode = "nv", keys = "<C-f>" },
+  ["SearchOrReplace"] = { mode = "nv", keys = "<C-M-f>" },
   ["Rename"] = "<leader>rn",
-
   -- HACK: GIT
   ["GitNextHunk"] = "gj",
   ["GitPrevHunk"] = "gk",
   ["GitDiff"] = "<leader>df",
   ["GitStatus"] = "<leader>gs",
   ["Git"] = "<leader>gg",
-  -- ["GitLazygit"] = "<leader>gg",
   ["BlameLine"] = "<leader>gl",
   ["BufferPrev"] = "<S-h>",
   ["BufferNext"] = "<S-l>",
@@ -64,10 +58,7 @@ local command_keymappings = {
 
   ["Mark"] = "m",
   ["MarkList"] = "<C-M-i>",
-  ["ToNextCase"] = {
-    mode = "nv",
-    keys = "<leader>nc",
-  },
+  ["ToNextCase"] = { mode = "nv", keys = "<leader>nc" },
 }
 
 local function contains(str, char)

@@ -4,4 +4,5 @@ return { -- disable Plugins
   { "nvim-neo-tree/neo-tree.nvim", enabled = false },
   { "mini.surround", enabled = false },
   { "folke/noice.nvim", enabled = false },
+  { "rcarriga/nvim-notify", enabled = false },
 }
