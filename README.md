@@ -27,6 +27,7 @@ Please give a little star if you found it useful, because some of them spend me 
 <details>
 <summary>robitx/gp.nvim</summary>
 
+![show](https://github.com/LintaoAmons/CoolStuffes/assets/95092244/5eff1989-5e5f-4884-88f0-5d61e4c1b1ca)
 
 </details>
 
