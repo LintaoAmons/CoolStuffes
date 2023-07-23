@@ -21,6 +21,15 @@ Please give a little star if you found it useful, because some of them spend me 
 - [Nvim with copilot](https://www.bilibili.com/video/BV1eL41187cw/)
 - [像 IDE 一样的 Nvim Commands Panel](https://www.bilibili.com/video/BV1rm4y187oP)
 
+## Tips & Usecases
+
+### ChatGPT
+<details>
+<summary>robitx/gp.nvim</summary>
+
+
+</details>
+
 # Hammerspoon
 
 - [一键切换软件](https://www.bilibili.com/video/BV1nx4y1d7yD)
