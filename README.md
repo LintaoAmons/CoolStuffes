@@ -1,6 +1,10 @@
-# Share my cool stuff to my friends
+# 和朋友们分享我的炫酷东西
 
-Please give a little star if you found it useful, because some of them spend me a lot of time to find the current result.
+给个小星星吧，如果你觉得这里有一些对你有用的东西
+
+搞这些玩意还真挺费时间的
+
+你可以通过提issue问问题，我有空就回复一下我知道的内容
 
 ## You can use `stow` to automaticlly put into specific directory
 
