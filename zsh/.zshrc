@@ -10,7 +10,7 @@ export JAVA_HOME="/Library/Java/JavaVirtualMachines/openjdk11/Contents/Home"
 export M2_HOME="$HOME/.m2/wrapper/dists/apache-maven-3.6.3-bin/1iopthnavndlasol9gbrbg6bf2/apache-maven-3.6.3"
 export GOPATH=$HOME/go
 export LANG=en_US.UTF-8
-export EDITOR="lvim"
+export EDITOR="nvim"
 export TMUX_TMPDIR=~/.tmux
 export GRAVEYARD="~/.local/share/Trash." # for rip command
 
@@ -18,6 +18,7 @@ export GRAVEYARD="~/.local/share/Trash." # for rip command
 export HISTSIZE=10000
 export SAVEHIST=10000
 export HISTFILE=~/.zsh_history
+source ~/.secrets
 ########################## 🔼 ENV 🔼 ##########################
 
 ########################## 🔽 PATH 🔽 ###########################

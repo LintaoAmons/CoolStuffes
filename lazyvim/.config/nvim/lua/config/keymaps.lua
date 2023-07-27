@@ -2,14 +2,15 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 vim.keymap.del("n", "<leader>l", {})
+vim.keymap.del("v", "S", {})
 -- vim.keymap.del("n", "<C-w>k", {})
 
 local command_keymappings = {
+  ["SelectBySyntax"] = "S",
   ["Twilight"] = "<C-w>m",
-  ["GpChatNew"] = "<C-g>n",
-  ["GpChatRespond"] = "<C-g>k",
-  ["GpVisualAppend"] = { keys = "<C-g>i", mode = "v" },
-  ["GpAppend"] = "<C-g>o",
+  ["GpChatNew"] = "<C-k>n",
+  ["GpChatRespond"] = { mode = "in", keys = "<C-k>k" },
+  ["GpAppend"] = { keys = "<C-k>i", mode = "v" },
   ["NewFile"] = "<C-n>",
   ["TmuxNavigateLeft"] = "<C-h>",
   ["TmuxNavigateRight"] = "<C-l>",
@@ -48,7 +49,6 @@ local command_keymappings = {
   ["TabClose"] = "tt",
   ["TabPrev"] = "th",
   ["TabNext"] = "tl",
-  ["NvimTreeToggle"] = "<leader>e",
   ["ExplorerLocateCurrentFile"] = "<leader>fl",
   ["GoToTestFile"] = "gt",
   ["TestRunNearest"] = "<leader>rt",
@@ -124,3 +124,7 @@ map("t", "<C-\\>", "<cmd>close<cr>", { desc = "Hide Terminal" })
 vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
 
 vim.keymap.set("v", "p", "P")
+
+-- explorer
+vim.keymap.set("n", "<leader>e", "<cmd>Neotree toggle<cr>", { desc = "ExplorerToggle" })
+vim.keymap.set("n", "<leader>fl", "<cmd>Neotree reveal<cr>", { desc = "ExplorerFindFileLocation" })

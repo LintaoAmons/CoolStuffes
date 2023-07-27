@@ -14,6 +14,7 @@ return {
   },
   {
     "smartpde/telescope-recent-files",
+    event = "VeryLazy",
     config = function()
       require("telescope").setup({
         extensions = {

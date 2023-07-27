@@ -1,0 +1,56 @@
+{
+  "filetypes": [
+    "xml",
+    "go",
+    "lua",
+    "js",
+    "py",
+    "sh",
+    "txt"
+  ],
+  "scratch_file_dir": "/Users/lintao/.cache/nvim/scratch.nvim",
+  "filetype_details": {
+    "go": {
+      "filename": "main",
+      "cursor": {
+        "location": [
+          4,
+          2
+        ],
+        "insert_mode": true
+      },
+      "requireDir": true,
+      "content": [
+        "package main",
+        "",
+        "func main() {",
+        "  ",
+        "}"
+      ]
+    },
+    "json": [],
+    "gp.md": {
+      "cursor": {
+        "location": [
+          12,
+          2
+        ],
+        "insert_mode": true
+      },
+      "content": [
+        "# topic: ?",
+        "",
+        "- model: {\"top_p\":1,\"temperature\":0.7,\"model\":\"gpt-3.5-turbo-16k\"}",
+        "- file: placeholder",
+        "- role: You are a general AI assistant.",
+        "",
+        "Write your queries after 🗨:. Run :GpChatRespond to generate response.",
+        "",
+        "---",
+        "",
+        "🗨:",
+        ""
+      ]
+    }
+  }
+}

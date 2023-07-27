@@ -30,11 +30,16 @@ return {
           vim.cmd("NvimTreeFindFile")
           vim.cmd("norm a")
         end,
+        ["SelectBySyntax"] = function()
+          require("flash").treesitter()
+        end,
       },
       ["RunSelectedAndOutputWithPrePostFix"] = {
         prefix = "```lua",
         postfix = "```",
       },
+      -- Explorer
+      -- ["ToggleExplorer"] = [[nnoremap \ :Neotree toggle<cr>]],
     })
   end,
 }
