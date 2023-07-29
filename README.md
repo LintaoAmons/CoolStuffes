@@ -6,7 +6,12 @@
 
 你可以通过提issue问问题，我有空就回复一下我知道的内容
 
-## You can use `stow` to automaticlly put into specific directory
+## Nano
+> 一些小的 Tips 写出来给大家分享一下
+
+- [Warpd 基本用法](./nano/warpd.md)
+
+## 用 `stow` 将本项目配置快速放到对应的系统目录
 
 - [Stow 管理配置](https://www.bilibili.com/video/BV18u41167xT/)
 
