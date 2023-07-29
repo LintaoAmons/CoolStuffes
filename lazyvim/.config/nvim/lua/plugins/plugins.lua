@@ -43,11 +43,6 @@ return {
     config = true,
   },
 
-  {
-    "kylechui/nvim-surround",
-    event = 'VeryLazy',
-    config = function() require("nvim-surround").setup {} end,
-  },
   -- override nvim-cmp and add cmp-emoji
   {
     "hrsh7th/nvim-cmp",

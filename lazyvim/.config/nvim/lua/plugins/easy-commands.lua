@@ -33,6 +33,8 @@ return {
         ["SelectBySyntax"] = function()
           require("flash").treesitter()
         end,
+        ["Wrap"] = "set wrap",
+        ["UnWrap"] = "set unwrap",
       },
       ["RunSelectedAndOutputWithPrePostFix"] = {
         prefix = "```lua",
