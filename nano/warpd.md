@@ -1,9 +1,11 @@
 >  https://github.com/rvaiya/warpd
 
-- My config: 
+- [我的配置](../warpd/.config/warpd/config)
 
-- `option+cmd+h`：触发 warp
-- `hkl`：移动指针
+- 触发 warpd
+  - `ctrl+cmd+'`: 触发 warpd
+  - `option+cmd+h`：触发 warpd with hints
+- `hjkl`：移动指针
 - `m`：左键点击
 - `>`：右键点击
 - `e`：向下滚动
