@@ -1,11 +1,13 @@
 >  https://github.com/rvaiya/warpd
 
-- `option+cmd+h`: trigger warpd
-- `hjkl`: move the pointer around
-- `m`: left click
-- `>`: right click
-- `e`: scroll down
-- `r`: scroll up
+- My config: 
 
-- `s` : in normal mode, switch pointer to another screen
-- `f`: in normal mode, quick jump
+- `option+cmd+h`：触发 warp
+- `hkl`：移动指针
+- `m`：左键点击
+- `>`：右键点击
+- `e`：向下滚动
+- `r`：向上滚动
+
+- `s`：在正常模式下，切换指针到另一个屏幕
+- `f`：在正常模式下，快速跳转
