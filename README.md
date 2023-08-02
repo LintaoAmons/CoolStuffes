@@ -30,6 +30,11 @@
 - [Nvim with copilot](https://www.bilibili.com/video/BV1eL41187cw/)
 - [像 IDE 一样的 Nvim Commands Panel](https://www.bilibili.com/video/BV1rm4y187oP)
 
+## 从零开始搞 Lazyvim
+
+- [0-简介](https://www.bilibili.com/video/BV1fz4y1s7pF/?vd_source=639d5b733ab07affadbfaaaf718f8b2a)
+- [1-初始化](https://www.bilibili.com/video/BV1Fx4y19754/?vd_source=639d5b733ab07affadbfaaaf718f8b2a)
+
 ## Tips & Usecases
 
 ### ChatGPT
