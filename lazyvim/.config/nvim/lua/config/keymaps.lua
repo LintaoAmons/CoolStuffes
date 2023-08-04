@@ -6,9 +6,13 @@ vim.keymap.del("v", "S", {})
 -- vim.keymap.del("n", "<C-w>k", {})
 
 local command_keymappings = {
+  ["PeekDefinition"] = "<C-k>k",
+  ["PeekTypeDefinition"] = "<C-k>l",
+  ["PeekGitChange"] = "<C-k>j",
+  ["CopyCurrentLine"] = "<C-k>c",
   ["SelectBySyntax"] = "S",
   ["Twilight"] = "<C-w>m",
-  ["GpChatNew"] = "<C-k>n",
+  ["GpBetterChatNew"] = { mode = "in", keys = "<C-k>n" },
   ["GpChatRespond"] = { mode = "in", keys = "<C-k>k" },
   ["GpAppend"] = { keys = "<C-k>i", mode = "v" },
   ["NewFile"] = "<C-n>",
@@ -53,7 +57,7 @@ local command_keymappings = {
   ["GoToTestFile"] = "gt",
   ["TestRunNearest"] = "<leader>rt",
   ["GoToDefinition"] = "gd",
-  ["LspFinder"] = "gf",
+  ["LspFinder"] = "<C-k>f",
   -- ["ExtractVariable"] = "<leader>ev",
 
   ["Mark"] = "m",

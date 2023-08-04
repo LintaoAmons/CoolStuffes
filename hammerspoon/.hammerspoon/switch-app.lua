@@ -4,6 +4,8 @@ local shortcuts = {
 	["wezTerm"] = "k",
 	["Arc"] = "o",
 	["Obsidian"] = "j",
+	["Finder"] = "l",
+	["code"] = "m", -- this is Visual Studio Code
 }
 
 local function switchTo(appName)

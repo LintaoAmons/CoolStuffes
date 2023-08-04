@@ -23,14 +23,26 @@ return {
           },
         },
       })
-      vim.cmd("Twilight")
+      -- vim.cmd("Twilight") enable Twilight at vim startup
     end,
   },
   { "ellisonleao/gruvbox.nvim" },
   {
+    "malbernaz/monokai.nvim",
+    config = function()
+      require("monokai").setup({
+        custom_hlgroups = {
+          FlashCurrent = { fg = "#FF0000", bg = "#FF0000" },
+          FlashLabel = { fg = "#FBF3CB", bg = "#FF007C" },
+          FlashMatch = { fg = "#000000", bg = "#000000" },
+        },
+      })
+    end,
+  },
+  {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "gruvbox",
+      colorscheme = "monokai",
     },
   },
 }
