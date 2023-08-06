@@ -26,7 +26,6 @@ return {
       -- vim.cmd("Twilight") enable Twilight at vim startup
     end,
   },
-  { "ellisonleao/gruvbox.nvim" },
   {
     "malbernaz/monokai.nvim",
     config = function()

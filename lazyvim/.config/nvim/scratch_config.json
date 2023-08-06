@@ -5,7 +5,8 @@
     "lua",
     "js",
     "py",
-    "sh"
+    "sh",
+    "md"
   ],
   "scratch_file_dir": "/Users/lintao/.cache/nvim/scratch.nvim",
   "filetype_details": {
@@ -31,6 +32,30 @@
       "subdir": "docker"
     },
     "json": {},
+    "eng-improve.md": {
+      "subdir": "chatGpt",
+      "cursor": {
+        "location": [
+          12,
+          2
+        ],
+        "insert_mode": true
+      },
+      "content": [
+        "# topic: ?",
+        "",
+        "- model: {\"top_p\":1,\"temperature\":0.7,\"model\":\"gpt-4\"}",
+        "- file: placeholder",
+        "- role: You are an English expert. Please help me improve my English sentences, point out the grammar errors, and awkward expressions, and provide me with the correct and natural phrasing with a more casual tone. List out the mistakes I made and things I need pay more attention to",
+        "",
+        "Write your queries after 🗨:. Run :GpChatRespond to generate response.",
+        "",
+        "---",
+        "",
+        "🗨:",
+        ""
+      ]
+    },
     "eng-trans.md": {
       "subdir": "chatGpt",
       "cursor": {
