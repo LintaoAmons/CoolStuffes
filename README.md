@@ -13,6 +13,7 @@
 ## Nano
 > 一些小的 Tips 写出来给大家分享一下
 
+- [我的键盘用法](https://www.bilibili.com/video/BV12g411N7hv)
 - [Remove default keybinding in lazyvim](./nano/remove-default-keybinding-in-lazyvim.md)
 - [Warpd 基本用法](./nano/warpd.md)
 
