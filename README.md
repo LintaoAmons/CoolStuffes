@@ -28,12 +28,16 @@
 
 - [Ideavim](https://www.bilibili.com/video/BV115411X7i4/?share_source=copy_web&vd_source=b47bb912e09be24910f4ffaad92dba1b)
 
-
 # Nvim
 
 - [Lazyvim Config](https://github.com/LintaoAmons/CoolStuffes/tree/main/lazyvim/.config/nvim)
 - [Nvim with copilot](https://www.bilibili.com/video/BV1eL41187cw/)
 - [像 IDE 一样的 Nvim Commands Panel](https://www.bilibili.com/video/BV1rm4y187oP)
+
+## 我写的 Nvim 插件
+
+- [scratch.nvim](https://github.com/LintaoAmons/scratch.nvim)
+- [easy-commands.nvim](https://github.com/LintaoAmons/easy-commands.nvim)
 
 ## 从零开始搞 Lazyvim
 
