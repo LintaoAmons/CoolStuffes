@@ -54,11 +54,9 @@ end
 local function generateKeyMappings()
 	local keymappings = {
 		{ key = "n", mods = "SHIFT|CTRL", action = wezterm.action.SpawnWindow },
+		unpack(macCMDtoMeta()),
 	}
 
-	for _, v in ipairs(macCMDtoMeta()) do
-		table.insert(keymappings, v)
-	end
 	return keymappings
 end
 
