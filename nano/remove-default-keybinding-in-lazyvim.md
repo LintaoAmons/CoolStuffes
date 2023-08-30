@@ -35,7 +35,8 @@ disable 掉前面默认定义的快捷键
 以 Flash 为例, 我需要把 `S` 在 visual 模式下作为 `surround` 插件的快捷键，但是Flash
 现在会使用这个快捷键，所以需要先 Disable 掉它
 
-dfkeys = {
+```lua
+keys = {
     ...
     {"S", false}, -- << 看这里
   }
