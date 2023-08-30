@@ -127,6 +127,7 @@ source "/opt/homebrew/Cellar/fzf/0.38.0/shell/key-bindings.zsh"
 ########################## 🔼 NVM 🔼 ##########################
 
 ########################## 🔽 ALIAS 🔽 ###########################
+alias chat="nvim -c 'lua require(\"scratch\").scratchByType(\"gp4.md\")'"
 alias vim="nvim"
 alias gp!="git push --no-verify"
 alias v="lvim +\"Telescope oldfiles\""

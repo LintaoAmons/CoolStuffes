@@ -2,27 +2,25 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 vim.keymap.del("n", "<leader>l", {})
-vim.keymap.del("v", "S", {})
--- vim.keymap.del("n", "<C-w>k", {})
 
 local command_keymappings = {
-  ["PeekDefinition"] = "<C-k>k",
-  ["PeekTypeDefinition"] = "<C-k>l",
-  ["PeekGitChange"] = "<C-k>j",
-  ["GitCommit"] = "<C-k>c",
-  ["SelectBySyntax"] = "S",
+  ["DBUIToggle"] = "<M-0>",
+  ["SearchSession"] = "<C-q>",
+  ["PeekDefinition"] = "<M-k>k",
+  ["PeekTypeDefinition"] = "<M-k>l",
+  ["PeekGitChange"] = "<M-k>j",
+  ["GitCommit"] = "<M-k>c",
+  -- ["SelectBySyntax"] = "S",
   ["Twilight"] = "<C-w>m",
-  ["GpStop"] = { mode = "in", keys = "<C-k>s" },
-  ["GpChatRespond"] = { mode = "in", keys = "<C-k>k" },
-  ["GpAppend"] = { keys = "<C-k>i", mode = "v" },
+  ["AskGpt4"] = "<C-g>k",
+  ["GpAppend"] = { keys = "<M-k>i", mode = "v" },
   ["NewFile"] = "<C-n>",
   ["TmuxNavigateLeft"] = "<C-h>",
   ["TmuxNavigateRight"] = "<C-l>",
-  ["TmuxNavigateUp"] = "<C-k>",
+  ["TmuxNavigateUp"] = "<M-k>",
   ["TmuxNavigateDown"] = "<C-j>",
   ["FoldAll"] = "<leader>zc",
   ["UnFoldAll"] = "<leader>zo",
-  ["SwitchProject"] = "<C-q>",
   ["FindCommands"] = { mode = "niv", keys = "<C-M-p>" },
   ["FindFiles"] = "<C-p>",
   ["OpenRecentFiles"] = "<M-e>",
@@ -57,7 +55,8 @@ local command_keymappings = {
   ["GoToTestFile"] = "gt",
   ["TestRunNearest"] = "<leader>rt",
   ["GoToDefinition"] = "gd",
-  ["LspFinder"] = "<C-k>f",
+  ["CodeActions"] = "<M-k><M-k>",
+  ["LspFinder"] = "<M-k>f",
   -- ["ExtractVariable"] = "<leader>ev",
 
   ["Mark"] = "m",
@@ -132,3 +131,9 @@ vim.keymap.set("v", "p", "P")
 -- explorer
 vim.keymap.set("n", "<leader>e", "<cmd>Neotree toggle<cr>", { desc = "ExplorerToggle" })
 vim.keymap.set("n", "<leader>fl", "<cmd>Neotree reveal<cr>", { desc = "ExplorerFindFileLocation" })
+
+vim.keymap.set("n", "<M-1>", "<cmd>Neotree toggle<cr>", { desc = "ExplorerToggle" })
+-- TODO: issue raise
+-- vim.keymap.set("n", "gm", function()
+--   require("syntax-tree-surfer").go_to_top_node_and_execute_commands(false, { "normal! w" })
+-- end, { silent = true, expr = true })

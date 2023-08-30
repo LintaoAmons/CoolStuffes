@@ -6,4 +6,8 @@ require("luasnip.loaders.from_vscode").load_standalone({
   path = "~/.config/nvim/snippets/NeogitCommitMessage.code-snippets",
 })
 
+require("luasnip.loaders.from_vscode").load_standalone({
+  path = "~/.config/nvim/snippets/go.jsonc",
+})
+
 return {}

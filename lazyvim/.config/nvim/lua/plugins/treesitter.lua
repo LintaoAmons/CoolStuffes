@@ -1,4 +1,7 @@
 return {
+  {
+    "ziontee113/syntax-tree-surfer",
+  },
   -- add more treesitter parsers
   {
     "nvim-treesitter/nvim-treesitter",

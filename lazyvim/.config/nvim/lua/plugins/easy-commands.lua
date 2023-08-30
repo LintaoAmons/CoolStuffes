@@ -1,11 +1,10 @@
 return {
- "LintaoAmons/easy-commands.nvim",
+  "LintaoAmons/easy-commands.nvim",
   -- dir = vim.loop.os_homedir() .. "/Documents/oatnil/beta/easy-commands.nvim",
   event = "VeryLazy",
   config = function()
     require("easy-commands").setup({
-      disabledCommands = { "CopyFilename" }, -- You can disable the commands you don't want
-
+      disabledCommands = { "Git", "CopyFilename" }, -- You can disable the commands you don't want
       -- It always welcome to send me back your good commands and usecases
       ---@type EasyCommand.Command[]
       myCommands = {
@@ -31,6 +30,60 @@ return {
             require("easy-commands.impl.util.base.sys").CopyToSystemClipboard(cmd)
           end,
           description = "Copy the buffer abs path to system clipboard",
+        },
+        {
+          name = "CodeActions",
+          callback = "Lspsaga code_action",
+        },
+        {
+          name = "DistinctLines",
+          callback = "sort u",
+        },
+        {
+          name = "TrimLine",
+          callback = function()
+            local line = vim.api.nvim_get_current_line()
+            local trimmed = string.match(line, "^%s*(.-)%s*$")
+            vim.api.nvim_set_current_line(trimmed)
+          end,
+        },
+        {
+          name = "JoinLines",
+          callback = "'<,'>s/\v\n/,/",
+        },
+        {
+          name = "AskGpt4",
+          callback = function()
+            require("scratch").scratchByType("gp4.md")
+          end,
+          dependencies = {
+            "https://github.com/robitx/gp.nvim",
+            "https://github.com/LintaoAmons/scratch.nvim",
+          },
+          description = "Ask chatgpt in vim and stored in scratchfile's directory",
+        },
+        {
+          name = "OpenInFinder",
+          description = "Open the directory of current file in finder",
+          callback = function()
+            local dirpath = require("easy-commands.impl.util.editor").get_buf_abs_dir_path()
+            vim.cmd("!open " .. dirpath)
+          end,
+        },
+        {
+          name = "OpenBySystemDefaultApp",
+          description = "Open the current file by system default app",
+          callback = function()
+            local abspath = require("easy-commands.impl.util.editor").get_buf_abs_path()
+            vim.cmd("!open " .. abspath)
+          end,
+        },
+      },
+
+      aliases = {
+        {
+          from = "GitListCommits",
+          to = "GitLog",
         },
       },
 

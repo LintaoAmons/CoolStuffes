@@ -12,7 +12,7 @@ return {
   {
     "LintaoAmons/scratch.nvim",
     -- dir = "/Users/lintao/Documents/oatnil/release/scratch.nvim",
-    event = 'VeryLazy',
+    -- event = 'VeryLazy',
   },
 
   -- Configure LazyVim to load gruvbox

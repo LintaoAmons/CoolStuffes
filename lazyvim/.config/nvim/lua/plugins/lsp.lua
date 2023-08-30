@@ -1,13 +1,24 @@
 return {
+  -- {
+  --   "VidocqH/lsp-lens.nvim",
+  --   event = "LspAttach",
+  --   config = function()
+  --     require("lsp-lens").setup({})
+  --   end,
+  -- },
   {
     "nvimdev/lspsaga.nvim",
     config = function()
-      require("lspsaga").setup({})
+      require("lspsaga").setup({
+        outline = {
+          auto_preview = false,
+        },
+      })
     end,
     event = "LspAttach",
     dependencies = {
       "nvim-treesitter/nvim-treesitter", -- optional
-      "nvim-tree/nvim-web-devicons",     -- optional
+      "nvim-tree/nvim-web-devicons", -- optional
     },
   },
   {
@@ -24,7 +35,7 @@ return {
     end,
   },
 
-    -- add pyright to lspconfig
+  -- add pyright to lspconfig
   {
     "neovim/nvim-lspconfig",
     ---@class PluginLspOpts

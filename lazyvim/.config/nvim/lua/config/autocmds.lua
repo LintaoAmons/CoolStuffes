@@ -24,5 +24,6 @@ vim.api.nvim_create_autocmd({ "InsertLeave", "TextChanged" }, {
 })
 
 -- HACK: don't wrap in markdown
-vim.api.nvim_create_augroup("lazyvim_wrap_spell", {clear = true})
-
+-- vim.api.nvim_create_augroup("lazyvim_wrap_spell", {clear = true})
+--
+-- DOB keymapping settings
