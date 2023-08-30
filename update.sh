@@ -24,6 +24,7 @@ declare -A share_items=(
   [hammerspoon]="$HAMMERSPOON"
   [ideavim]="$IDEAVIM"
   [warpd]="$WARPD"
+  [wezterm]="$WEZTERM"
 )
 
 # Iterate through the array and synchronize each configuration file
