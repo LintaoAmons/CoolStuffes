@@ -5,7 +5,8 @@ local shortcuts = {
 	["Arc"] = "o",
 	["Obsidian"] = "j",
 	["Finder"] = "l",
-	["code"] = "m", -- this is Visual Studio Code
+	["Visual Studio Code"] = "m", -- this is Visual Studio Code
+	["Intellij IDEA"] = "i",
 }
 
 local function switchTo(appName)

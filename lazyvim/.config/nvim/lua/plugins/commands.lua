@@ -1,6 +1,6 @@
 return {
-  "LintaoAmons/easy-commands.nvim",
-  -- dir = vim.loop.os_homedir() .. "/Documents/oatnil/beta/easy-commands.nvim",
+  -- "LintaoAmons/commands.nvim",
+  dir = vim.loop.os_homedir() .. "/Documents/oatnil/beta/easy-commands.nvim",
   event = "VeryLazy",
   config = function()
     require("easy-commands").setup({
@@ -78,19 +78,62 @@ return {
             vim.cmd("!open " .. abspath)
           end,
         },
+        {
+          name = "GitCommit",
+          callback = function()
+            vim.ui.input({ prompt = "Commit msg: " }, function(msg)
+              local sys = require("easy-commands.impl.util.base.sys")
+              sys.run_os_cmd({ "git", "commit", "-m", msg }, ".")
+              vim.api.nvim_command("tabclose")
+            end)
+          end,
+          description = "Commit current staged changes with commit msg",
+        },
+        {
+          name = "DebugToggleUI",
+          callback = "DapUiToggle",
+        },
+        {
+          name = "DebugStart",
+          callback = "DapContinue",
+          description = "Start a debug session",
+        },
+        {
+          name = "DebugToggleBreakpoint",
+          callback = "DapToggleBreakpoint",
+          description = "Toggle a breakpoint of current line",
+        },
+        {
+          name = "DebugStepOver",
+          callback = "DapStepOver",
+        },
+        {
+          name = "DebugStepInto",
+          callback = "DapStepInto",
+        },
+        {
+          name = "DebugStepOut",
+          callback = "DapStepOut",
+        },
+        {
+          name = "DebugTerminate",
+          callback = "DapTerminate",
+        },
+        {
+          name = "DebugLoadLaunchJSON",
+          callback = "DapLoadLaunchJSON",
+        },
       },
-
       aliases = {
+        {
+          from = "DebugStart",
+          to = "DebugContinue",
+        },
+        { from = "DebugTerminate", to = "DebugStop" },
         {
           from = "GitListCommits",
           to = "GitLog",
         },
-      },
-
-      -- Each Command may have defferent config options, check out the commands to find more options.
-      ["RunSelectedAndOutputWithPrePostFix"] = {
-        prefix = "```lua",
-        postfix = "```",
       },
     })
   end,

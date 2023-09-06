@@ -4,7 +4,17 @@
 vim.keymap.del("n", "<leader>l", {})
 
 local command_keymappings = {
+  -- HACK: Debug
+  ["DebugToggleUI"] = "<M-5>",
+  ["DebugStart"] = "<F5>",
+  ["DapToggleBreakpoint"] = "<F9>",
+  ["DebugStepOver"] = "<F8>",
+  ["DebugStepInto"] = "<F7>",
+  ["DebugStop"] = "<F3>",
+
+  -- HACK: DB
   ["DBUIToggle"] = "<M-0>",
+
   ["SearchSession"] = "<C-q>",
   ["PeekDefinition"] = "<M-k>k",
   ["PeekTypeDefinition"] = "<M-k>l",
@@ -59,8 +69,8 @@ local command_keymappings = {
   ["LspFinder"] = "<M-k>f",
   -- ["ExtractVariable"] = "<leader>ev",
 
-  ["Mark"] = "m",
-  ["MarkList"] = "<C-M-i>",
+  -- ["Mark"] = "m",
+  -- ["MarkList"] = "<C-M-i>",
   ["ToNextCase"] = { mode = "nv", keys = "<leader>nc" },
 }
 

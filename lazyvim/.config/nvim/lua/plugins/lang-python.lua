@@ -8,25 +8,26 @@ return {
       vim.list_extend(opts.ensure_installed, {
         "black",
         "ruff",
+        "debugpy",
       })
     end,
   },
-
-  -- Setup adapters as nvim-dap dependencies
+  -- {
+  --   "puremourning/vimspector",
+  -- },
+  --
   {
-    "mfussenegger/nvim-dap",
+    "mfussenegger/nvim-dap-python",
+    ft = "python",
     dependencies = {
-      "mfussenegger/nvim-dap-python",
-      -- stylua: ignore
-      keys = {
-        { "<leader>dPt", function() require('dap-python').test_method() end, desc = "Debug test method" },
-        { "<leader>dPc", function() require('dap-python').test_class() end,  desc = "Debug class" },
-      },
-      config = function()
-        local path = require("mason-registry").get_package("debugpy"):get_install_path()
-        require("dap-python").setup(path .. "/venv/bin/python")
-      end,
+      "theHamsta/nvim-dap-virtual-text",
+      "mfussenegger/nvim-dap",
+      "rcarriga/nvim-dap-ui",
     },
+    config = function()
+      local path = require("mason-registry").get_package("debugpy"):get_install_path()
+      require("dap-python").setup(path .. "/venv/bin/python")
+    end,
   },
 
   -- Add `python` debugger to mason DAP to auto-install
@@ -37,17 +38,6 @@ return {
         "python",
       })
     end,
-  },
-
-  -- Add which-key namespace for Python debugging
-  {
-    "folke/which-key.nvim",
-    optional = true,
-    opts = {
-      defaults = {
-        ["<leader>dP"] = { name = "+Python" },
-      },
-    },
   },
 
   -- Add `server` and setup lspconfig
