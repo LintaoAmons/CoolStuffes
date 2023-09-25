@@ -1,3 +1,5 @@
 .local
 lvim/.config/lvim/bckgit
 lvim/.config/lvim/plugin
+.DS_Store
+
