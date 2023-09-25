@@ -10,6 +10,9 @@
 -- * override the configuration of LazyVim plugins
 return {
   {
+    "kkharji/sqlite.lua"
+  },
+  {
     "LintaoAmons/scratch.nvim",
     -- dir = "/Users/lintao/Documents/oatnil/release/scratch.nvim",
     -- event = 'VeryLazy',

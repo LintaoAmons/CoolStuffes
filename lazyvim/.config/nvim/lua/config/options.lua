@@ -4,4 +4,4 @@
 --
 
 vim.opt.conceallevel = 0
-vim.opt.cmdheight = 0
+vim.opt.cmdheight = 1

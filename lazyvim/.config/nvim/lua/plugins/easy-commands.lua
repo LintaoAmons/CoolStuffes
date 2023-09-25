@@ -8,19 +8,16 @@ return {
       -- It always welcome to send me back your good commands and usecases
       ---@type EasyCommand.Command[]
       myCommands = {
-        -- You can add your own commands
         {
-          name = "MyCommand",
-          callback = 'lua vim.print("easy command user command")',
-          description = "A demo command definition",
+          name = "FindFileInDir",
+          callback = "Telescope dir find_files",
+          description = "find files in directory",
         },
-        -- You can overwrite the current implementation
         {
-          name = "EasyCommand",
-          callback = 'lua vim.print("Overwrite easy-command builtin command")',
-          description = "The default implementation is overwrited",
+          name = "FindInDir",
+          callback = "Telescope dir live_grep",
+          description = "find content in directory",
         },
-        -- You can use the utils provided by the plugin to build your own command
         {
           name = "CopyCdCommand",
           callback = function()
@@ -88,6 +85,16 @@ return {
             end)
           end,
           description = "Commit current staged changes with commit msg",
+        },
+        {
+          name = "TempKeymap",
+          callback = function()
+            vim.ui.input({ prompt = "write your temp keymap, like: . @q" }, function(msg)
+              vim.print("map <buffer> " .. msg)
+              vim.api.nvim_command("map <buffer> " .. msg)
+            end)
+          end,
+          description = "Create a buffer local keymap for tmp use",
         },
         {
           name = "DebugToggleUI",

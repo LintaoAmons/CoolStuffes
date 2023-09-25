@@ -3,6 +3,18 @@ vim.api.nvim_set_hl(0, "FlashLabel", { fg = "#FBF3CB", bg = "#FF007C" })
 vim.api.nvim_set_hl(0, "FlashMatch", { fg = "#000000", bg = "#000000" })
 
 return {
+
+  -- Lua
+  {
+    "folke/zen-mode.nvim",
+    event = "VeryLazy",
+    opts = {
+      -- your configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
+    },
+  },
+
   {
     "folke/twilight.nvim",
     event = "VeryLazy",

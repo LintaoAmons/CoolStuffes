@@ -9,15 +9,15 @@ local command_keymappings = {
   -- HACK: Debug
   ["DebugToggleUI"] = "<M-5>",
   ["DebugStart"] = "<F5>",
-  ["DapToggleBreakpoint"] = "<F9>",
+  ["DebugToggleBreakpoint"] = "<F9>",
   ["DebugStepOver"] = "<F8>",
   ["DebugStepInto"] = "<F7>",
-  ["DebugStop"] = "<F3>",
+  ["DebugStop"] = "<M-F2>",
 
   -- HACK: DB
-  ["DBUIToggle"] = "<M-0>",
+  ["DBUIToggle"] = "<M-C-9>",
 
-  ["SearchSession"] = "<C-q>",
+  -- ["SearchSession"] = "<C-q>",
   ["PeekDefinition"] = "<M-k>k",
   ["PeekTypeDefinition"] = "<M-k>l",
   ["PeekGitChange"] = "<M-k>j",
@@ -26,7 +26,7 @@ local command_keymappings = {
   ["Twilight"] = "<C-w>m",
   ["AskGpt4"] = "<C-g>k",
   ["GpAppend"] = { keys = "<M-k>i", mode = "v" },
-  ["NewFile"] = "<C-n>",
+  -- ["NewFile"] = "<C-n>",
   ["TmuxNavigateLeft"] = "<C-h>",
   ["TmuxNavigateRight"] = "<C-l>",
   ["TmuxNavigateUp"] = "<M-k>",
@@ -54,7 +54,7 @@ local command_keymappings = {
   -- HACK: GIT
   ["GitNextHunk"] = "gj",
   ["GitPrevHunk"] = "gk",
-  ["GitDiff"] = "<leader>df",
+  ["GitDiff"] = "<M-0>",
   ["GitStatus"] = "<leader>gs",
   ["Git"] = "<leader>gg",
   ["BlameLine"] = "<leader>gl",

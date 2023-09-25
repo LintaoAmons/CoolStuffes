@@ -31,6 +31,8 @@ local function macCMDtoMeta()
 
 	for i = 1, #keys do
 		local c = keys:sub(i, i)
+
+    -- CMD+key  -->  META+key
 		table.insert(keymappings, {
 			key = c,
 			mods = "CMD",
@@ -39,6 +41,8 @@ local function macCMDtoMeta()
 				mods = "META",
 			}),
 		})
+
+    -- CMD+CTRL+key  -->  META+key
 		table.insert(keymappings, {
 			key = c,
 			mods = "CMD|CTRL",
@@ -54,6 +58,14 @@ end
 local function generateKeyMappings()
 	local keymappings = {
 		{ key = "n", mods = "SHIFT|CTRL", action = wezterm.action.SpawnWindow },
+		{
+			key = "F2",
+			mods = "CMD",
+			action = act.SendKey({
+				key = "F2",
+				mods = "META",
+			}),
+		},
 	}
 
 	for _, v in ipairs(macCMDtoMeta()) do
