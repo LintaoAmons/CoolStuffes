@@ -30,6 +30,7 @@ return {
     config = function()
       require("nvim-treesitter.configs").setup({
         incremental_selection = {
+          -- thx: https://www.reddit.com/r/neovim/comments/16ugm8l/comment/k2l4n06/?utm_source=share&utm_medium=web2x&context=3
           enable = true,
           keymaps = {
             node_incremental = "v",
