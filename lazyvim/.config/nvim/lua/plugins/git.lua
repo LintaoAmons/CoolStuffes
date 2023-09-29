@@ -1,6 +1,7 @@
 return {
   {
     "FabijanZulj/blame.nvim",
+    event = 'VeryLazy',
   },
   {
     "NeogitOrg/neogit",

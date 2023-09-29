@@ -1,5 +1,5 @@
 {
-  "filetypes": ["xml", "go", "lua", "js", "py", "sh", "md", "plain"],
+  "filetypes": ["xml", "go", "lua", "js", "py", "sh", "md", "plain", "sql"],
   "scratch_file_dir": "/Users/lintao/.cache/nvim/scratch.nvim",
   "filetype_details": {
     "go": {

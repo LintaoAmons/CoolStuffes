@@ -10,7 +10,8 @@
 -- * override the configuration of LazyVim plugins
 return {
   {
-    "kkharji/sqlite.lua"
+    "kkharji/sqlite.lua",
+    event = 'VeryLazy',
   },
   {
     "LintaoAmons/scratch.nvim",

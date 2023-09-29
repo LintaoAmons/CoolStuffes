@@ -2,6 +2,7 @@ return {
   {
     "princejoogie/dir-telescope.nvim",
     -- telescope.nvim is a required dependency
+    event = "VeryLazy",
     requires = { "nvim-telescope/telescope.nvim" },
     config = function()
       require("dir-telescope").setup({
@@ -9,6 +10,9 @@ return {
         hidden = true,
         no_ignore = false,
         show_preview = true,
+        find_command = function()
+          return { "fd", "--type", "d", "--color", "never", "-E", ".git" }
+        end,
       })
       require("telescope").load_extension("dir")
     end,

@@ -1,5 +1,8 @@
 return {
-  {'jubnzv/virtual-types.nvim'},
+  {
+    "jubnzv/virtual-types.nvim",
+    event = "LspAttach",
+  },
   -- {
   --   "VidocqH/lsp-lens.nvim",
   --   event = "LspAttach",

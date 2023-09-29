@@ -48,7 +48,9 @@ local command_keymappings = {
   ["RunCurrentBuffer"] = "<M-r>",
   ["Scratch"] = "<M-C-n>",
   ["ScratchOpen"] = "<M-C-o>",
-  ["FindInProject"] = { mode = "nv", keys = "<C-f>" },
+  ["FindInProject"] = { mode = "nv", keys = "<C-f>f" },
+  ["FindFileInDir"] = { mode = "nv", keys = "<C-f>d" },
+  ["GrepInDir"] = { mode = "nv", keys = "<C-f>g" },
   ["SearchOrReplace"] = { mode = "nv", keys = "<C-M-f>" },
   ["Rename"] = "<leader>rn",
   -- HACK: GIT

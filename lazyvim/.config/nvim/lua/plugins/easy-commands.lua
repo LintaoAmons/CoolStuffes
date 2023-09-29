@@ -14,7 +14,7 @@ return {
           description = "find files in directory",
         },
         {
-          name = "FindInDir",
+          name = "GrepInDir",
           callback = "Telescope dir live_grep",
           description = "find content in directory",
         },

@@ -10,6 +10,7 @@ return {
     dependencies = {
       {
         "kristijanhusak/vim-dadbod-completion",
+        event = "VeryLazy",
         init = function()
           vim.api.nvim_create_autocmd("FileType", {
             desc = "dadbod completion",
