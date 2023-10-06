@@ -5,3 +5,4 @@
 
 vim.opt.conceallevel = 0
 vim.opt.cmdheight = 1
+vim.opt.foldlevel = 99

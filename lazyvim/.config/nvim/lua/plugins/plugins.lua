@@ -14,8 +14,8 @@ return {
     event = 'VeryLazy',
   },
   {
-    "LintaoAmons/scratch.nvim",
-    -- dir = "/Users/lintao/Documents/oatnil/release/scratch.nvim",
+    -- "LintaoAmons/scratch.nvim",
+    dir = "/Users/lintao/Documents/oatnil/release/scratch.nvim",
     -- event = 'VeryLazy',
   },
 

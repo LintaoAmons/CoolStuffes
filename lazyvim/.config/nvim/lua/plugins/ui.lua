@@ -38,6 +38,20 @@ return {
       -- vim.cmd("Twilight") enable Twilight at vim startup
     end,
   },
+  -- -- add gruvbox
+  -- { "ellisonleao/gruvbox.nvim" },
+  --
+  -- -- Configure LazyVim to load gruvbox
+  -- {
+  --   "LazyVim/LazyVim",
+  --   opts = {
+  --     colorscheme = "gruvbox",
+  --   },
+  -- },
+  --
+
+  -- { "savq/melange-nvim" },
+
   {
     "malbernaz/monokai.nvim",
     config = function()

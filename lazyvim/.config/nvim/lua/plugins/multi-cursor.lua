@@ -15,13 +15,14 @@ return { -- Multi Cursor
       ["Find Subword Under"] = "<M-b>", -- firstly select some text, then <M-b>
       ["Start Regex Search"] = "<C-q>/",
 
-      ["Select Cursor Down"] = "<C-j>", -- switch upper and lower window with <C-w>jk
-      ["Select Cursor Up"] = "<C-k>",
+      ["Select Cursor Down"] = "<M-C-j>", -- switch upper and lower window with <C-w>jk
+      ["Select Cursor Up"] = "<M-C-k>",
 
-      ["Visual All"] = "<C-q>j", --  selected some text in visual mode then press <C-q>j to select all
+      ["Visual All"] = "<C-q>j", --  1. selected some text in visual mode 2. press <C-q>j to select all
 
       -- buffer mappings
       ["Switch Mode"] = "<Tab>",
+      ["Skip Region"] = "q",
       ["Remove Region"] = "Q",
       ["Goto Next"] = "}",
       ["Goto Prev"] = "{",

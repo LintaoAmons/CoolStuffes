@@ -7,8 +7,8 @@ vim.keymap.del({ "n", "i", "v" }, "<A-k>", {})
 
 local command_keymappings = {
   -- HACK: Debug
-  ["DebugToggleUI"] = "<M-5>",
-  ["DebugStart"] = "<F5>",
+  ["ToggleDebugUI"] = "<M-5>",
+  ["DebugStartOrContinue"] = "<F5>",
   ["DebugToggleBreakpoint"] = "<F9>",
   ["DebugStepOver"] = "<F8>",
   ["DebugStepInto"] = "<F7>",
@@ -41,8 +41,10 @@ local command_keymappings = {
   ["QuitNvim"] = "<M-q>",
   ["CloseWindowOrBuffer"] = "<M-w>",
   ["SplitVertically"] = "<leader>wl",
-  ["DecreaseSplitWidth"] = "<C-M-j>",
-  ["IncreaseSplitWidth"] = "<C-M-k>",
+
+  ["DecreaseSplitWidth"] = "<C-M-h>",
+  ["IncreaseSplitWidth"] = "<C-M-l>",
+
   ["ToggleOutline"] = "<leader>ss",
   ["ToggleLf"] = "<leader>oo",
   ["RunCurrentBuffer"] = "<M-r>",
@@ -66,9 +68,13 @@ local command_keymappings = {
   ["TabPrev"] = "th",
   ["TabNext"] = "tl",
   ["ExplorerLocateCurrentFile"] = "<leader>fl",
+
   ["GoToTestFile"] = "gt",
   ["TestRunNearest"] = "<leader>rt",
   ["GoToDefinition"] = "gd",
+  ["GoToDefinitionInSplit"] = "gl",
+  ["GotoFunctionName"] = "gm",
+
   ["CodeActions"] = "<M-k><M-k>",
   ["LspFinder"] = "<M-k>f",
   -- ["ExtractVariable"] = "<leader>ev",

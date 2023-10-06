@@ -1,6 +1,6 @@
 return {
-  -- "LintaoAmons/commands.nvim",
-  dir = vim.loop.os_homedir() .. "/Documents/oatnil/beta/easy-commands.nvim",
+  "LintaoAmons/easy-commands.nvim",
+  -- dir = vim.loop.os_homedir() .. "/Documents/oatnil/beta/easy-commands.nvim",
   event = "VeryLazy",
   config = function()
     require("easy-commands").setup({
@@ -97,38 +97,22 @@ return {
           description = "Create a buffer local keymap for tmp use",
         },
         {
-          name = "DebugToggleUI",
-          callback = "DapUiToggle",
+          name = "GitAmend",
+          callback = "G commit --amend",
+          dependencies = { "tpope/vim-fugitive" },
         },
         {
-          name = "DebugStart",
-          callback = "DapContinue",
-          description = "Start a debug session",
+          name = "GotoFunctionName",
+          callback = "normal [fw",
+          dependencies = {
+            "nvim-treesitter/nvim-treesitter: with config:" .. [[
+      textobjects = {
+        move = {
+          enable = true,
+          goto_previous_start = { ["[f"] = "@function.outer", ["[c"] = "@class.outer" },
         },
-        {
-          name = "DebugToggleBreakpoint",
-          callback = "DapToggleBreakpoint",
-          description = "Toggle a breakpoint of current line",
-        },
-        {
-          name = "DebugStepOver",
-          callback = "DapStepOver",
-        },
-        {
-          name = "DebugStepInto",
-          callback = "DapStepInto",
-        },
-        {
-          name = "DebugStepOut",
-          callback = "DapStepOut",
-        },
-        {
-          name = "DebugTerminate",
-          callback = "DapTerminate",
-        },
-        {
-          name = "DebugLoadLaunchJSON",
-          callback = "DapLoadLaunchJSON",
+      } ]],
+          },
         },
       },
       aliases = {
@@ -136,7 +120,6 @@ return {
           from = "DebugStart",
           to = "DebugContinue",
         },
-        { from = "DebugTerminate", to = "DebugStop" },
         {
           from = "GitListCommits",
           to = "GitLog",
