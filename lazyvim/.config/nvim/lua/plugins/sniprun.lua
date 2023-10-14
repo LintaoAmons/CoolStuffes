@@ -11,6 +11,9 @@ return {
         "VirtualText", --# display ok results as virtual text (multiline is shortened)
         "Terminal",
       },
+      display_options = {
+        terminal_scrollback = vim.o.scrollback
+      },
       live_display = { "VirtualText", "Terminal" },
     })
   end,

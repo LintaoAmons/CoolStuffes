@@ -5,4 +5,5 @@
 
 vim.opt.conceallevel = 0
 vim.opt.cmdheight = 1
-vim.opt.foldlevel = 99
+vim.opt.foldlevel = 0
+vim.o.swapfile = false

@@ -32,15 +32,30 @@ return {
     config = function()
       require("diffview").setup({
         keymaps = {
+          file_history_panel = {
+            { "n", "fa", "g!=a", { remap = true } },
+          },
           file_panel = {
             {
               "n",
               "c",
-              function() -- TODO: pull requist
+              function()
                 vim.ui.input({ prompt = "Commit msg: " }, function(msg)
-                  local sys = require("easy-commands.impl.util.base.sys")
-                  sys.run_os_cmd({ "git", "commit", "-m", msg }, ".")
-                  vim.api.nvim_command("tabclose")
+                  local Job = require("plenary.job")
+                  local stderr = {}
+                  Job:new({
+                    command = "git",
+                    args = { "commit", "-m", msg },
+                    cwd = ".",
+                    on_stderr = function(_, data)
+                      table.insert(stderr, data)
+                    end,
+                  }):sync()
+                  if #stderr == 0 then
+                    vim.api.nvim_command("tabclose")
+                  else
+                    vim.print(stderr[1])
+                  end
                 end)
               end,
               { desc = "git commit" },

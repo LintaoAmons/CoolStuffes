@@ -1,15 +1,41 @@
 {
-  "filetypes": ["xml", "go", "lua", "js", "py", "sh", "md", "plain", "sql", "html"],
+  "filetypes": [
+    "xml",
+    "go",
+    "lua",
+    "js",
+    "py",
+    "sh",
+    "md",
+    "plain",
+    "sql",
+    "html",
+    "csv",
+    "diagram",
+    "kt",
+    "ts",
+    "java",
+    "hurl"
+  ],
   "scratch_file_dir": "/Users/lintao/.cache/nvim/scratch.nvim",
   "filetype_details": {
     "go": {
-      "filename": "main",
+      "filename": "main.go",
       "cursor": {
-        "location": [4, 2],
+        "location": [
+          4,
+          2
+        ],
         "insert_mode": true
       },
       "requireDir": true,
-      "content": ["package main", "", "func main() {", "  ", "}"]
+      "content": [
+        "package main",
+        "",
+        "func main() {",
+        "  ",
+        "}"
+      ]
     },
     "dockerfile": {
       "subdir": "docker"
@@ -18,7 +44,10 @@
     "eng-improve.md": {
       "subdir": "chatGpt",
       "cursor": {
-        "location": [12, 2],
+        "location": [
+          12,
+          2
+        ],
         "insert_mode": true
       },
       "content": [
@@ -39,7 +68,10 @@
     "eng.md": {
       "subdir": "chatGpt",
       "cursor": {
-        "location": [12, 2],
+        "location": [
+          12,
+          2
+        ],
         "insert_mode": true
       },
       "content": [
@@ -60,7 +92,10 @@
     "eng-trans.md": {
       "subdir": "chatGpt",
       "cursor": {
-        "location": [12, 2],
+        "location": [
+          12,
+          2
+        ],
         "insert_mode": true
       },
       "content": [
@@ -81,7 +116,10 @@
     "gp4.md": {
       "subdir": "chatGpt",
       "cursor": {
-        "location": [12, 2],
+        "location": [
+          12,
+          2
+        ],
         "insert_mode": true
       },
       "content": [
@@ -102,7 +140,10 @@
     "gp.md": {
       "subdir": "chatGpt",
       "cursor": {
-        "location": [12, 2],
+        "location": [
+          12,
+          2
+        ],
         "insert_mode": true
       },
       "content": [
@@ -127,17 +168,44 @@
   },
   "localKeys": [
     {
-      "filenameContains": ["gp", "eng"],
+      "filenameContains": [
+        "hurl"
+      ],
+      "LocalKeys": [
+        {
+          "cmd": "<CMD>Hurl<CR>",
+          "key": "<M-r>",
+          "modes": [
+            "n",
+            "i",
+            "v"
+          ]
+        }
+      ]
+    },
+    {
+      "filenameContains": [
+        "gp",
+        "eng"
+      ],
       "LocalKeys": [
         {
           "cmd": "<CMD>GpChatRespond<CR>",
           "key": "<C-g><C-g>",
-          "modes": ["n", "i", "v"]
+          "modes": [
+            "n",
+            "i",
+            "v"
+          ]
         },
         {
           "cmd": "<CMD>GpStop<CR>",
           "key": "<C-g>s",
-          "modes": ["n", "i", "v"]
+          "modes": [
+            "n",
+            "i",
+            "v"
+          ]
         }
       ]
     }

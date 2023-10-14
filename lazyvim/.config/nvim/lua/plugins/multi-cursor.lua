@@ -21,7 +21,7 @@ return { -- Multi Cursor
       ["Visual All"] = "<C-q>j", --  1. selected some text in visual mode 2. press <C-q>j to select all
 
       -- buffer mappings
-      ["Switch Mode"] = "<Tab>",
+      ["Switch Mode"] = "v",
       ["Skip Region"] = "q",
       ["Remove Region"] = "Q",
       ["Goto Next"] = "}",

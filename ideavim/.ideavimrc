@@ -3,8 +3,9 @@
 " ================================================================================================
 Plug 'tpope/vim-surround'
 Plug 'preservim/nerdtree'
+
 Plug 'terryma/vim-multiple-cursors'
-map mc <A-n>
+map <D-b> <A-n>
 map mx <A-x>
 map mv <A-p>
 
@@ -29,11 +30,13 @@ set keep-english-in-normal
 nmap ge <action>(GotoNextError)
 nmap gt <action>(GotoTest)
 nmap gm <action>(MethodUp)
-" last changed in current buffer(file)
 nmap ga <action>(GotoImplementation)
+nmap go <action>(GotoTypeDeclaration)
 
 " bookmark
-nmap ma <action>(ToggleBookmark)
+nmap mm <action>(ToggleBookmark)
+nmap ma mA
+nmap 'a 'A
 
 nmap L <action>(NextTab)
 nmap H <action>(PreviousTab)

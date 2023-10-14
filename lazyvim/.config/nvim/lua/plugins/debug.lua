@@ -42,20 +42,20 @@ return {
           {
             elements = {
               {
-                id = "scopes",
-                size = 0.25,
-              },
-              {
                 id = "breakpoints",
-                size = 0.25,
+                size = 0.2,
               },
               {
                 id = "stacks",
-                size = 0.25,
+                size = 0.2,
               },
               {
                 id = "watches",
-                size = 0.25,
+                size = 0.2,
+              },
+              {
+                id = "repl",
+                size = 0.4,
               },
             },
             position = "left",
@@ -64,16 +64,16 @@ return {
           {
             elements = {
               {
-                id = "repl",
-                size = 0.5,
+                id = "scopes",
+                size = 0.75,
               },
               {
                 id = "console",
-                size = 0.5,
+                size = 0.25,
               },
             },
             position = "bottom",
-            size = 10,
+            size = 20,
           },
         },
         mappings = {

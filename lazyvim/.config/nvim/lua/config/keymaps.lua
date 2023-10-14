@@ -13,13 +13,12 @@ local command_keymappings = {
   ["DebugStepOver"] = "<F8>",
   ["DebugStepInto"] = "<F7>",
   ["DebugStop"] = "<M-F2>",
+  ["TriggerLastRun"] = "<leader>rr",
 
   -- HACK: DB
   ["DBUIToggle"] = "<M-C-9>",
 
   -- ["SearchSession"] = "<C-q>",
-  ["PeekDefinition"] = "<M-k>k",
-  ["PeekTypeDefinition"] = "<M-k>l",
   ["PeekGitChange"] = "<M-k>j",
   ["GitCommit"] = "<M-k>c",
   -- ["SelectBySyntax"] = "S",
@@ -35,7 +34,6 @@ local command_keymappings = {
   ["UnFoldAll"] = "<leader>zo",
   ["FindCommands"] = { mode = "niv", keys = "<C-M-p>" },
   ["FindFiles"] = "<C-p>",
-  ["OpenRecentFiles"] = "<M-e>",
   ["NoHighlight"] = "<leader>nl",
   ["FormatCode"] = "<leader>fm",
   ["QuitNvim"] = "<M-q>",
@@ -73,6 +71,8 @@ local command_keymappings = {
   ["TestRunNearest"] = "<leader>rt",
   ["GoToDefinition"] = "gd",
   ["GoToDefinitionInSplit"] = "gl",
+  ["PeekDefinition"] = "<M-k>k",
+  ["PeekTypeDefinition"] = "<M-k>l",
   ["GotoFunctionName"] = "gm",
 
   ["CodeActions"] = "<M-k><M-k>",
@@ -136,9 +136,8 @@ local function map(mode, lhs, rhs, opts)
   end
 end
 
-local Util = require("lazyvim.util")
 local lazyterm = function()
-  Util.float_term(nil, { cwd = Util.get_root() })
+  require("lazyvim.util").terminal.open(nil, { cwd = require("lazyvim.util").root.get() })
 end
 map("n", "<c-\\>", lazyterm, { desc = "Terminal (root dir)" })
 map("t", "<C-\\>", "<cmd>close<cr>", { desc = "Hide Terminal" })
@@ -153,7 +152,7 @@ vim.keymap.set("n", "<leader>e", "<cmd>Neotree toggle<cr>", { desc = "ExplorerTo
 vim.keymap.set("n", "<leader>fl", "<cmd>Neotree reveal<cr>", { desc = "ExplorerFindFileLocation" })
 
 vim.keymap.set("n", "<M-1>", "<cmd>Neotree toggle<cr>", { desc = "ExplorerToggle" })
--- TODO: issue raise
--- vim.keymap.set("n", "gm", function()
---   require("syntax-tree-surfer").go_to_top_node_and_execute_commands(false, { "normal! w" })
--- end, { silent = true, expr = true })
+vim.keymap.set("n", "ma", "mA", { desc = "Mark" })
+vim.keymap.set("n", "'a", "'A", { desc = "GoToMark" })
+
+vim.keymap.set("n", "<M-e>", "<cmd>Telescope frecency<cr>", { desc = "FindRecentFiles" })

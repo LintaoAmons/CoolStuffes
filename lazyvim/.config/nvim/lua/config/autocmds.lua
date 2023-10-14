@@ -35,3 +35,5 @@ ToggleAutoSave()
 
 -- HACK: don't wrap in markdown
 -- vim.api.nvim_create_augroup("lazyvim_wrap_spell", {clear = true})
+
+vim.cmd([[ autocmd BufNewFile,BufRead *.hurl set filetype=hurl ]])

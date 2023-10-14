@@ -1,5 +1,12 @@
 return {
   {
+    "nvim-telescope/telescope-frecency.nvim",
+    event = "VeryLazy",
+    config = function()
+      require("telescope").load_extension "frecency"
+    end,
+  },
+  {
     "princejoogie/dir-telescope.nvim",
     -- telescope.nvim is a required dependency
     event = "VeryLazy",

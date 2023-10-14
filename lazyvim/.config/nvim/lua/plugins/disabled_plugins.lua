@@ -5,4 +5,5 @@ return { -- disable Plugins
   { "echasnovski/mini.ai", enabled = false },
   { "folke/noice.nvim", enabled = false },
   { "rcarriga/nvim-notify", enabled = false },
+  { "dashboard-nvim", enabled = false },
 }
