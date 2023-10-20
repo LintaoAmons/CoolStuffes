@@ -5,7 +5,7 @@ Refer to the [documentation](https://lazyvim.github.io/installation) to get star
 
 ## TODOs
 
-- [ ] golang run test
-- [ ] golang debug
+- [x] golang run test
+- [x] golang debug
 - [ ] bookmark
 - [ ] session management

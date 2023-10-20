@@ -10,4 +10,8 @@ require("luasnip.loaders.from_vscode").load_standalone({
   path = "~/.config/nvim/snippets/go.jsonc",
 })
 
+require("luasnip.loaders.from_vscode").load_standalone({
+  path = "~/.config/nvim/snippets/markdown.jsonc",
+})
+
 return {}

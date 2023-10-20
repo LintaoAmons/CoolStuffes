@@ -1,3 +1,9 @@
+local Util = require("lazyvim.util")
+
+-- DO NOT USE THIS IN YOU OWN CONFIG!!
+-- use `vim.keymap.set` instead
+local map = Util.safe_keymap_set
+
 -- Keymaps are automatically loaded on the VeryLazy event
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
@@ -40,8 +46,8 @@ local command_keymappings = {
   ["CloseWindowOrBuffer"] = "<M-w>",
   ["SplitVertically"] = "<leader>wl",
 
-  ["DecreaseSplitWidth"] = "<C-M-h>",
-  ["IncreaseSplitWidth"] = "<C-M-l>",
+  -- ["DecreaseSplitWidth"] = "<C-M-h>",
+  -- ["IncreaseSplitWidth"] = "<C-M-l>",
 
   ["ToggleOutline"] = "<leader>ss",
   ["ToggleLf"] = "<leader>oo",
@@ -156,3 +162,6 @@ vim.keymap.set("n", "ma", "mA", { desc = "Mark" })
 vim.keymap.set("n", "'a", "'A", { desc = "GoToMark" })
 
 vim.keymap.set("n", "<M-e>", "<cmd>Telescope frecency<cr>", { desc = "FindRecentFiles" })
+
+map("n", "<C-M-l>", "<cmd>vertical resize +5<cr>", { desc = "Increase window width" })
+map("n", "<C-M-h>", "<cmd>vertical resize -5<cr>", { desc = "Decrease window width" })
