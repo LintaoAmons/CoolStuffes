@@ -1,23 +1,14 @@
 return { -- Multi Cursor
   -- https://github.com/chrisgrieser/.config/blob/106d4eb2f039f1b9506fd5cfeed7e7d09f832e87/nvim/lua/plugins/bulk-processing.lua#L3C12-L3C12
   "mg979/vim-visual-multi",
-  -- keys = { { "<M-b>", mode = { "n", "x" }, desc = "󰆿 Multi-Cursor" } },
   event = "VeryLazy",
   init = function()
     -- Multi-Cursor https://github.com/mg979/vim-visual-multi/blob/master/doc/vm-mappings.txt
     -- vim.g.VM_leader = "\\"
     vim.g.VM_theme = "purplegray"
 
-    -- https://github.com/mg979/vim-visual-multi/wiki/Mappings#full-mappings-list
     vim.g.VM_maps = {
-      -- permanent mappings
-      ["Find Under"] = "<M-b>",
-      ["Find Subword Under"] = "<M-b>", -- firstly select some text, then <M-b>
       ["Start Regex Search"] = "<C-q>/",
-
-      ["Select Cursor Down"] = "<M-C-j>", -- switch upper and lower window with <C-w>jk
-      ["Select Cursor Up"] = "<M-C-k>",
-
       ["Visual All"] = "<C-q>j", --  1. selected some text in visual mode 2. press <C-q>j to select all
 
       -- buffer mappings
@@ -33,7 +24,25 @@ return { -- Multi Cursor
       ["Case Conversion Menu"] = "C",
       ["Align"] = "<C-q>a",
     }
+    if vim.g.neovide then
+      vim.g.VM_maps = {
+        -- permanent mappings
+        ["Find Under"] = "<D-b>",
+        ["Find Subword Under"] = "<D-b>", -- firstly select some text, then <M-b>
+        ["Select Cursor Down"] = "<D-C-j>", -- switch upper and lower window with <C-w>jk
+        ["Select Cursor Up"] = "<D-C-k>",
+      }
+    else
+      vim.g.VM_maps = {
+        -- permanent mappings
+        ["Find Under"] = "<M-b>",
+        ["Find Subword Under"] = "<M-b>", -- firstly select some text, then <M-b>
 
+        ["Select Cursor Down"] = "<M-C-j>", -- switch upper and lower window with <C-w>jk
+        ["Select Cursor Up"] = "<M-C-k>",
+      }
+    end
+    -- https://github.com/mg979/vim-visual-multi/wiki/Mappings#full-mappings-list
     vim.g.VM_set_statusline = 0 -- already set via lualine component
   end,
 }

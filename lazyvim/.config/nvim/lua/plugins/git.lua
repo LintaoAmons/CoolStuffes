@@ -34,6 +34,7 @@ return {
         keymaps = {
           file_history_panel = {
             { "n", "fa", "g!=a", { remap = true } },
+            { "n", "ff", "g!--", { remap = true } },
           },
           file_panel = {
             {

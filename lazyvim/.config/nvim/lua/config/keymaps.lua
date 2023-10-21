@@ -1,9 +1,3 @@
-local Util = require("lazyvim.util")
-
--- DO NOT USE THIS IN YOU OWN CONFIG!!
--- use `vim.keymap.set` instead
-local map = Util.safe_keymap_set
-
 -- Keymaps are automatically loaded on the VeryLazy event
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
@@ -81,7 +75,7 @@ local command_keymappings = {
   ["PeekTypeDefinition"] = "<M-k>l",
   ["GotoFunctionName"] = "gm",
 
-  ["CodeActions"] = "<M-k><M-k>",
+  -- ["CodeActions"] = "<M-k><M-k>",
   ["LspFinder"] = "<M-k>f",
   -- ["ExtractVariable"] = "<leader>ev",
 
@@ -90,66 +84,40 @@ local command_keymappings = {
   ["ToNextCase"] = { mode = "nv", keys = "<leader>nc" },
 }
 
-local function contains(str, char)
-  for i = 1, #str do
-    if str:sub(i, i) == char then
-      return true
-    end
+-- neovide use <D-key> represents the cmd key in mac
+local function convertNeovideCMDKey(key)
+  if vim.g.neovide then
+    return string.gsub(key, "M%-", "D-")
+  else
+    return key
   end
-  return false
 end
 
-for command, keybinding in pairs(command_keymappings) do
+local function getKey(keybinding)
   if type(keybinding) == "string" then
-    vim.keymap.set("n", keybinding, "<CMD>" .. command .. "<CR>", {})
-    goto continue
+    return keybinding
+  else
+    return keybinding.keys
   end
-
-  if contains(keybinding.mode, "v") then
-    vim.keymap.set("v", keybinding.keys, "<CMD>" .. command .. "<CR>", {})
-  end
-
-  if contains(keybinding.mode, "n") then
-    vim.keymap.set("n", keybinding.keys, "<CMD>" .. command .. "<CR>", {})
-  end
-
-  if contains(keybinding.mode, "i") then
-    vim.keymap.set("i", keybinding.keys, "<CMD>" .. command .. "<CR>", {})
-  end
-
-  ::continue::
-end
-vim.keymap.set("n", "<leader>wo", "<c-w>o", { desc = "Maximize window" })
-
--- TODO: Move to easy-commands
-function _G.set_terminal_keymaps()
-  local opts = { buffer = 0 }
-  vim.keymap.set("t", "jk", [[<C-\><C-n>]], opts)
-  vim.keymap.set("t", "<C-w>", [[<C-\><C-n><C-w>]], opts)
 end
 
-local function map(mode, lhs, rhs, opts)
-  local keys = require("lazy.core.handler").handlers.keys
-  ---@cast keys LazyKeysHandler
-  -- do not create the keymap if a lazy keys handler exists
-  if not keys.active[keys.parse({ lhs, mode = mode }).id] then
-    opts = opts or {}
-    opts.silent = opts.silent ~= false
-    if opts.remap and not vim.g.vscode then
-      opts.remap = nil
+local function registerKeys()
+  for command, keybinding in pairs(command_keymappings) do
+    local key = convertNeovideCMDKey(getKey(keybinding))
+
+    if not key then
+      vim.print(command)
     end
-    vim.keymap.set(mode, lhs, rhs, opts)
+
+    local modes = keybinding.mode or "n"
+    for i = 1, #modes do
+      local char = string.sub(modes, i, i)
+      vim.keymap.set(char, key, "<CMD>" .. command .. "<CR>", {})
+    end
   end
 end
 
-local lazyterm = function()
-  require("lazyvim.util").terminal.open(nil, { cwd = require("lazyvim.util").root.get() })
-end
-map("n", "<c-\\>", lazyterm, { desc = "Terminal (root dir)" })
-map("t", "<C-\\>", "<cmd>close<cr>", { desc = "Hide Terminal" })
-
--- if you only want these mappings for toggle term use term://*toggleterm#* instead
-vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
+vim.keymap.set("n", "<leader>wo", "<c-w>o", { desc = "Maximize window" })
 
 vim.keymap.set("v", "p", "P")
 
@@ -162,6 +130,45 @@ vim.keymap.set("n", "ma", "mA", { desc = "Mark" })
 vim.keymap.set("n", "'a", "'A", { desc = "GoToMark" })
 
 vim.keymap.set("n", "<M-e>", "<cmd>Telescope frecency<cr>", { desc = "FindRecentFiles" })
+vim.keymap.set("n", "<M-k><M-k>", "<cmd>Lspsaga code_action<cr>", { desc = "CodeActions" })
 
+-- DO NOT USE THIS IN YOU OWN CONFIG!!
+-- use `vim.keymap.set` instead
+local Util = require("lazyvim.util")
+local map = Util.safe_keymap_set
 map("n", "<C-M-l>", "<cmd>vertical resize +5<cr>", { desc = "Increase window width" })
 map("n", "<C-M-h>", "<cmd>vertical resize -5<cr>", { desc = "Decrease window width" })
+
+-- TODO: Move to easy-commands
+function _G.set_terminal_keymaps()
+  local opts = { buffer = 0 }
+  vim.keymap.set("t", "jk", [[<C-\><C-n>]], opts)
+  vim.keymap.set("t", "<C-w>", [[<C-\><C-n><C-w>]], opts)
+end
+
+local lazyterm = function()
+  require("lazyvim.util").terminal.open(nil, { cwd = require("lazyvim.util").root.get() })
+end
+map("n", "<c-\\>", lazyterm, { desc = "Terminal (root dir)" })
+map("t", "<C-\\>", "<cmd>close<cr>", { desc = "Hide Terminal" })
+
+-- if you only want these mappings for toggle term use term://*toggleterm#* instead
+vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
+
+local function neovideMacCopy()
+  -- Allow clipboard copy paste in neovim
+  vim.g.neovide_input_use_logo = 1
+  vim.api.nvim_set_keymap("", "<D-v>", "+p<CR>", { noremap = true, silent = true })
+  vim.api.nvim_set_keymap("!", "<D-v>", "<C-R>+", { noremap = true, silent = true })
+  vim.api.nvim_set_keymap("t", "<D-v>", "<C-R>+", { noremap = true, silent = true })
+  vim.api.nvim_set_keymap("v", "<D-v>", "<C-R>+", { noremap = true, silent = true })
+end
+
+if vim.g.neovide then
+  vim.keymap.set("n", "<D-1>", "<cmd>Neotree toggle<cr>", { desc = "ExplorerToggle" })
+  vim.keymap.set("n", "<D-e>", "<cmd>Telescope frecency<cr>", { desc = "FindRecentFiles" })
+  map("n", "<C-D-l>", "<cmd>vertical resize +5<cr>", { desc = "Increase window width" })
+  map("n", "<C-D-h>", "<cmd>vertical resize -5<cr>", { desc = "Decrease window width" })
+end
+neovideMacCopy()
+registerKeys()

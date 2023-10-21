@@ -33,6 +33,12 @@ return {
       -- It always welcome to send me back your good commands and usecases
       ---@type EasyCommand.Command[]
       myCommands = {
+        { name = "CodeActions", callback = "Lspsaga code_actions" },
+        {
+          name = "DeleteEmptyLines",
+          callback = "g/^$/d",
+          description = "Delete empty lines in the current file",
+        },
         {
           name = "HurlSelected",
           callback = function()
