@@ -24,6 +24,7 @@ return { -- Multi Cursor
       ["Case Conversion Menu"] = "C",
       ["Align"] = "<C-q>a",
     }
+    
     if vim.g.neovide then
       vim.g.VM_maps = {
         -- permanent mappings

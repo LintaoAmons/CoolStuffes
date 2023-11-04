@@ -50,7 +50,7 @@ return {
             ["s"] = "open_vsplit",
             -- ["S"] = "split_with_window_picker",
             -- ["s"] = "vsplit_with_window_picker",
-            ["t"] = "open_tabnew",
+            ["t"] = "hello",
             -- ["<cr>"] = "open_drop",
             -- ["t"] = "open_tab_drop",
             ["w"] = "open_with_window_picker",
@@ -115,7 +115,7 @@ return {
           -- "open_current",  -- netrw disabled, opening a directory opens within the
           -- window like netrw would, regardless of window.position
           -- "disabled",    -- netrw left alone, neo-tree does not handle opening dirs
-          use_libuv_file_watcher = false, -- This will use the OS level file watchers to detect changes
+          use_libuv_file_watcher = true, -- This will use the OS level file watchers to detect changes
           -- instead of relying on nvim autocmd events.
           window = {
             mappings = {
@@ -139,7 +139,11 @@ return {
               ["<C-p>"] = "move_cursor_up",
             },
           },
-          commands = {}, -- Add a custom command or override a global one using the same function name
+          commands = {
+            hello = function()
+              print("Hello, neo-tree!")
+            end,
+          }, -- Add a custom command or override a global one using the same function name
         },
         buffers = {
           follow_current_file = {

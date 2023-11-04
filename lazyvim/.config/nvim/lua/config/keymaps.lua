@@ -18,14 +18,11 @@ local command_keymappings = {
   -- HACK: DB
   ["DBUIToggle"] = "<M-C-9>",
 
-  -- ["SearchSession"] = "<C-q>",
   ["PeekGitChange"] = "<M-k>j",
   ["GitCommit"] = "<M-k>c",
-  -- ["SelectBySyntax"] = "S",
   ["Twilight"] = "<C-w>m",
   ["AskGpt4"] = "<C-g>k",
   ["GpAppend"] = { keys = "<M-k>i", mode = "v" },
-  -- ["NewFile"] = "<C-n>",
   ["TmuxNavigateLeft"] = "<C-h>",
   ["TmuxNavigateRight"] = "<C-l>",
   ["TmuxNavigateUp"] = "<M-k>",
@@ -40,10 +37,6 @@ local command_keymappings = {
   ["CloseWindowOrBuffer"] = "<M-w>",
   ["SplitVertically"] = "<leader>wl",
 
-  -- ["DecreaseSplitWidth"] = "<C-M-h>",
-  -- ["IncreaseSplitWidth"] = "<C-M-l>",
-
-  ["ToggleOutline"] = "<leader>ss",
   ["ToggleLf"] = "<leader>oo",
   ["RunCurrentBuffer"] = "<M-r>",
   ["Scratch"] = "<M-C-n>",
@@ -65,7 +58,6 @@ local command_keymappings = {
   ["TabClose"] = "tt",
   ["TabPrev"] = "th",
   ["TabNext"] = "tl",
-  ["ExplorerLocateCurrentFile"] = "<leader>fl",
 
   ["GoToTestFile"] = "gt",
   ["TestRunNearest"] = "<leader>rt",
@@ -75,13 +67,7 @@ local command_keymappings = {
   ["PeekTypeDefinition"] = "<M-k>l",
   ["GotoFunctionName"] = "gm",
 
-  -- ["CodeActions"] = "<M-k><M-k>",
   ["LspFinder"] = "<M-k>f",
-  -- ["ExtractVariable"] = "<leader>ev",
-
-  -- ["Mark"] = "m",
-  -- ["MarkList"] = "<C-M-i>",
-  ["ToNextCase"] = { mode = "nv", keys = "<leader>nc" },
 }
 
 -- neovide use <D-key> represents the cmd key in mac
@@ -116,6 +102,7 @@ local function registerKeys()
     end
   end
 end
+registerKeys()
 
 vim.keymap.set("n", "<leader>wo", "<c-w>o", { desc = "Maximize window" })
 
@@ -123,7 +110,7 @@ vim.keymap.set("v", "p", "P")
 
 -- explorer
 vim.keymap.set("n", "<leader>e", "<cmd>Neotree toggle<cr>", { desc = "ExplorerToggle" })
-vim.keymap.set("n", "<leader>fl", "<cmd>Neotree reveal<cr>", { desc = "ExplorerFindFileLocation" })
+vim.keymap.set("n", "<leader>fl", "<cmd>Neotree reveal reveal_force_cwd<cr>", { desc = "ExplorerFindFileLocation" })
 
 vim.keymap.set("n", "<M-1>", "<cmd>Neotree toggle<cr>", { desc = "ExplorerToggle" })
 vim.keymap.set("n", "ma", "mA", { desc = "Mark" })
@@ -131,6 +118,10 @@ vim.keymap.set("n", "'a", "'A", { desc = "GoToMark" })
 
 vim.keymap.set("n", "<M-e>", "<cmd>Telescope frecency<cr>", { desc = "FindRecentFiles" })
 vim.keymap.set("n", "<M-k><M-k>", "<cmd>Lspsaga code_action<cr>", { desc = "CodeActions" })
+vim.keymap.set({ "i", "v", "t" }, "jk", [[<C-\><C-n>]], { buffer = 0 })
+
+vim.keymap.set("n", "<leader>ss", "<cmd>AerialNavToggle<cr>", { desc = "ToggleOutline" })
+vim.keymap.set("n", "<C-q>", "<cmd>Telescope workspaces<cr>", { desc = "OpenProject" })
 
 -- DO NOT USE THIS IN YOU OWN CONFIG!!
 -- use `vim.keymap.set` instead
@@ -164,11 +155,12 @@ local function neovideMacCopy()
   vim.api.nvim_set_keymap("v", "<D-v>", "<C-R>+", { noremap = true, silent = true })
 end
 
+-- TODO: move to a function named customise keymapings
 if vim.g.neovide then
   vim.keymap.set("n", "<D-1>", "<cmd>Neotree toggle<cr>", { desc = "ExplorerToggle" })
-  vim.keymap.set("n", "<D-e>", "<cmd>Telescope frecency<cr>", { desc = "FindRecentFiles" })
+  vim.keymap.set("n", "<D-e>", "<cmd>Telescope frecency workspace=CWD<cr>", { desc = "FindRecentFiles" })
   map("n", "<C-D-l>", "<cmd>vertical resize +5<cr>", { desc = "Increase window width" })
   map("n", "<C-D-h>", "<cmd>vertical resize -5<cr>", { desc = "Decrease window width" })
+  vim.keymap.set("n", "<D-k><D-k>", "<cmd>Lspsaga code_action<cr>", { desc = "CodeActions" })
 end
 neovideMacCopy()
-registerKeys()

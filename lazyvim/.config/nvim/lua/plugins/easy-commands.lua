@@ -33,6 +33,7 @@ return {
       -- It always welcome to send me back your good commands and usecases
       ---@type EasyCommand.Command[]
       myCommands = {
+        { name = "ToggleOutline", callback = "AerialNavToggle" },
         { name = "CodeActions", callback = "Lspsaga code_actions" },
         {
           name = "DeleteEmptyLines",

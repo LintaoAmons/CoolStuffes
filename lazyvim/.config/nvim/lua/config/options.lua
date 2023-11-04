@@ -7,3 +7,4 @@ vim.opt.conceallevel = 0
 vim.opt.cmdheight = 1
 vim.opt.foldlevel = 99
 vim.o.swapfile = false
+vim.o.guifont = "Maple Mono:h16" -- text below applies for VimScript

@@ -1,4 +1,32 @@
 return {
+  {
+    "natecraddock/workspaces.nvim",
+    config = function(_, _)
+      require("telescope").load_extension("workspaces")
+      require("workspaces").setup({
+        hooks = {
+          open = { "Telescope find_files" },
+        },
+      })
+    end,
+  },
+  -- {
+  --   "aaditeynair/conduct.nvim",
+  --   dependencies = "nvim-lua/plenary.nvim",
+  --   cmd = {
+  --     "ConductNewProject",
+  --     "ConductLoadProject",
+  --     "ConductLoadLastProject",
+  --     "ConductLoadProjectConfig",
+  --     "ConductReloadProjectConfig",
+  --     "ConductDeleteProject",
+  --     "ConductRenameProject",
+  --     "ConductProjectNewSession",
+  --     "ConductProjectLoadSession",
+  --     "ConductProjectDeleteSession",
+  --     "ConductProjectRenameSession",
+  --   },
+  -- },
   -- {
   --   "rmagatti/auto-session",
   --   config = function()

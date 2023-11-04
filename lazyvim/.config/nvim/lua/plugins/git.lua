@@ -1,37 +1,28 @@
 return {
   {
-    "tpope/vim-fugitive",
-    event = "VeryLazy",
-  },
-  {
     "FabijanZulj/blame.nvim",
     event = "VeryLazy",
-  },
-  {
-    "NeogitOrg/neogit",
-    enabled = false,
-    event = "VeryLazy",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "sindrets/diffview.nvim",
-    },
-    opts = {
-      integrations = {
-        diffview = true,
-      },
-      disable_insert_on_commit = "auto",
-      commit_popup = {
-        kind = "tab",
-      },
-    },
   },
   {
     "sindrets/diffview.nvim",
     -- dir = "/Users/lintao/Documents/oatnil/github-preview/diffview.nvim",
     dependencies = "nvim-lua/plenary.nvim",
     config = function()
+      local action = require("diffview.actions")
       require("diffview").setup({
         keymaps = {
+          view = {
+            ["r"] = function()
+              vim.cmd("GitResetHunk")
+              vim.notify("Reset hunk")
+              vim.cmd("DiffviewRefresh")
+            end,
+            ["gf"] = function()
+              local diffview_tab = vim.api.nvim_get_current_tabpage()
+              action.goto_file_edit()
+              vim.api.nvim_command("tabclose " .. diffview_tab)
+            end,
+          },
           file_history_panel = {
             { "n", "fa", "g!=a", { remap = true } },
             { "n", "ff", "g!--", { remap = true } },

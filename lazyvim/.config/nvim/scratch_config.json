@@ -19,6 +19,9 @@
   ],
   "scratch_file_dir": "/Users/lintao/.cache/nvim/scratch.nvim",
   "filetype_details": {
+    "learn-gradle.groovy": {
+      "subdir": "learn-gradle"
+    },
     "go": {
       "filename": "main.go",
       "cursor": {
