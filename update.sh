@@ -29,5 +29,9 @@ declare -A share_items=(
 
 # Iterate through the array and synchronize each configuration file
 for item in "${!share_items[@]}"; do
-    rsync -avz --delete "${share_items[$item]}" "./$item"
+    if [[ -n "${share_items[$item]}" ]]; then
+        rsync -avz --delete "${share_items[$item]}" "./$item"
+    else
+        echo "Warning: Path for $item is not set or is empty. Skipping synchronization."
+    fi
 done

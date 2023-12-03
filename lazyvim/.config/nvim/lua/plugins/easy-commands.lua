@@ -15,14 +15,6 @@ function append_empty_lines()
   end
 end
 
-function write_to_temp_file(content)
-  local tempfile = os.tmpname()
-  local file = io.open(tempfile, "w")
-  file:write(content)
-  file:close()
-  return tempfile
-end
-
 return {
   "LintaoAmons/easy-commands.nvim",
   -- dir = vim.loop.os_homedir() .. "/Documents/oatnil/beta/easy-commands.nvim",
@@ -33,38 +25,10 @@ return {
       -- It always welcome to send me back your good commands and usecases
       ---@type EasyCommand.Command[]
       myCommands = {
-        { name = "ToggleOutline", callback = "AerialNavToggle" },
-        { name = "CodeActions", callback = "Lspsaga code_actions" },
         {
           name = "DeleteEmptyLines",
           callback = "g/^$/d",
           description = "Delete empty lines in the current file",
-        },
-        {
-          name = "HurlSelected",
-          callback = function()
-            local sys = require("easy-commands.impl.util.base.sys")
-            local editor = require("easy-commands.impl.util.editor")
-            local content = editor.getSelectedText()
-            local tmpFile = write_to_temp_file(content)
-            local stdout, _, stderr = sys.run_os_cmd({ "hurl", "--verbose", tmpFile }, ".")
-            local result = stdout or stderr
-            editor.splitAndWrite(result, { vertical = true })
-          end,
-          description = "use `hurl` to run current buffer and output to splitted window",
-          allow_visual_mode = true,
-        },
-        {
-          name = "Hurl",
-          callback = function()
-            local sys = require("easy-commands.impl.util.base.sys")
-            local editor = require("easy-commands.impl.util.editor")
-            local bufferAbsPath = editor.get_buf_abs_path()
-            local stdout, _, stderr = sys.run_os_cmd({ "hurl", "--verbose", bufferAbsPath }, ".")
-            local result = stdout or stderr
-            editor.splitAndWrite(result, { vertical = true })
-          end,
-          description = "use `hurl` to run current buffer and output to splitted window",
         },
         {
           name = "ToggleDiagramMode",
@@ -92,14 +56,6 @@ return {
         {
           name = "DistinctLines",
           callback = "sort u",
-        },
-        {
-          name = "TrimLine",
-          callback = function()
-            local line = vim.api.nvim_get_current_line()
-            local trimmed = string.match(line, "^%s*(.-)%s*$")
-            vim.api.nvim_set_current_line(trimmed)
-          end,
         },
         {
           name = "JoinLines",
@@ -132,17 +88,16 @@ return {
           dependencies = { "tpope/vim-fugitive" },
         },
         {
-          name = "GotoFunctionName",
-          callback = "AerialPrev",
-          dependencies = { "https://github.com/stevearc/aerial.nvim" },
-        },
-        {
           name = "ToggleOutline",
           callback = "AerialToggle",
           dependencies = { "https://github.com/stevearc/aerial.nvim" },
         },
       },
       aliases = {
+        {
+          from = "GitListCommitsOfCurrentFile",
+          to = "FileHistory",
+        },
         {
           from = "DebugStart",
           to = "DebugContinue",

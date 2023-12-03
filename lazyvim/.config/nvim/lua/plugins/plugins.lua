@@ -9,13 +9,36 @@
 -- * disable/enabled LazyVim plugins
 -- * override the configuration of LazyVim plugins
 return {
+  -- {
+  --   "kkharji/sqlite.lua",
+  --   event = 'VeryLazy',
+  -- },
+  -- {
+  --   dir = "/Volumes/t7ex/Documents/oatnil/beta/print-config.nvim",
+  --   opts = {
+  --       called_by = "lazy.nvim opts"
+  --   },
+  -- },
   {
-    "kkharji/sqlite.lua",
-    event = 'VeryLazy',
+    "andrewferrier/debugprint.nvim",
+    opts = {
+      create_commands = true
+    },
+    -- Dependency only needed for NeoVim 0.8
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter"
+    },
+    -- Remove the following line to use development versions,
+    -- not just the formal releases
+    version = "*"
   },
   {
     "LintaoAmons/scratch.nvim",
     -- dir = "/Users/lintao/Documents/oatnil/release/scratch.nvim",
+    -- dir = "/Volumes/t7ex/Documents/oatnil/release/scratch.nvim",
+    -- opts = {
+    --   use_lua_config = true
+    -- }
     -- event = 'VeryLazy',
   },
 

@@ -1,4 +1,28 @@
+local function context_dir(state)
+  -- return the directory of the current neo-tree node
+  local node = state.tree:get_node()
+  if node.type == "directory" then
+    return node.path
+  end
+  return node.path:gsub("/[^/]*$", "") -- go up one level
+end
+
 return {
+  {
+    "stevearc/oil.nvim",
+    opts = {},
+    enabled = false,
+    -- Optional dependencies
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+  },
+  {
+    "echasnovski/mini.nvim",
+    -- enabled = false,
+    config = function()
+      require("mini.files").setup()
+    end,
+    version = false,
+  },
   {
     "s1n7ax/nvim-window-picker",
     name = "window-picker",
@@ -38,6 +62,72 @@ return {
             nowait = true,
           },
           mappings = {
+            -- open in the Thunar file manager
+            ["t"] = {
+              function(state)
+                local node = state.tree:get_node()
+                vim.fn.jobstart({ "open", node.path }, { detach = true })
+                -- close neo-tree
+                vim.cmd("Neotree close")
+              end,
+              desc = "thunar",
+              nowait = true,
+            },
+            -- copy absolute path to clipboard
+            ["Y"] = {
+              function(state)
+                local node = state.tree:get_node()
+                local content = node.path
+                vim.fn.setreg('"', content)
+                vim.fn.setreg("1", content)
+                vim.fn.setreg("+", content)
+              end,
+              desc = "copy abs path",
+              nowait = true,
+            },
+            -- ["<c-o>"] = {
+            --   function(state)
+            --     local node = state.tree:get_node()
+            --     vim.cmd("tabnew")
+            --     vim.cmd("DiffviewOpen -- " .. node.path)
+            --   end,
+            --   desc = "Open file in diffview",
+            --   nowait = true,
+            -- },
+            -- open in telescope live grep
+            ["<c-f>"] = {
+              function(state)
+                require("telescope.builtin").live_grep({ cwd = context_dir(state) })
+                -- close neo-tree
+                vim.cmd("Neotree close")
+              end,
+              desc = "live grep",
+              nowait = true,
+            },
+            ["<c-r>"] = {
+              function(state)
+                local node = state.tree:get_node()
+                if node.type == "directory" then
+                  require("spectre").open({
+                    cwd = node.path,
+                    is_close = true, -- close an exists instance of spectre and open new
+                    is_insert_mode = false,
+                    path = "",
+                  })
+                else
+                  require("spectre").open({
+                    cwd = context_dir(state),
+                    is_close = true, -- close an exists instance of spectre and open new
+                    is_insert_mode = false,
+                    path = node.path:match("^.+/(.+)$"),
+                  })
+                end
+                -- close neo-tree
+                vim.cmd("Neotree close")
+              end,
+              desc = "replace here",
+              nowait = true,
+            },
             ["<space>"] = {
               "toggle_node",
               nowait = false, -- disable `nowait` if you have existing combos starting with this char that you want to use
@@ -50,7 +140,7 @@ return {
             ["s"] = "open_vsplit",
             -- ["S"] = "split_with_window_picker",
             -- ["s"] = "vsplit_with_window_picker",
-            ["t"] = "hello",
+            -- ["t"] = "hello",
             -- ["<cr>"] = "open_drop",
             -- ["t"] = "open_tab_drop",
             ["w"] = "open_with_window_picker",
@@ -90,6 +180,7 @@ return {
               --"node_modules"
             },
             hide_by_pattern = { -- uses glob style patterns
+              "._*", -- mac file info on exFat external disk
               --"*.meta",
               --"*/src/*/tsconfig.json",
             },

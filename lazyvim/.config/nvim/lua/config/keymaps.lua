@@ -20,7 +20,6 @@ local command_keymappings = {
 
   ["PeekGitChange"] = "<M-k>j",
   ["GitCommit"] = "<M-k>c",
-  ["Twilight"] = "<C-w>m",
   ["AskGpt4"] = "<C-g>k",
   ["GpAppend"] = { keys = "<M-k>i", mode = "v" },
   ["TmuxNavigateLeft"] = "<C-h>",
@@ -34,10 +33,11 @@ local command_keymappings = {
   ["NoHighlight"] = "<leader>nl",
   ["FormatCode"] = "<leader>fm",
   ["QuitNvim"] = "<M-q>",
+
   ["CloseWindowOrBuffer"] = "<M-w>",
+  ["MaximiseWindow"] = "<Leader>wo",
   ["SplitVertically"] = "<leader>wl",
 
-  ["ToggleLf"] = "<leader>oo",
   ["RunCurrentBuffer"] = "<M-r>",
   ["Scratch"] = "<M-C-n>",
   ["ScratchOpen"] = "<M-C-o>",
@@ -104,12 +104,10 @@ local function registerKeys()
 end
 registerKeys()
 
-vim.keymap.set("n", "<leader>wo", "<c-w>o", { desc = "Maximize window" })
-
 vim.keymap.set("v", "p", "P")
 
 -- explorer
-vim.keymap.set("n", "<leader>e", "<cmd>Neotree toggle<cr>", { desc = "ExplorerToggle" })
+vim.keymap.set("n", "<leader>e", "<cmd>:lua MiniFiles.open()<cr>", { desc = "MiniFiles" })
 vim.keymap.set("n", "<leader>fl", "<cmd>Neotree reveal reveal_force_cwd<cr>", { desc = "ExplorerFindFileLocation" })
 
 vim.keymap.set("n", "<M-1>", "<cmd>Neotree toggle<cr>", { desc = "ExplorerToggle" })
@@ -122,6 +120,7 @@ vim.keymap.set({ "i", "v", "t" }, "jk", [[<C-\><C-n>]], { buffer = 0 })
 
 vim.keymap.set("n", "<leader>ss", "<cmd>AerialNavToggle<cr>", { desc = "ToggleOutline" })
 vim.keymap.set("n", "<C-q>", "<cmd>Telescope workspaces<cr>", { desc = "OpenProject" })
+vim.keymap.set("v", "<C-M-j>", "<CMD>VisualDuplicate +1<CR>", { desc = "Duplication" })
 
 -- DO NOT USE THIS IN YOU OWN CONFIG!!
 -- use `vim.keymap.set` instead
@@ -134,7 +133,6 @@ map("n", "<C-M-h>", "<cmd>vertical resize -5<cr>", { desc = "Decrease window wid
 function _G.set_terminal_keymaps()
   local opts = { buffer = 0 }
   vim.keymap.set("t", "jk", [[<C-\><C-n>]], opts)
-  vim.keymap.set("t", "<C-w>", [[<C-\><C-n><C-w>]], opts)
 end
 
 local lazyterm = function()

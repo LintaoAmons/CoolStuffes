@@ -1,4 +1,13 @@
 return {
+  -- {
+  -- remove the color it is using
+  --   "vidocqh/data-viewer.nvim",
+  --   opts = {},
+  --   dependencies = {
+  --     "nvim-lua/plenary.nvim",
+  --     "kkharji/sqlite.lua", -- Optional, sqlite support
+  --   },
+  -- },
   {
     "kristijanhusak/vim-dadbod-ui",
     dependencies = "tpope/vim-dadbod",

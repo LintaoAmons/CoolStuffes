@@ -36,7 +36,7 @@ return {
   },
   {
     "folke/twilight.nvim",
-    enabled = false,
+    -- enabled = false,
     event = "VeryLazy",
     config = function()
       require("twilight").setup({

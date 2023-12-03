@@ -28,30 +28,42 @@ return {
             { "n", "ff", "g!--", { remap = true } },
           },
           file_panel = {
-            {
-              "n",
-              "c",
-              function()
-                vim.ui.input({ prompt = "Commit msg: " }, function(msg)
-                  local Job = require("plenary.job")
-                  local stderr = {}
-                  Job:new({
-                    command = "git",
-                    args = { "commit", "-m", msg },
-                    cwd = ".",
-                    on_stderr = function(_, data)
-                      table.insert(stderr, data)
-                    end,
-                  }):sync()
-                  if #stderr == 0 then
-                    vim.api.nvim_command("tabclose")
-                  else
-                    vim.print(stderr[1])
-                  end
-                end)
-              end,
-              { desc = "git commit" },
-            },
+            -- stash staged changes
+            ["<M-k>s"] = function()
+              vim.ui.input({ prompt = "Stash msg: " }, function(msg)
+                local Job = require("plenary.job")
+                local stderr = {}
+                Job:new({
+                  command = "git",
+                  args = { "stash", "-m", msg },
+                  cwd = ".",
+                  on_stderr = function(_, data)
+                    table.insert(stderr, data)
+                  end,
+                }):sync()
+              end)
+            end,
+
+            ["c"] = function()
+              vim.ui.input({ prompt = "Commit msg: " }, function(msg)
+                local Job = require("plenary.job")
+                local stderr = {}
+                Job:new({
+                  command = "git",
+                  args = { "commit", "-m", msg },
+                  cwd = ".",
+                  on_stderr = function(_, data)
+                    table.insert(stderr, data)
+                  end,
+                }):sync()
+                if #stderr == 0 then
+                  vim.api.nvim_command("tabclose")
+                else
+                  vim.print(stderr[1])
+                end
+              end)
+            end,
+            { desc = "git commit" },
           },
         },
         view = {
