@@ -17,7 +17,7 @@ return { -- Multi Cursor
       ["Select Cursor Up"] = "<M-C-k>",
 
       ["Start Regex Search"] = "<C-q>/",
-      ["Visual All"] = "<C-q>j", --  1. selected some text in visual mode 2. press <C-q>j to select all
+      ["Visual All"] = "\\A", --  1. selected some text in visual mode 2. press <C-q>j to select all
 
       -- buffer mappings
       ["Switch Mode"] = "v",
@@ -28,9 +28,9 @@ return { -- Multi Cursor
 
       ["Duplicate"] = "<C-q>d",
 
-      ["Tools Menu"] = "<C-q>t",
+      ["Tools Menu"] = "\\t",
       ["Case Conversion Menu"] = "C",
-      ["Align"] = "<C-q>a",
+      ["Align"] = "\\a",
     }
 
     if vim.g.neovide then
