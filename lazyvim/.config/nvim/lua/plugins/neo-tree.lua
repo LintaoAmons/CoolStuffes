@@ -9,6 +9,45 @@ end
 
 return {
   {
+    -- "X3eRo0/dired.nvim",
+    dir = "/Volumes/t7ex/Documents/Github/dired.nvim",
+    dependencies = { "MunifTanjim/nui.nvim" },
+    config = function()
+      require("dired").setup({
+        path_separator = "/",
+        show_banner = false,
+        show_hidden = true,
+        show_dot_dirs = true,
+        show_colors = true,
+
+        keybinds = {
+          dired_enter = "l",
+          dired_back = "h",
+          dired_up = "_",
+          dired_rename = "r",
+          dired_create = "a",
+          dired_delete = "D",
+          dired_delete_range = "D",
+          dired_copy = "c",
+          dired_copy_range = "c",
+          dired_copy_marked = "mc",
+          dired_move = "x",
+          dired_move_range = "x",
+          dired_move_marked = "mx",
+          dired_paste = "p",
+          dired_mark = "m",
+          dired_mark_range = "m",
+          dired_delete_marked = "md",
+          dired_toggle_hidden = ".",
+          dired_toggle_sort_order = ",",
+          dired_toggle_colors = "C",
+          dired_toggle_hide_details = "(",
+          dired_quit = "q",
+        },
+      })
+    end,
+  },
+  {
     "stevearc/oil.nvim",
     opts = {},
     enabled = false,
@@ -17,7 +56,7 @@ return {
   },
   {
     "echasnovski/mini.nvim",
-    -- enabled = false,
+    enabled = false,
     config = function()
       require("mini.files").setup()
     end,

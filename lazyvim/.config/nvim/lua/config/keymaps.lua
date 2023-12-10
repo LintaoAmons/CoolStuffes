@@ -31,7 +31,7 @@ local command_keymappings = {
   ["FindCommands"] = { mode = "niv", keys = "<C-M-p>" },
   ["FindFiles"] = "<C-p>",
   ["NoHighlight"] = "<leader>nl",
-  ["FormatCode"] = "<leader>fm",
+  ["Format"] = "<leader>fm",
   ["QuitNvim"] = "<M-q>",
 
   ["CloseWindowOrBuffer"] = "<M-w>",
@@ -107,10 +107,10 @@ registerKeys()
 vim.keymap.set("v", "p", "P")
 
 -- explorer
-vim.keymap.set("n", "<leader>e", "<cmd>:lua MiniFiles.open()<cr>", { desc = "MiniFiles" })
+vim.keymap.set("n", "<leader>e", "<cmd>Neotree toggle<cr>", { desc = "MiniFiles" })
 vim.keymap.set("n", "<leader>fl", "<cmd>Neotree reveal reveal_force_cwd<cr>", { desc = "ExplorerFindFileLocation" })
-
 vim.keymap.set("n", "<M-1>", "<cmd>Neotree toggle<cr>", { desc = "ExplorerToggle" })
+
 vim.keymap.set("n", "ma", "mA", { desc = "Mark" })
 vim.keymap.set("n", "'a", "'A", { desc = "GoToMark" })
 
