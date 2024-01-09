@@ -107,20 +107,25 @@ registerKeys()
 vim.keymap.set("v", "p", "P")
 
 -- explorer
-vim.keymap.set("n", "<leader>e", "<cmd>Neotree toggle<cr>", { desc = "MiniFiles" })
-vim.keymap.set("n", "<leader>fl", "<cmd>Neotree reveal reveal_force_cwd<cr>", { desc = "ExplorerFindFileLocation" })
+vim.keymap.set("n", "<leader>e", "<cmd>:lua MiniFiles.open()<cr>", { desc = "MiniFiles" })
+vim.keymap.set(
+  "n",
+  "<leader>fl",
+  "<cmd>Neotree reveal reveal_force_cwd<cr>",
+  { desc = "ExplorerFindFileLocation" }
+)
 vim.keymap.set("n", "<M-1>", "<cmd>Neotree toggle<cr>", { desc = "ExplorerToggle" })
 
 vim.keymap.set("n", "ma", "mA", { desc = "Mark" })
 vim.keymap.set("n", "'a", "'A", { desc = "GoToMark" })
 
 vim.keymap.set("n", "<M-e>", "<cmd>Telescope frecency<cr>", { desc = "FindRecentFiles" })
-vim.keymap.set("n", "<M-k><M-k>", "<cmd>Lspsaga code_action<cr>", { desc = "CodeActions" })
+vim.keymap.set({ "n", "v" }, "<M-k><M-k>", "<cmd>Lspsaga code_action<cr>", { desc = "CodeActions" })
 vim.keymap.set({ "i", "v", "t" }, "jk", [[<C-\><C-n>]], { buffer = 0 })
 
 vim.keymap.set("n", "<leader>ss", "<cmd>AerialNavToggle<cr>", { desc = "ToggleOutline" })
 vim.keymap.set("n", "<C-q>", "<cmd>Telescope workspaces<cr>", { desc = "OpenProject" })
-vim.keymap.set("v", "<C-M-j>", "<CMD>VisualDuplicate +1<CR>", { desc = "Duplication" })
+vim.keymap.set("v", "<C-M-j>", "<CMD>VisualDuplicate +2<CR>", { desc = "Duplication" })
 
 -- DO NOT USE THIS IN YOU OWN CONFIG!!
 -- use `vim.keymap.set` instead
@@ -156,7 +161,12 @@ end
 -- TODO: move to a function named customise keymapings
 if vim.g.neovide then
   vim.keymap.set("n", "<D-1>", "<cmd>Neotree toggle<cr>", { desc = "ExplorerToggle" })
-  vim.keymap.set("n", "<D-e>", "<cmd>Telescope frecency workspace=CWD<cr>", { desc = "FindRecentFiles" })
+  vim.keymap.set(
+    "n",
+    "<D-e>",
+    "<cmd>Telescope frecency workspace=CWD<cr>",
+    { desc = "FindRecentFiles" }
+  )
   map("n", "<C-D-l>", "<cmd>vertical resize +5<cr>", { desc = "Increase window width" })
   map("n", "<C-D-h>", "<cmd>vertical resize -5<cr>", { desc = "Decrease window width" })
   vim.keymap.set("n", "<D-k><D-k>", "<cmd>Lspsaga code_action<cr>", { desc = "CodeActions" })

@@ -1,10 +1,21 @@
 return {
   {
+    "https://github.com/rbong/vim-flog.git",
+    lazy = true,
+    cmd = { "Flog", "Flogsplit", "Floggit" },
+    dependencies = {
+      "tpope/vim-fugitive",
+    },
+  },
+
+  {
     "FabijanZulj/blame.nvim",
     event = "VeryLazy",
   },
+
   {
     "sindrets/diffview.nvim",
+    event = "VeryLazy",
     -- dir = "/Users/lintao/Documents/oatnil/github-preview/diffview.nvim",
     dependencies = "nvim-lua/plenary.nvim",
     config = function()
@@ -63,7 +74,8 @@ return {
                 end
               end)
             end,
-            { desc = "git commit" },
+
+            ["C"] = "TODO: COMMIT and PUSH",
           },
         },
         view = {

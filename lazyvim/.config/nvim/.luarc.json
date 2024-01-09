@@ -77,6 +77,8 @@
         "/Users/lintao/.local/share/nvim/lazy/SchemaStore.nvim/lua",
         "/Users/lintao/dotfiles/nvim/.config/nvim/lua",
         "/Users/lintao/.local/share/nvim/lazy/neoconf.nvim/types",
-        "/Users/lintao/.local/share/nvim/lazy/neoconf.nvim/types/lua"
+        "/Users/lintao/.local/share/nvim/lazy/neoconf.nvim/types/lua",
+        "${3rd}/luassert/library",
+        "${3rd}/luv/library"
     ]
 }

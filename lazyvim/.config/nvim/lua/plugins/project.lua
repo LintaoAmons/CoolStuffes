@@ -1,6 +1,7 @@
 return {
   {
     "natecraddock/workspaces.nvim",
+    event = "VeryLazy",
     config = function(_, _)
       require("telescope").load_extension("workspaces")
       require("workspaces").setup({

@@ -9,9 +9,35 @@ end
 
 return {
   {
-    -- "X3eRo0/dired.nvim",
-    dir = "/Volumes/t7ex/Documents/Github/dired.nvim",
+    "simonmclean/triptych.nvim",
+    event = "VeryLazy",
+    config = function()
+      require("triptych").setup({
+        extension_mappings = {
+          ["<leader>c"] = {
+            mode = "n",
+            fn = function(target)
+              vim.cmd("cd " .. target.path)
+            end,
+          },
+          ["<c-f>"] = {
+            mode = "n",
+            fn = function(target)
+              require("telescope.builtin").live_grep({
+                search_dirs = { target.path },
+              })
+            end,
+          },
+        },
+      })
+    end,
+  },
+  {
+    "X3eRo0/dired.nvim",
+    -- dir = "/Volumes/t7ex/Documents/Github/dired.nvim",
+    enabled = false,
     dependencies = { "MunifTanjim/nui.nvim" },
+    cmd = "Dired",
     config = function()
       require("dired").setup({
         path_separator = "/",
@@ -55,12 +81,13 @@ return {
     dependencies = { "nvim-tree/nvim-web-devicons" },
   },
   {
-    "echasnovski/mini.nvim",
-    enabled = false,
+    -- for play with files in batch
+    -- :lua MiniFiles.open()
+    "echasnovski/mini.files",
+    version = false,
     config = function()
       require("mini.files").setup()
     end,
-    version = false,
   },
   {
     "s1n7ax/nvim-window-picker",
@@ -101,15 +128,12 @@ return {
             nowait = true,
           },
           mappings = {
-            -- open in the Thunar file manager
             ["t"] = {
               function(state)
                 local node = state.tree:get_node()
                 vim.fn.jobstart({ "open", node.path }, { detach = true })
-                -- close neo-tree
-                vim.cmd("Neotree close")
               end,
-              desc = "thunar",
+              desc = "Open the current node by system default software",
               nowait = true,
             },
             -- copy absolute path to clipboard
@@ -121,7 +145,7 @@ return {
                 vim.fn.setreg("1", content)
                 vim.fn.setreg("+", content)
               end,
-              desc = "copy abs path",
+              desc = "copy absolute path",
               nowait = true,
             },
             -- ["<c-o>"] = {
@@ -137,8 +161,6 @@ return {
             ["<c-f>"] = {
               function(state)
                 require("telescope.builtin").live_grep({ cwd = context_dir(state) })
-                -- close neo-tree
-                vim.cmd("Neotree close")
               end,
               desc = "live grep",
               nowait = true,
@@ -174,7 +196,7 @@ return {
             ["o"] = "open",
             ["<esc>"] = "cancel", -- close preview or floating neo-tree window
             ["P"] = { "toggle_preview", config = { use_float = true } },
-            ["l"] = "focus_preview",
+            ["l"] = "open_drop",
             ["S"] = "open_split",
             ["s"] = "open_vsplit",
             -- ["S"] = "split_with_window_picker",
@@ -196,7 +218,7 @@ return {
                 show_path = "none", -- "none", "relative", "absolute"
               },
             },
-            ["A"] = "add_directory", -- also accepts the optional config.show_path option like "add". this also supports BASH style brace expansion.
+            -- ["A"] = "add_directory", -- also accepts the optional config.show_path option like "add". this also supports BASH style brace expansion.
             ["D"] = "delete",
             ["r"] = "rename",
             ["y"] = "copy_to_clipboard",
@@ -250,6 +272,7 @@ return {
           window = {
             mappings = {
               ["<bs>"] = "navigate_up",
+              ["h"] = "navigate_up",
               ["."] = "set_root",
               ["H"] = "toggle_hidden",
               ["/"] = "fuzzy_finder",
@@ -258,8 +281,28 @@ return {
               -- ["D"] = "fuzzy_sorter_directory",
               -- ["ff"] = "filter_on_submit",
               ["<c-x>"] = "clear_filter",
-              ["[g"] = "prev_git_modified",
-              ["]g"] = "next_git_modified",
+              ["<c-g>"] = function(state)
+                -- get the current node
+                local node = state.tree:get_node()
+                -- if the node is not a directory, walk up the tree until we find one
+                while node and node.type ~= "directory" do
+                  local parent_id = node:get_parent_id()
+                  if parent_id == nil then
+                    -- we must have reached the root node
+                    -- this should not happen because the root node is always a directory
+                    -- but just in case...
+                    node = nil
+                    break
+                  end
+                  node = state.tree:get_node(parent_id)
+                end
+                -- if we somehow didn't find a directory, just use the root node
+                local path = node and node.path or state.path
+                require("telescope.builtin").live_grep({
+                  search_dirs = { path },
+                  prompt_title = string.format("Grep in [%s]", vim.fs.basename(path)),
+                })
+              end,
             },
             fuzzy_finder_mappings = {
               -- define keymaps for filter popup window in fuzzy_finder_mode

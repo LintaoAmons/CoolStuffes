@@ -25,5 +25,6 @@ return {
   },
   {
     "mfussenegger/nvim-ansible",
+    enabled = false,
   },
 }

@@ -41,7 +41,10 @@ return {
       defaults = {
         mappings = {
           i = {
-            ["<esc>"] = require("telescope.actions").close,
+            ["jk"] = require("telescope.actions").close,
+          },
+          n = {
+            ["jk"] = require("telescope.actions").close,
           },
         },
         layout_strategy = "horizontal",

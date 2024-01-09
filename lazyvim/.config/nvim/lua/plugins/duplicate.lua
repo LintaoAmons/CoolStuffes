@@ -1,1 +1,4 @@
-return { "hinell/duplicate.nvim" }
+return {
+  "hinell/duplicate.nvim",
+  event = "VeryLazy",
+}

@@ -8,7 +8,6 @@
       "import  `${1:/pascalcase}` from '!!raw-loader!$1.$2';",
       "<CodeBlock language=\"$2\" title=\"$1\">{`${1:/pascalcase}`}</CodeBlock>"
     ],
-    "description": "main file with main function",
-    "scope": "go"
+    "description": "main file with main function"
   }
 }

@@ -18,6 +18,7 @@
     "hurl"
   ],
   "scratch_file_dir": "/Users/lintao/.cache/nvim/scratch.nvim",
+  "use_telescope": false,
   "filetype_details": {
     "learn-gradle.groovy": {
       "subdir": "learn-gradle"
