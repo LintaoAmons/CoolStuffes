@@ -29,9 +29,9 @@ end
 
 return {
   {
-    "LintaoAmons/easy-commands.nvim",
+    -- "LintaoAmons/easy-commands.nvim",
     -- branch = "dev",
-    -- dir = "/Volumes/t7ex/Documents/oatnil/release/easy-commands.nvim",
+    dir = "/Volumes/t7ex/Documents/oatnil/release/easy-commands.nvim",
     event = "VeryLazy",
     config = function()
       require("easy-commands").setup({
@@ -113,6 +113,20 @@ return {
             name = "ToggleOutline",
             callback = "AerialToggle",
             dependencies = { "https://github.com/stevearc/aerial.nvim" },
+          },
+          {
+            name = "AddSnippet",
+            callback = function()
+              require("scissors").addNewSnippet()
+            end,
+            dependencies = { "https://github.com/chrisgrieser/nvim-scissors" },
+          },
+          {
+            name = "EditSnippet",
+            callback = function()
+              require("scissors").editSnippet()
+            end,
+            dependencies = { "https://github.com/chrisgrieser/nvim-scissors" },
           },
         },
         aliases = {

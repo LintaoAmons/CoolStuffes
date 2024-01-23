@@ -1,9 +1,0 @@
-{
-  // a comment, since `.code-snippets` may contain jsonc.
-  "Commit": {
-    "prefix": ["lintao"],
-    "body": ["this is $1", "my snippet $2"],
-    "description": "A description of the snippet.",
-    "scope": "NeogitCommitMessage"
-  }
-}

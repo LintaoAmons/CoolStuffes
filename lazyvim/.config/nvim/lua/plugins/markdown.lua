@@ -1,6 +1,11 @@
 return {
   {
+    "mzlogin/vim-markdown-toc",
+    ft = { "markdown" },
+  },
+  {
     "HakonHarnes/img-clip.nvim",
+    ft = { "markdown" },
     cmd = "PasteImage",
     opts = {
       embed_image_as_base64 = true, -- paste image as base64 string instead of saving to file

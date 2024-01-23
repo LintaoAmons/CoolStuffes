@@ -18,17 +18,15 @@ local command_keymappings = {
   -- HACK: DB
   ["DBUIToggle"] = "<M-C-9>",
 
-  ["PeekGitChange"] = "<M-k>j",
-  ["GitCommit"] = "<M-k>c",
   ["AskGpt4"] = "<C-g>k",
-  ["GpAppend"] = { keys = "<M-k>i", mode = "v" },
+  ["GpAppend"] = { keys = "<M-k>i", modes = "v" },
   ["TmuxNavigateLeft"] = "<C-h>",
   ["TmuxNavigateRight"] = "<C-l>",
   ["TmuxNavigateUp"] = "<M-k>",
   ["TmuxNavigateDown"] = "<C-j>",
   ["FoldAll"] = "<leader>zc",
   ["UnFoldAll"] = "<leader>zo",
-  ["FindCommands"] = { mode = "niv", keys = "<C-M-p>" },
+  ["FindCommands"] = { modes = "n,i,v", keys = "<C-M-p>" },
   ["FindFiles"] = "<C-p>",
   ["NoHighlight"] = "<leader>nl",
   ["Format"] = "<leader>fm",
@@ -41,12 +39,16 @@ local command_keymappings = {
   ["RunCurrentBuffer"] = "<M-r>",
   ["Scratch"] = "<M-C-n>",
   ["ScratchOpen"] = "<M-C-o>",
-  ["FindInProject"] = { mode = "nv", keys = "<C-f>f" },
-  ["FindFileInDir"] = { mode = "nv", keys = "<C-f>d" },
-  ["GrepInDir"] = { mode = "nv", keys = "<C-f>g" },
-  ["SearchOrReplace"] = { mode = "nv", keys = "<C-M-f>" },
+  ["FindInProject"] = { modes = "n,v", keys = "<C-f>f" },
+  ["FindFileInDir"] = { modes = "n,v", keys = "<C-f>d" },
+  ["GrepInDir"] = { modes = "n,v", keys = "<C-f>g" },
+  ["SearchOrReplace"] = { modes = "n,v", keys = "<C-M-f>" },
   ["Rename"] = "<leader>rn",
+  ["CdProject"] = "<C-q>",
+
   -- HACK: GIT
+  ["PeekGitChange"] = "<M-k>j",
+  ["GitCommit"] = "<M-k>c",
   ["GitNextHunk"] = "gj",
   ["GitPrevHunk"] = "gk",
   ["GitDiff"] = "<M-0>",
@@ -68,6 +70,11 @@ local command_keymappings = {
   ["GotoFunctionName"] = "gm",
 
   ["LspFinder"] = "<M-k>f",
+
+  ["SentToTerminalAndRun"] = { modes = "n,v", keys = "<leader>sj" },
+  ["SendSelectedToTerminalAndRun"] = { modes = "n,v", keys = "<leader>sk" },
+  ["SendLineToTerminalAndRun"] = { modes = "n,v", keys = "<leader>sl" },
+  ["MaximiseWindowAsPopup"] = { modes = "n,v,t", keys = "<leader>wp" },
 }
 
 -- neovide use <D-key> represents the cmd key in mac
@@ -91,19 +98,14 @@ local function registerKeys()
   for command, keybinding in pairs(command_keymappings) do
     local key = convertNeovideCMDKey(getKey(keybinding))
 
-    if not key then
-      vim.print(command)
-    end
-
-    local modes = keybinding.mode or "n"
-    for i = 1, #modes do
-      local char = string.sub(modes, i, i)
-      vim.keymap.set(char, key, "<CMD>" .. command .. "<CR>", {})
-    end
+    local modes = keybinding.modes and vim.split(keybinding.modes, ",") or { "n" }
+    vim.keymap.set(modes, key, "<CMD>" .. command .. "<CR>", {})
   end
 end
+
 registerKeys()
 
+-- don't overwrite the clipboard
 vim.keymap.set("v", "p", "P")
 
 -- explorer
@@ -124,7 +126,6 @@ vim.keymap.set({ "n", "v" }, "<M-k><M-k>", "<cmd>Lspsaga code_action<cr>", { des
 vim.keymap.set({ "i", "v", "t" }, "jk", [[<C-\><C-n>]], { buffer = 0 })
 
 vim.keymap.set("n", "<leader>ss", "<cmd>AerialNavToggle<cr>", { desc = "ToggleOutline" })
-vim.keymap.set("n", "<C-q>", "<cmd>Telescope workspaces<cr>", { desc = "OpenProject" })
 vim.keymap.set("v", "<C-M-j>", "<CMD>VisualDuplicate +2<CR>", { desc = "Duplication" })
 
 -- DO NOT USE THIS IN YOU OWN CONFIG!!
@@ -171,4 +172,5 @@ if vim.g.neovide then
   map("n", "<C-D-h>", "<cmd>vertical resize -5<cr>", { desc = "Decrease window width" })
   vim.keymap.set("n", "<D-k><D-k>", "<cmd>Lspsaga code_action<cr>", { desc = "CodeActions" })
 end
+
 neovideMacCopy()

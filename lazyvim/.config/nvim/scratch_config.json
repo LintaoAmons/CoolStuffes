@@ -23,6 +23,9 @@
     "learn-gradle.groovy": {
       "subdir": "learn-gradle"
     },
+    "sntc.md": {
+      "subdir": "sntc"
+    },
     "go": {
       "filename": "main.go",
       "cursor": {

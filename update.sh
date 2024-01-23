@@ -16,15 +16,7 @@ fi
 
 # Declare an associative array containing the tools and their configuration paths
 declare -A share_items=(
-  [lvim]="$LVIM"
   [lazyvim]="$LAZYVIM"
-  [tmux]="$TMUX"
-  [karabiner]="$KARABINER"
-  [zsh]="$ZSH"
-  [hammerspoon]="$HAMMERSPOON"
-  [ideavim]="$IDEAVIM"
-  [warpd]="$WARPD"
-  [wezterm]="$WEZTERM"
 )
 
 # Iterate through the array and synchronize each configuration file
