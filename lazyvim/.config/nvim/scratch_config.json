@@ -15,7 +15,9 @@
     "kt",
     "ts",
     "java",
-    "hurl"
+    "hurl",
+    "http",
+    "jsonc"
   ],
   "scratch_file_dir": "/Users/lintao/.cache/nvim/scratch.nvim",
   "use_telescope": false,

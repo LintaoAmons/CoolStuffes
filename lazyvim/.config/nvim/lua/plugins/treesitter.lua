@@ -22,6 +22,7 @@ return {
         },
       },
       ensure_installed = {
+        "http",
         "bash",
         "html",
         "javascript",

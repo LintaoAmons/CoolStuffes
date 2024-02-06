@@ -9,6 +9,7 @@ return {
   --       called_by = "lazy.nvim opts"
   --   },
   -- },
+  { dir = "/Volumes/t7ex/Documents/oatnil/beta/bookmarks.nvim" },
 
   {
     "andrewferrier/debugprint.nvim",

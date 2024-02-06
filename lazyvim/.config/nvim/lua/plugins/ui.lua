@@ -5,6 +5,7 @@ vim.api.nvim_set_hl(0, "FlashMatch", { fg = "#000000", bg = "#000000" })
 return {
   {
     "miversen33/sunglasses.nvim",
+    enabled = false,
     event = "VeryLazy",
     config = function()
       local sunglasses_options = {

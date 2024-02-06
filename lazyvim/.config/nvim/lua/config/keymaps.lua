@@ -6,6 +6,10 @@ vim.keymap.del({ "n", "i", "v" }, "<A-j>", {})
 vim.keymap.del({ "n", "i", "v" }, "<A-k>", {})
 
 local command_keymappings = {
+  ["BookmarksGotoRecent"] = { modes = "n,v", keys = "mg" },
+  ["BookmarksMark"] = "mm",
+  ["BookmarksGoto"] = "mo",
+
   -- HACK: Debug
   ["ToggleDebugUI"] = "<M-5>",
   ["DebugStartOrContinue"] = "<F5>",
@@ -37,6 +41,7 @@ local command_keymappings = {
   ["SplitVertically"] = "<leader>wl",
 
   ["RunCurrentBuffer"] = "<M-r>",
+  ["RunShellAtBufDir"] = { modes = "n,v", keys = "<leader>rk" },
   ["Scratch"] = "<M-C-n>",
   ["ScratchOpen"] = "<M-C-o>",
   ["FindInProject"] = { modes = "n,v", keys = "<C-f>f" },
@@ -67,7 +72,7 @@ local command_keymappings = {
   ["GoToDefinitionInSplit"] = "gl",
   ["PeekDefinition"] = "<M-k>k",
   ["PeekTypeDefinition"] = "<M-k>l",
-  ["GotoFunctionName"] = "gm",
+  ["GoToFunctionName"] = "gm",
 
   ["LspFinder"] = "<M-k>f",
 
@@ -126,7 +131,7 @@ vim.keymap.set({ "n", "v" }, "<M-k><M-k>", "<cmd>Lspsaga code_action<cr>", { des
 vim.keymap.set({ "i", "v", "t" }, "jk", [[<C-\><C-n>]], { buffer = 0 })
 
 vim.keymap.set("n", "<leader>ss", "<cmd>AerialNavToggle<cr>", { desc = "ToggleOutline" })
-vim.keymap.set("v", "<C-M-j>", "<CMD>VisualDuplicate +2<CR>", { desc = "Duplication" })
+vim.keymap.set("v", "<C-M-j>", "<CMD>VisualDuplicate +1<CR>", { desc = "Duplication" })
 
 -- DO NOT USE THIS IN YOU OWN CONFIG!!
 -- use `vim.keymap.set` instead
