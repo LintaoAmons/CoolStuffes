@@ -17,7 +17,8 @@
     "java",
     "hurl",
     "http",
-    "jsonc"
+    "jsonc",
+    "duck.sql"
   ],
   "scratch_file_dir": "/Users/lintao/.cache/nvim/scratch.nvim",
   "use_telescope": false,
@@ -176,6 +177,22 @@
     }
   },
   "localKeys": [
+    {
+      "filenameContains": [
+        ".http"
+      ],
+      "LocalKeys": [
+        {
+          "cmd": "<Plug>RestNvim",
+          "key": "<leader>r",
+          "modes": [
+            "n",
+            "i",
+            "v"
+          ]
+        }
+      ]
+    },
     {
       "filenameContains": [
         "hurl"

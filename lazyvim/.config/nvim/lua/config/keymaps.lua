@@ -8,7 +8,9 @@ vim.keymap.del({ "n", "i", "v" }, "<A-k>", {})
 local command_keymappings = {
   ["BookmarksGotoRecent"] = { modes = "n,v", keys = "mg" },
   ["BookmarksMark"] = "mm",
+  ["BookmarksCommands"] = "ma",
   ["BookmarksGoto"] = "mo",
+  ["ObsidianQuickSwitch"] = "<leader>nf", -- note finder
 
   -- HACK: Debug
   ["ToggleDebugUI"] = "<M-5>",
@@ -40,8 +42,6 @@ local command_keymappings = {
   ["MaximiseWindow"] = "<Leader>wo",
   ["SplitVertically"] = "<leader>wl",
 
-  ["RunCurrentBuffer"] = "<M-r>",
-  ["RunShellAtBufDir"] = { modes = "n,v", keys = "<leader>rk" },
   ["Scratch"] = "<M-C-n>",
   ["ScratchOpen"] = "<M-C-o>",
   ["FindInProject"] = { modes = "n,v", keys = "<C-f>f" },
@@ -79,6 +79,9 @@ local command_keymappings = {
   ["SentToTerminalAndRun"] = { modes = "n,v", keys = "<leader>sj" },
   ["SendSelectedToTerminalAndRun"] = { modes = "n,v", keys = "<leader>sk" },
   ["SendLineToTerminalAndRun"] = { modes = "n,v", keys = "<leader>sl" },
+  ["RunCurrentBuffer"] = "<M-r>",
+  ["RunShellAtBufDir"] = { modes = "n,v", keys = "<leader>rk" },
+  ["RunShellCurrentLine"] = { modes = "n,v", keys = "<leader>rl" },
   ["MaximiseWindowAsPopup"] = { modes = "n,v,t", keys = "<leader>wp" },
 }
 
@@ -122,9 +125,6 @@ vim.keymap.set(
   { desc = "ExplorerFindFileLocation" }
 )
 vim.keymap.set("n", "<M-1>", "<cmd>Neotree toggle<cr>", { desc = "ExplorerToggle" })
-
-vim.keymap.set("n", "ma", "mA", { desc = "Mark" })
-vim.keymap.set("n", "'a", "'A", { desc = "GoToMark" })
 
 vim.keymap.set("n", "<M-e>", "<cmd>Telescope frecency<cr>", { desc = "FindRecentFiles" })
 vim.keymap.set({ "n", "v" }, "<M-k><M-k>", "<cmd>Lspsaga code_action<cr>", { desc = "CodeActions" })
