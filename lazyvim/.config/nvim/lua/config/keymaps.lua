@@ -155,27 +155,3 @@ map("t", "<C-\\>", "<cmd>close<cr>", { desc = "Hide Terminal" })
 -- if you only want these mappings for toggle term use term://*toggleterm#* instead
 vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
 
-local function neovideMacCopy()
-  -- Allow clipboard copy paste in neovim
-  vim.g.neovide_input_use_logo = 1
-  vim.api.nvim_set_keymap("", "<D-v>", "+p<CR>", { noremap = true, silent = true })
-  vim.api.nvim_set_keymap("!", "<D-v>", "<C-R>+", { noremap = true, silent = true })
-  vim.api.nvim_set_keymap("t", "<D-v>", "<C-R>+", { noremap = true, silent = true })
-  vim.api.nvim_set_keymap("v", "<D-v>", "<C-R>+", { noremap = true, silent = true })
-end
-
--- TODO: move to a function named customise keymapings
-if vim.g.neovide then
-  vim.keymap.set("n", "<D-1>", "<cmd>Neotree toggle<cr>", { desc = "ExplorerToggle" })
-  vim.keymap.set(
-    "n",
-    "<D-e>",
-    "<cmd>Telescope frecency workspace=CWD<cr>",
-    { desc = "FindRecentFiles" }
-  )
-  map("n", "<C-D-l>", "<cmd>vertical resize +5<cr>", { desc = "Increase window width" })
-  map("n", "<C-D-h>", "<cmd>vertical resize -5<cr>", { desc = "Decrease window width" })
-  vim.keymap.set("n", "<D-k><D-k>", "<cmd>Lspsaga code_action<cr>", { desc = "CodeActions" })
-end
-
-neovideMacCopy()

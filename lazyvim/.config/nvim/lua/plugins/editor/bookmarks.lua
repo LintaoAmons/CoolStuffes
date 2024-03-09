@@ -1,0 +1,5 @@
+return {
+  {
+    "LintaoAmons/bookmarks.nvim",
+  },
+}
