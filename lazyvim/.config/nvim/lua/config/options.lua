@@ -18,23 +18,24 @@ opt.foldenable     = false
 opt.clipboard      = ""
 
 -- UI =========================================================================
-opt.breakindent    = true     -- Indent wrapped lines to match line start
-opt.cursorline     = true     -- Enable highlighting of the current line
-opt.laststatus     = 3        -- show statusline in last window
-opt.linebreak      = true     -- Wrap long lines at 'breakat' (if 'wrap' is set)
-opt.list           = true     -- Show helpful character indicators
-opt.relativenumber = true     -- Show relative line numbers
-opt.pumblend       = 0        -- Make builtin completion menus slightly transparent
-opt.pumheight      = 10       -- Make popup menu smaller
-opt.ruler          = false    -- Don't show cursor position
-opt.shortmess      = 'aoOWFc' -- Disable certain messages from |ins-completion-menu|
-opt.showmode       = false    -- Don't show mode in command line
-opt.signcolumn     = 'yes'    -- Always show signcolumn or it would frequently shift
-opt.splitbelow     = true     -- Horizontal splits will be below
-opt.splitright     = true     -- Vertical splits will be to the right
-opt.termguicolors  = true     -- Enable gui colors
-opt.winblend       = 0        -- Make floating windows transparent
-opt.wrap           = false    -- Display long lines as just one line
+vim.opt.conceallevel = 0
+opt.breakindent      = true     -- Indent wrapped lines to match line start
+opt.cursorline       = true     -- Enable highlighting of the current line
+opt.laststatus       = 3        -- show statusline in last window
+opt.linebreak        = true     -- Wrap long lines at 'breakat' (if 'wrap' is set)
+opt.list             = true     -- Show helpful character indicators
+opt.relativenumber   = true     -- Show relative line numbers
+opt.pumblend         = 0        -- Make builtin completion menus slightly transparent
+opt.pumheight        = 10       -- Make popup menu smaller
+opt.ruler            = false    -- Don't show cursor position
+opt.shortmess        = 'aoOWFc' -- Disable certain messages from |ins-completion-menu|
+opt.showmode         = false    -- Don't show mode in command line
+opt.signcolumn       = 'yes'    -- Always show signcolumn or it would frequently shift
+opt.splitbelow       = true     -- Horizontal splits will be below
+opt.splitright       = true     -- Vertical splits will be to the right
+opt.termguicolors    = true     -- Enable gui colors
+opt.winblend         = 0        -- Make floating windows transparent
+opt.wrap             = false    -- Display long lines as just one line
 
 vim.o.fillchars    = table.concat(
     { 'eob: ', 'fold:╌', 'horiz:═', 'horizdown:╦', 'horizup:╩', 'vert:║', 'verthoriz:╬', 'vertleft:╣',

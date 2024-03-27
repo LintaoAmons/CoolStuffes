@@ -1,0 +1,9 @@
+{
+  "extras": [
+    "lazyvim.plugins.extras.ui.edgy"
+  ],
+  "news": {
+    "NEWS.md": "2850"
+  },
+  "version": 3
+}

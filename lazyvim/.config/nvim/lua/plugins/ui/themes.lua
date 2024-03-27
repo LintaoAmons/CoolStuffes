@@ -1,6 +1,6 @@
 return {
 	{
-		"LazyVim/LazyVim",
+		"LintaoAmons/LazyVim",
 		opts = {
 			colorscheme = "monokai",
 		},

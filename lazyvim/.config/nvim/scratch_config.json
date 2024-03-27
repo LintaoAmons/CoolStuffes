@@ -1,0 +1,114 @@
+{
+    "filetypes": [
+        "xml",
+        "go",
+        "lua",
+        "js",
+        "py",
+        "sh",
+        "md",
+        "plain",
+        "sql",
+        "html",
+        "csv",
+        "diagram",
+        "kt",
+        "ts",
+        "java",
+        "hurl",
+        "http",
+        "jsonc",
+        "duck.sql",
+        "css"
+    ],
+    "scratch_file_dir": "/Users/lintao/.cache/nvim/scratch.nvim",
+    "use_telescope": false,
+    "filetype_details": {
+        "go": {
+            "filename": "main.go",
+            "cursor": {
+                "location": [
+                    4,
+                    2
+                ],
+                "insert_mode": true
+            },
+            "requireDir": true,
+            "content": [
+                "package main",
+                "",
+                "func main() {",
+                "  ",
+                "}"
+            ]
+        },
+        "dockerfile": {
+            "subdir": "docker"
+        },
+        "json": {},
+        "yaml": [],
+        "k8s.yaml": {
+            "subdir": "learn-k8s"
+        }
+    },
+    "localKeys": [
+        {
+            "filenameContains": [
+                ".http"
+            ],
+            "LocalKeys": [
+                {
+                    "cmd": "<Plug>RestNvim",
+                    "key": "<leader>r",
+                    "modes": [
+                        "n",
+                        "i",
+                        "v"
+                    ]
+                }
+            ]
+        },
+        {
+            "filenameContains": [
+                "hurl"
+            ],
+            "LocalKeys": [
+                {
+                    "cmd": "<CMD>Hurl<CR>",
+                    "key": "<M-r>",
+                    "modes": [
+                        "n",
+                        "i",
+                        "v"
+                    ]
+                }
+            ]
+        },
+        {
+            "filenameContains": [
+                "gp",
+                "eng"
+            ],
+            "LocalKeys": [
+                {
+                    "cmd": "<CMD>GpChatRespond<CR>",
+                    "key": "<C-g><C-g>",
+                    "modes": [
+                        "n",
+                        "i",
+                        "v"
+                    ]
+                },
+                {
+                    "cmd": "<CMD>GpStop<CR>",
+                    "key": "<C-g>s",
+                    "modes": [
+                        "n",
+                        "i",
+                        "v"
+                    ]
+                }
+            ]
+        }
+    ]
+}

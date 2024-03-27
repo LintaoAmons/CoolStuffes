@@ -130,9 +130,4 @@ return {
 			end, opts)
 		end,
 	},
-
-	-- snippets
-	{ "chrisgrieser/nvim-scissors", dependencies = {
-		"L3MON4D3/LuaSnip",
-	} },
 }

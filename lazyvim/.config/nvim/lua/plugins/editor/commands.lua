@@ -30,6 +30,8 @@ end
 return {
   {
     "LintaoAmons/easy-commands.nvim",
+    -- branch = "dev",
+    -- dir = "/Volumes/t7ex/Documents/oatnil/release/easy-commands.nvim",
     event = "VeryLazy",
     config = function()
       require("easy-commands").setup({

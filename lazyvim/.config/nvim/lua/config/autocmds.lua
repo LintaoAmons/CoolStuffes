@@ -19,7 +19,25 @@ local autocmds = {
 			nested = true,
 		},
 	},
-
+	-- {
+	-- 	{ "BufLeave", "WinLeave", "FocusLost" },
+	-- 	{
+	-- 		pattern = "*",
+	-- 		group = "Neotree-Gitstatus",
+	-- 		callback = function()
+	-- 			require("neo-tree.sources.filesystem.commands")
+	-- 				-- Call the refresh function found here: https://github.com/nvim-neo-tree/neo-tree.nvim/blob/2f2d08894bbc679d4d181604c16bb7079f646384/lua/neo-tree/sources/filesystem/commands.lua#L11-L13
+	-- 				.refresh(
+	-- 					-- Pull in the manager module. Found here: https://github.com/nvim-neo-tree/neo-tree.nvim/blob/2f2d08894bbc679d4d181604c16bb7079f646384/lua/neo-tree/sources/manager.lua
+	-- 					require("neo-tree.sources.manager")
+	-- 						-- Fetch the state of the "filesystem" source, feeding it to the filesystem refresh call since most everything in neo-tree
+	-- 						-- expects to get its state fed to it
+	-- 						.get_state("filesystem")
+	-- 				)
+	-- 		end,
+	-- 		nested = true,
+	-- 	},
+	-- },
 	-- Jump to last accessed window on closing the current one
 	{
 		{ "WinEnter" },
@@ -174,31 +192,31 @@ local autocmds = {
 set_autocmds(autocmds)
 
 local function save()
-  local buf = vim.api.nvim_get_current_buf()
+	local buf = vim.api.nvim_get_current_buf()
 
-  vim.api.nvim_buf_call(buf, function()
-    vim.cmd("silent! write")
-  end)
+	vim.api.nvim_buf_call(buf, function()
+		vim.cmd("silent! write")
+	end)
 end
 
 function ToggleAutoSave()
-  local flag = vim.g.easy_command_auto_save or false
-  if flag then
-    vim.g.easy_command_auto_save = false
-    vim.api.nvim_del_augroup_by_name("AutoSave")
-  else
-    vim.api.nvim_create_augroup("AutoSave", {
-      clear = true,
-    })
-    vim.api.nvim_create_autocmd({ "InsertLeave", "TextChanged" }, {
-      callback = function()
-        save()
-      end,
-      pattern = "*",
-      group = "AutoSave",
-    })
-    vim.g.easy_command_auto_save = true
-  end
+	local flag = vim.g.easy_command_auto_save or false
+	if flag then
+		vim.g.easy_command_auto_save = false
+		vim.api.nvim_del_augroup_by_name("AutoSave")
+	else
+		vim.api.nvim_create_augroup("AutoSave", {
+			clear = true,
+		})
+		vim.api.nvim_create_autocmd({ "InsertLeave", "TextChanged" }, {
+			callback = function()
+				save()
+			end,
+			pattern = "*",
+			group = "AutoSave",
+		})
+		vim.g.easy_command_auto_save = true
+	end
 end
 
 ToggleAutoSave()
@@ -209,4 +227,3 @@ ToggleAutoSave()
 vim.cmd([[ autocmd BufNewFile,BufRead *.hurl set filetype=hurl ]])
 
 vim.cmd([[ autocmd BufNewFile,BufRead *.mdx set filetype=md ]])
-
