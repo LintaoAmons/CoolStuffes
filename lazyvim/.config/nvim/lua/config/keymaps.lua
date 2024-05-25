@@ -76,7 +76,6 @@ local command_keymappings = {
 
 	["LspFinder"] = "<M-k>f",
 
-	["SentToTerminalAndRun"] = { modes = "n,v", keys = "<leader>sj" },
 	["SendSelectedToTerminalAndRun"] = { modes = "n,v", keys = "<leader>sk" },
 	["SendLineToTerminalAndRun"] = { modes = "n,v", keys = "<leader>sl" },
 	["RunCurrentBuffer"] = "<M-r>",
@@ -127,6 +126,9 @@ vim.keymap.set({ "i", "v", "t" }, "jk", [[<C-\><C-n>]], { buffer = 0 })
 vim.keymap.set("n", "<leader>ss", "<cmd>Lspsaga outline<cr>", { desc = "ToggleOutline" })
 vim.keymap.set("v", "<C-M-j>", "<CMD>VisualDuplicate +1<CR>", { desc = "Duplication" })
 
+-- diagnostic
+vim.keymap.set("n", "<leader>sd", "<CMD>Lspsaga show_diagnostics<CR>", { desc = "show_diagnostics" })
+
 -- DO NOT USE THIS IN YOU OWN CONFIG!!
 -- use `vim.keymap.set` instead
 local Util = require("lazyvim.util")
@@ -150,4 +152,3 @@ map("t", "<C-\\>", "<cmd>close<cr>", { desc = "Hide Terminal" })
 vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
 
 vim.keymap.set("n", "<leader>e", ":Triptych<CR>", { silent = true })
-

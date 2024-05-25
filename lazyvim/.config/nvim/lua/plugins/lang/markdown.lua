@@ -1,5 +1,13 @@
 return {
 	{
+		"williamboman/mason.nvim",
+		opts = function(_, opts)
+			opts.ensure_installed = opts.ensure_installed or {}
+			table.insert(opts.ensure_installed, "marksman")
+		end,
+	},
+
+	{
 		"mzlogin/vim-markdown-toc",
 		ft = { "markdown" },
 		-- GenTocGitLab, GenTocMarded
@@ -7,7 +15,7 @@ return {
 	{
 		"HakonHarnes/img-clip.nvim",
 		event = "BufEnter",
-        branch = 'fix/insert-base64-markup',
+		branch = "fix/insert-base64-markup",
 		opts = {
 			default = {
 				dir_path = "static", -- directory path to save images to, can be relative (cwd or current file) or absolute
@@ -21,8 +29,8 @@ return {
 				use_cursor_in_template = true, -- jump to cursor position in template after pasting
 				insert_mode_after_paste = true, -- enter insert mode after pasting the markup code
 				embed_image_as_base64 = true, -- paste image as base64 string instead of saving to file
-                process_cmd = "convert -quality 25 - -",
-				max_base64_size = 1000, -- max size of base64 string in KB
+				-- process_cmd = "convert -quality 25 - -",
+				max_base64_size = 500, -- max size of base64 string in KB
 				template = "$FILE_PATH", -- default template
 
 				drag_and_drop = {

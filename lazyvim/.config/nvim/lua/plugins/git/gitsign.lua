@@ -3,7 +3,6 @@ return { -- git signs highlights text that has changed since the list
 	-- hunks in a commit.
 	{
 		"lewis6991/gitsigns.nvim",
-        enabled = false,
 		event = "LazyFile",
 		opts = {
 			signs = {

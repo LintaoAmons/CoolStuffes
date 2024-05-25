@@ -8,7 +8,6 @@ local set_autocmds = function(autocmds)
 end
 
 local autocmds = {
-
 	-- Autosave on focus change
 	{
 		{ "BufLeave", "WinLeave", "FocusLost" },
