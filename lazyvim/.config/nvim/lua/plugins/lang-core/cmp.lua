@@ -1,5 +1,5 @@
 return {
-    -- use CmpStatus to check the running cmp sources
+	-- use CmpStatus to check the running cmp sources
 	-- auto completion
 	{
 		"hrsh7th/nvim-cmp",
@@ -41,15 +41,15 @@ return {
 				}, {
 					{ name = "buffer" },
 				}),
-				formatting = {
-					format = function(_, item)
-						local icons = require("lazyvim.config").icons.kinds
-						if icons[item.kind] then
-							item.kind = icons[item.kind] .. item.kind
-						end
-						return item
-					end,
-				},
+				-- formatting = {
+				-- 	format = function(_, item)
+				-- 		local icons = require("azyvim.config").icons.kinds
+				-- 		if icons[item.kind] then
+				-- 			item.kind = icons[item.kind] .. item.kind
+				-- 		end
+				-- 		return item
+				-- 	end,
+				-- },
 				experimental = {
 					ghost_text = {
 						hl_group = "CmpGhostText",

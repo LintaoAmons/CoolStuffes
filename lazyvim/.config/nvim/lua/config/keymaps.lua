@@ -1,9 +1,25 @@
--- Keymaps are automatically loaded on the VeryLazy event
--- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
--- Add any additional keymaps here
-vim.keymap.del("n", "<leader>l", {})
-vim.keymap.del({ "n", "i", "v" }, "<A-j>", {})
-vim.keymap.del({ "n", "i", "v" }, "<A-k>", {})
+-- don't overwrite the clipboard
+vim.keymap.set("v", "p", "P")
+
+-- explorer
+vim.keymap.set("n", "<leader>fl", "<cmd>Neotree reveal reveal_force_cwd<cr>", { desc = "ExplorerFindFileLocation" })
+vim.keymap.set("n", "<M-1>", "<cmd>Neotree toggle<cr>", { desc = "ExplorerToggle" })
+
+vim.keymap.set("n", "<M-e>", "<cmd>Telescope frecency<cr>", { desc = "FindRecentFiles" })
+vim.keymap.set({ "n", "v" }, "<M-k><M-k>", "<cmd>Lspsaga code_action<cr>", { desc = "CodeActions" })
+vim.keymap.set({ "i", "v", "t" }, "jk", [[<C-\><C-n>]], { buffer = 0 })
+
+vim.keymap.set("n", "<leader>ss", "<cmd>Lspsaga outline<cr>", { desc = "ToggleOutline" })
+vim.keymap.set("v", "<C-M-j>", "<CMD>VisualDuplicate +1<CR>", { desc = "Duplication" })
+
+-- diagnostic
+vim.keymap.set("n", "<leader>sd", "<CMD>Lspsaga show_diagnostics<CR>", { desc = "show_diagnostics" })
+
+vim.keymap.set("n", "<C-M-l>", "<cmd>vertical resize +5<cr>", { desc = "Increase window width" })
+vim.keymap.set("n", "<C-M-h>", "<cmd>vertical resize -5<cr>", { desc = "Decrease window width" })
+
+vim.keymap.set("n", "<leader>e", ":Triptych<CR>", { silent = true })
+vim.keymap.set("n", "<C-i>", ":Telescope toggleterm_manager<CR>", { silent = true })
 
 local command_keymappings = {
 	["BookmarksGotoRecent"] = { modes = "n,v", keys = "mg" },
@@ -112,43 +128,3 @@ end
 
 registerKeys()
 
--- don't overwrite the clipboard
-vim.keymap.set("v", "p", "P")
-
--- explorer
-vim.keymap.set("n", "<leader>fl", "<cmd>Neotree reveal reveal_force_cwd<cr>", { desc = "ExplorerFindFileLocation" })
-vim.keymap.set("n", "<M-1>", "<cmd>Neotree toggle<cr>", { desc = "ExplorerToggle" })
-
-vim.keymap.set("n", "<M-e>", "<cmd>Telescope frecency<cr>", { desc = "FindRecentFiles" })
-vim.keymap.set({ "n", "v" }, "<M-k><M-k>", "<cmd>Lspsaga code_action<cr>", { desc = "CodeActions" })
-vim.keymap.set({ "i", "v", "t" }, "jk", [[<C-\><C-n>]], { buffer = 0 })
-
-vim.keymap.set("n", "<leader>ss", "<cmd>Lspsaga outline<cr>", { desc = "ToggleOutline" })
-vim.keymap.set("v", "<C-M-j>", "<CMD>VisualDuplicate +1<CR>", { desc = "Duplication" })
-
--- diagnostic
-vim.keymap.set("n", "<leader>sd", "<CMD>Lspsaga show_diagnostics<CR>", { desc = "show_diagnostics" })
-
--- DO NOT USE THIS IN YOU OWN CONFIG!!
--- use `vim.keymap.set` instead
-local Util = require("lazyvim.util")
-local map = Util.safe_keymap_set
-map("n", "<C-M-l>", "<cmd>vertical resize +5<cr>", { desc = "Increase window width" })
-map("n", "<C-M-h>", "<cmd>vertical resize -5<cr>", { desc = "Decrease window width" })
-
--- TODO: Move to easy-commands
-function _G.set_terminal_keymaps()
-	local opts = { buffer = 0 }
-	vim.keymap.set("t", "jk", [[<C-\><C-n>]], opts)
-end
-
-local lazyterm = function()
-	require("lazyvim.util").terminal.open(nil, { cwd = require("lazyvim.util").root.get() })
-end
-map("n", "<c-\\>", lazyterm, { desc = "Terminal (root dir)" })
-map("t", "<C-\\>", "<cmd>close<cr>", { desc = "Hide Terminal" })
-
--- if you only want these mappings for toggle term use term://*toggleterm#* instead
-vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
-
-vim.keymap.set("n", "<leader>e", ":Triptych<CR>", { silent = true })

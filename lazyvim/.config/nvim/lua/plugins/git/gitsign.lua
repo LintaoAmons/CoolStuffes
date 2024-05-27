@@ -1,9 +1,9 @@
-return { -- git signs highlights text that has changed since the list
+return {
+    -- git signs highlights text that has changed since the list
 	-- git commit, and also lets you interactively stage & unstage
 	-- hunks in a commit.
 	{
 		"lewis6991/gitsigns.nvim",
-		event = "LazyFile",
 		opts = {
 			signs = {
 				add = { text = "▎" },
@@ -14,7 +14,7 @@ return { -- git signs highlights text that has changed since the list
 				untracked = { text = "▎" },
 			},
 			on_attach = function(buffer)
-				local gs = package.loaded.gitsigns
+				local gs = require("gitsigns")
 
 				local function map(mode, l, r, desc)
 					vim.keymap.set(mode, l, r, { buffer = buffer, desc = desc })
