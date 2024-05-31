@@ -1,7 +1,6 @@
 return {
 	{
 		"LintaoAmons/cd-project.nvim",
-		event = "VeryLazy",
 		init = function()
 			require("cd-project").setup({
 				projects_config_filepath = vim.fs.normalize(vim.fn.stdpath("data") .. "/cd-project.nvim.json"),

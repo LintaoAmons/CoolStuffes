@@ -2,7 +2,6 @@ if true then
 	return {}
 end
 
-
 -- use as example to show how to create a language autocmd group
 vim.api.nvim_create_augroup("langTerraform", { clear = true })
 
@@ -40,7 +39,17 @@ return {
 		end,
 	},
 
-    -- mason lsp,debugger install
+  -- format
+	{
+		"stevearc/conform.nvim",
+		opts = {
+			formatters_by_ft = {
+				json = { "jq" },
+			},
+		},
+	},
+
+	-- mason lsp,debugger install
 	{
 		"williamboman/mason.nvim",
 		opts = function(_, opts)

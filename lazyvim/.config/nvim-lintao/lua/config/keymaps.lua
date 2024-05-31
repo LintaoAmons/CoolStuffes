@@ -2,6 +2,7 @@
 vim.keymap.set("v", "p", "P")
 
 -- explorer
+vim.keymap.set("i", "jk", "<ESC>")
 vim.keymap.set("n", "<leader>fl", "<cmd>Neotree reveal reveal_force_cwd<cr>", { desc = "ExplorerFindFileLocation" })
 vim.keymap.set("n", "<M-1>", "<cmd>Neotree toggle<cr>", { desc = "ExplorerToggle" })
 
@@ -97,7 +98,7 @@ local command_keymappings = {
 	["RunCurrentBuffer"] = "<M-r>",
 	["RunShellAtBufDir"] = { modes = "n,v", keys = "<leader>rk" },
 	["RunShellCurrentLine"] = { modes = "n,v", keys = "<leader>rl" },
-	["MaximiseWindowAsPopup"] = { modes = "n,v,t", keys = "<leader>wp" },
+	["MaximiseWindowAsPopup"] = { modes = "n,v", keys = "<leader>wp" },
 }
 
 -- neovide use <D-key> represents the cmd key in mac

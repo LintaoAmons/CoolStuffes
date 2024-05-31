@@ -39,10 +39,10 @@ return {
 				-- It always welcome to send me back your good commands and usecases
 				---@type EasyCommand.Command[]
 				myCommands = {
-                    {
-                        name = "ShowWorkspaceDiagnostics",
-                        callback = "Lspsaga show_workspace_diagnostics",
-                    },
+					{
+						name = "ShowWorkspaceDiagnostics",
+						callback = "Lspsaga show_workspace_diagnostics",
+					},
 					{
 						name = "TempTerminal",
 						callback = function()
