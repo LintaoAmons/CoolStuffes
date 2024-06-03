@@ -3,12 +3,13 @@ if true then
 end
 
 -- use as example to show how to create a language autocmd group
-vim.api.nvim_create_augroup("langTerraform", { clear = true })
+local name = "langHttp"
+vim.api.nvim_create_augroup(name, { clear = true })
 
 -- use as example to show how to automatically set the filetype
 -- fix tfvars (https://www.reddit.com/r/neovim/comments/125gctj/e5248_invalid_character_in_group_name_with/)
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-	group = "langTerraform",
+	group = name,
 	pattern = {
 		"*.tf",
 		"*.tfvars",
@@ -19,13 +20,30 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 -- use as example to show how to automatically set the indentation of a specific filetype
 -- Set indentation to 2 spaces
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-	group = "langTerraform",
+	group = name,
 	pattern = {
 		"*.tf",
 		"*.tfvars",
 	},
 	command = "setlocal shiftwidth=2 tabstop=2",
 })
+
+-- set local keybindings
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+	group = name,
+	pattern = {
+		"*.http",
+	},
+	callback = function()
+		vim.keymap.set('n', "<C-r>", "<Cmd>Rest run<CR>", {
+			noremap = true,
+			silent = true,
+			nowait = true,
+			buffer = vim.api.nvim_get_current_buf(),
+		})
+	end,
+})
+
 
 return {
 

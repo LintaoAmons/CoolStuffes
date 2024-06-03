@@ -6,4 +6,5 @@ return {
 	{ import = "plugins.editor-enhance" },
 	{ import = "plugins.lang" },
 	{ import = "plugins.ui" },
+	{ import = "plugins.dev" },
 }

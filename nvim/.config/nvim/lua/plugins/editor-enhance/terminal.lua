@@ -28,6 +28,7 @@ return {
 				i = {
 					["<CR>"] = { action = actions.open_term, exit_on_action = true },
 					["<C-d>"] = { action = actions.delete_term, exit_on_action = false },
+					["<C-t>"] = { action = actions.toggle_term, exit_on_action = false },
 				},
 				n = {
 					["<CR>"] = { action = actions.create_and_name_term, exit_on_action = true },

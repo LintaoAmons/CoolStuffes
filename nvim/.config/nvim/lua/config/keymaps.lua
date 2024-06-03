@@ -1,6 +1,8 @@
 -- don't overwrite the clipboard
 vim.keymap.set("v", "p", "P")
 
+vim.keymap.set('n', 'j', 'gj')
+vim.keymap.set('n', 'k', 'gk')
 -- explorer
 vim.keymap.set("i", "jk", "<ESC>")
 vim.keymap.set("n", "<leader>fl", "<cmd>Neotree reveal reveal_force_cwd<cr>", { desc = "ExplorerFindFileLocation" })
@@ -20,7 +22,9 @@ vim.keymap.set("n", "<C-M-l>", "<cmd>vertical resize +5<cr>", { desc = "Increase
 vim.keymap.set("n", "<C-M-h>", "<cmd>vertical resize -5<cr>", { desc = "Decrease window width" })
 
 vim.keymap.set("n", "<leader>e", ":Triptych<CR>", { silent = true })
-vim.keymap.set("n", "<C-i>", ":Telescope toggleterm_manager<CR>", { silent = true })
+vim.keymap.set("n", "<leader>i", ":Telescope toggleterm_manager<CR>", { silent = true })
+
+vim.keymap.set("n", "<C-p>", ":Telescope smart_open<CR>", { silent = true })
 
 local command_keymappings = {
 	["BookmarksGotoRecent"] = { modes = "n,v", keys = "mg" },
@@ -50,7 +54,6 @@ local command_keymappings = {
 	["FoldAll"] = "<leader>zc",
 	["UnFoldAll"] = "<leader>zo",
 	["FindCommands"] = { modes = "n,i,v", keys = "<C-M-p>" },
-	["FindFiles"] = "<C-p>",
 	["NoHighlight"] = "<leader>nl",
 	["Format"] = "<leader>fm",
 	["QuitNvim"] = "<M-q>",
