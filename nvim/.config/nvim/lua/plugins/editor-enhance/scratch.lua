@@ -1,8 +1,5 @@
 return {
 	"LintaoAmons/scratch.nvim",
-	branch = "config-refacor",
-	-- dir = "/Users/lintao/Documents/oatnil/release/scratch.nvim",
-	-- dir = "/Volumes/t7ex/Documents/oatnil/release/scratch.nvim",
 	opts = {
 		scratch_config = {
 			scratch_file_dir = vim.fn.stdpath("cache") .. "/scratch.nvim", -- where your scratch files will be put
