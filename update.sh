@@ -16,7 +16,7 @@ fi
 
 # Declare an associative array containing the tools and their configuration paths
 declare -A share_items=(
-  [lazyvim]="$LAZYVIM"
+  [nvim]="$NVIM"
 )
 
 # Iterate through the array and synchronize each configuration file
