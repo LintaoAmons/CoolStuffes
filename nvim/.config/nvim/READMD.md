@@ -67,4 +67,32 @@
 
 ## TODO
 
-- [ ] Format
+- [ ] lsp :: go to next error
+
+## Tips
+
+### Refactor keymaps
+
+The goal of this Refactor is all the code can be sourced at runtime thus change the behaviour without restart neovim
+
+### fzf-lua to find find and order by modified date desc
+
+```lua
+require('fzf-lua').files({ cmd = 'rg --files --sort modified /Users/lintao/.cache/nvim-lintao/scratch.nvim' })
+```
+
+### Visual mode keymaps
+> 797bb635 ./lua/plugins/editor-enhance/encode-decode.lua:92
+
+`C-u` in Keybinding:
+`:<C-u>` clears any existing command-line input. This ensures a clean state before running the Lua function.
+This is especially useful when mapping functions to visual mode keybindings because Vim could otherwise append the function call to any existing text on the command line, leading to errors.
+
+```lua
+vim.api.nvim_set_keymap("v", "<leader>ie", ":<c-u>lua encode_selected_chars()<cr>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("v", "<leader>id", ":<C-u>lua decode_selected_chars()<CR>", { noremap = true, silent = true })
+```
+
+### CMP stop working
+
+Check if you are in macro record mode

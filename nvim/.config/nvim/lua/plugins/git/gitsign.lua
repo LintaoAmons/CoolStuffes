@@ -1,24 +1,34 @@
-return {
-    -- git signs highlights text that has changed since the list
-	-- git commit, and also lets you interactively stage & unstage
-	-- hunks in a commit.
-	{
-		"lewis6991/gitsigns.nvim",
-		opts = {
-			signs = {
-				add = { text = "▎" },
-				change = { text = "▎" },
-				delete = { text = "" },
-				topdelete = { text = "" },
-				changedelete = { text = "▎" },
-				untracked = { text = "▎" },
-			},
-			on_attach = function(buffer)
-				local gs = require("gitsigns")
+local prev_hunk = function()
+  require("gitsigns").prev_hunk({ navigation_message = false })
+end
+vim.keymap.set("n", "gk", prev_hunk)
 
-				local function map(mode, l, r, desc)
-					vim.keymap.set(mode, l, r, { buffer = buffer, desc = desc })
-				end
+local next_hunk = function()
+  require("gitsigns").next_hunk({ navigation_message = false })
+end
+vim.keymap.set("n", "gj", next_hunk)
+
+return {
+  -- git signs highlights text that has changed since the list
+  -- git commit, and also lets you interactively stage & unstage
+  -- hunks in a commit.
+  {
+    "lewis6991/gitsigns.nvim",
+    opts = {
+      signs = {
+        add = { text = "▎" },
+        change = { text = "▎" },
+        delete = { text = "" },
+        topdelete = { text = "" },
+        changedelete = { text = "▎" },
+        untracked = { text = "▎" },
+      },
+      on_attach = function(buffer)
+        local gs = require("gitsigns")
+
+        local function map(mode, l, r, desc)
+          vim.keymap.set(mode, l, r, { buffer = buffer, desc = desc })
+        end
 
                 -- stylua: ignore start
                 map("n", "]h", gs.next_hunk, "Next Hunk")
@@ -33,7 +43,7 @@ return {
                 map("n", "<leader>ghd", gs.diffthis, "Diff This")
                 map("n", "<leader>ghD", function() gs.diffthis("~") end, "Diff This ~")
                 map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", "GitSigns Select Hunk")
-			end,
-		},
-	},
+      end,
+    },
+  },
 }

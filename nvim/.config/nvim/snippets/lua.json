@@ -1,0 +1,1 @@
+{"nvim_keymap_and_command_def":{"body":["-- ToggleOutline","vim.keymap.set(\"n\", \"<cmd>split<cr>\", \"<leader>ws\")","vim.api.nvim_create_user_command(\"SplitHorizotally\", \"split\", {})","-- end"],"prefix":"nvim_keymap_and_command_def"}}

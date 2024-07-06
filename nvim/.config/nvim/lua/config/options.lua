@@ -25,6 +25,7 @@ opt.laststatus       = 3        -- show statusline in last window
 opt.linebreak        = true     -- Wrap long lines at 'breakat' (if 'wrap' is set)
 opt.list             = true     -- Show helpful character indicators
 opt.relativenumber   = true     -- Show relative line numbers
+opt.number           = true     -- Show current line's real line number instead of 0
 opt.pumblend         = 0        -- Make builtin completion menus slightly transparent
 opt.pumheight        = 10       -- Make popup menu smaller
 opt.ruler            = false    -- Don't show cursor position
@@ -76,5 +77,4 @@ opt.formatlistpat          = [[^\s*[0-9\-\+\*]\+[\.\)]*\s\+]]
 
 --stylua: ignore end
 --
-opt.clipboard = 'unnamedplus'
-
+opt.clipboard = "unnamedplus"

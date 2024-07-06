@@ -6,11 +6,11 @@ return
 -- at the end of each match, letting you quickly jump to a specific
 -- location.
 {
-	"folke/flash.nvim",
-	event = "VeryLazy",
-	vscode = true,
-	---@type Flash.Config
-	opts = {},
+  "folke/flash.nvim",
+  event = "VeryLazy",
+  vscode = true,
+  ---@type Flash.Config
+  opts = {},
     -- stylua: ignore
     keys = {
       { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
