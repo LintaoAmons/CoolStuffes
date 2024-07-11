@@ -4,23 +4,6 @@
 -- - https://github.com/anasrar/.dotfiles/blob/4c444c3ab2986db6ca7e2a47068222e47fd232e2/neovim/.config/nvim/lua/rin/DAP/languages/typescript.lua
 
 return {
-  {
-    "nvim-neotest/neotest-jest",
-    config = function()
-      require("neotest").setup({
-        adapters = {
-          require("neotest-jest")({
-            jestCommand = "npm test --",
-            jestConfigFile = "custom.jest.config.ts",
-            env = { CI = true },
-            cwd = function(path)
-              return vim.fn.getcwd()
-            end,
-          }),
-        },
-      })
-    end,
-  },
   -- add typescript to treesitter
   {
     "nvim-treesitter/nvim-treesitter",

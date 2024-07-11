@@ -71,51 +71,16 @@ vim.keymap.set("n", "<C-M-h>", "<cmd>vertical resize -5<cr>", { desc = "Decrease
 vim.keymap.set("n", "<leader>e", ":Triptych<CR>", { silent = true })
 
 local command_keymappings = {
-  ["ObsidianQuickSwitch"] = "<leader>nf", -- note finder
-
-  -- HACK: DB
-  ["DBUIToggle"] = "<M-C-9>",
-
-  ["GpAppend"] = { keys = "<M-k>i", modes = "v" },
-  ["TmuxNavigateLeft"] = "<C-h>",
-  ["TmuxNavigateRight"] = "<C-l>",
-  ["TmuxNavigateUp"] = "<M-k>",
-  ["TmuxNavigateDown"] = "<C-j>",
-  ["FoldAll"] = "<leader>zc",
-  ["UnFoldAll"] = "<leader>zo",
-  ["FindCommands"] = { modes = "n,i,v", keys = "<C-M-p>" },
-
   ["Scratch"] = "<M-C-n>",
   ["ScratchOpen"] = "<M-C-o>",
-  ["FindInProject"] = { modes = "n,v", keys = "<C-f>f" },
-  ["FindFileInDir"] = { modes = "n,v", keys = "<C-f>d" },
-  ["GrepInDir"] = { modes = "n,v", keys = "<C-f>g" },
-  ["SearchOrReplace"] = { modes = "n,v", keys = "<C-M-f>" },
   ["Rename"] = "<leader>rn",
   ["CdProjectTab"] = "<C-q>",
 
   -- HACK: GIT
-  ["PeekGitChange"] = "<M-k>j",
-  ["GitCommit"] = "<M-k>c",
   ["GitDiff"] = "<M-0>",
   ["GitStatus"] = "<leader>gs",
   ["Git"] = "<leader>gg",
   ["BlameLine"] = "<leader>gl",
-  ["BufferPrev"] = "<S-h>",
-  ["BufferNext"] = "<S-l>",
-
-  ["TestRunNearest"] = "<leader>rt",
-  ["PeekDefinition"] = "<M-k>k",
-  ["PeekTypeDefinition"] = "<M-k>l",
-  ["GoToFunctionName"] = "gm",
-
-  ["LspFinder"] = "<M-k>f",
-
-  -- ["SendSelectedToTerminalAndRun"] = { modes = "n,v", keys = "<leader>sk" },
-  -- ["SendLineToTerminalAndRun"] = { modes = "n,v", keys = "<leader>sl" },
-  -- ["RunCurrentBuffer"] = "<M-r>",
-  -- ["RunShellAtBufDir"] = { modes = "n,v", keys = "<leader>rk" },
-  -- ["RunShellCurrentLine"] = { modes = "n,v", keys = "<leader>rl" },
 }
 
 -- neovide use <D-key> represents the cmd key in mac

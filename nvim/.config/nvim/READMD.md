@@ -69,6 +69,9 @@
 
 - [ ] lsp :: go to next error
 
+- [ ] context_menu: refactor actions
+
+
 ## Tips
 
 ### Refactor keymaps

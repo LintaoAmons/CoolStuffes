@@ -14,7 +14,6 @@ opt.undofile       = true     -- Enable persistent undo
 opt.swapfile       = false
 opt.guifont        = 'FiraCode Nerd Font:h16'
 opt.cmdheight      = 0
-opt.foldenable     = false
 opt.clipboard      = ""
 
 -- UI =========================================================================

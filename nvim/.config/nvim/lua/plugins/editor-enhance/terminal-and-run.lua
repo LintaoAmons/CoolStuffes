@@ -36,15 +36,7 @@ end
 vim.keymap.set({ "n", "v" }, "<leader>sl", send_line_to_terminal_and_run)
 vim.api.nvim_create_user_command("SendLineToTerminalAndRun", send_line_to_terminal_and_run, {})
 
-local run_current_line = function()
-  local sys = require("util.base.sys")
-  local stringUtil = require("util.base.strings")
-  local currentLine = editor.buf.read.get_current_line()
-  local stdout = vim.fn.system(currentLine)
-  local result = stringUtil.split_into_lines(stdout)
-  editor.buf.write.put_lines(result, "l", true, true)
-  pcall(sys.copy_to_system_clipboard, stringUtil.join(result, "\n"))
-end
+local run_current_line = require("features.terminal-and-run").run_current_line
 vim.keymap.set({ "n", "v" }, "<leader>rl", run_current_line)
 vim.api.nvim_create_user_command("RunCurrentLine", run_current_line, {})
 
@@ -58,7 +50,13 @@ local run_selected = function()
   pcall(sys.copy_to_system_clipboard, stringUtil.join(result, "\n"))
 end
 vim.keymap.set({ "n", "v" }, "<leader>rk", run_selected)
-vim.api.nvim_create_user_command("RunSelected", run_selected, {})
+vim.api.nvim_create_user_command("RunSelected", run_selected, {});
+
+(function()
+  local a = require("features.terminal-and-run").run_file
+  vim.keymap.set({ "n", "v" }, "<M-r>", a)
+  vim.api.nvim_create_user_command("RunFile", a, {})
+end)();
 
 -- REF: https://github.com/AstroNvim/astrocommunity/blob/d64d788e163f6d759e8a1adf4281dd5dd2841a78/lua/astrocommunity/terminal-integration/toggleterm-manager-nvim/init.lua
 -- if you only want these mappings for toggle term use term://*toggleterm#* instead
@@ -74,29 +72,4 @@ end
 
 vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
 
-return {
-  "ryanmsnyder/toggleterm-manager.nvim",
-  dependencies = {
-    "akinsho/nvim-toggleterm.lua",
-    "nvim-telescope/telescope.nvim",
-    "nvim-lua/plenary.nvim", -- only needed because it's a dependency of telescope
-  },
-  config = function()
-    local toggleterm_manager = require("toggleterm-manager")
-    local actions = toggleterm_manager.actions
-
-    toggleterm_manager.setup({
-      mappings = {
-        i = {
-          ["<CR>"] = { action = actions.open_term, exit_on_action = true },
-          ["<C-d>"] = { action = actions.delete_term, exit_on_action = false },
-          ["<C-t>"] = { action = actions.toggle_term, exit_on_action = false },
-        },
-        n = {
-          ["<CR>"] = { action = actions.create_and_name_term, exit_on_action = true },
-          ["x"] = { action = actions.delete_term, exit_on_action = false },
-        },
-      },
-    })
-  end,
-}
+return {}

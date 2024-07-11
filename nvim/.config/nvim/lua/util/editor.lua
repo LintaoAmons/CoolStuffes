@@ -308,7 +308,7 @@ end
 --- Create a new horizontal splitted buffer
 --- and write the content into the buffer
 ---@param content string[]
----@param opts {vertical: boolean}
+---@param opts {vertical: boolean, ft?: string}
 local function split_and_write(content, opts)
   if opts.vertical then
     vim.cmd("vnew")
@@ -327,6 +327,9 @@ local function split_and_write(content, opts)
 
   -- Set the buffer as unmodified
   vim.cmd("setlocal nomodified")
+  if opts.ft then
+    vim.bo.ft = opts.ft
+  end
 end
 
 ---@param terminal_chan number

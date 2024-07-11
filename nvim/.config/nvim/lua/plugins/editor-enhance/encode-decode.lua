@@ -20,7 +20,7 @@ local function encode_selected_chars()
     -- Increment each character in the current line
     for col = col_start, col_end do
       local char = line:sub(col, col)
-      if char ~= " " and char ~= "\t" then
+      if char and char ~= " " and char ~= "\t" then
         local new_char = string.char(char:byte() + 1)
         new_line = new_line .. new_char
       else
@@ -57,7 +57,7 @@ local function decode_selected_chars()
     -- Decrement each character in the current line
     for col = col_start, col_end do
       local char = line:sub(col, col)
-      if char ~= " " and char ~= "\t" then
+      if char and char ~= " " and char ~= "\t" then
         local new_char = string.char(char:byte() - 1)
         new_line = new_line .. new_char
       else
@@ -72,8 +72,8 @@ local function decode_selected_chars()
   end
 end
 
-vim.keymap.set("n", "<leader>ie", encode_selected_chars)
-vim.keymap.set("n", "<leader>id", decode_selected_chars)
+vim.keymap.set({ "n", "v" }, "<leader>ie", encode_selected_chars)
+vim.keymap.set({ "n", "v" }, "<leader>id", decode_selected_chars)
 
 -- Revised Explanation:
 -- C-u in Keybinding:

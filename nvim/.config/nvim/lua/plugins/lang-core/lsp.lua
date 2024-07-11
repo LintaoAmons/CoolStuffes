@@ -1,16 +1,69 @@
-local code_action = "Lspsaga code_action"
-vim.keymap.set("n", "<M-k>k", "<cmd>" .. code_action .. "<cr>")
-vim.api.nvim_create_user_command("CodeAction", code_action, {})
-
 local goto_definition = "Lspsaga goto_definition"
 vim.keymap.set("n", "gd", "<cmd>" .. goto_definition .. "<cr>")
 vim.api.nvim_create_user_command("GotoDefinition", goto_definition, {})
 
 local goto_function_name = "AerialPrev"
 vim.keymap.set("n", "gm", "<cmd>" .. goto_function_name .. "<cr>")
-vim.api.nvim_create_user_command("GoToFunctionName", goto_function_name, {})
+vim.api.nvim_create_user_command("GoToFunctionName", goto_function_name, {});
+
+(function()
+  local pos_equal = function(p1, p2)
+    local r1, c1 = unpack(p1)
+    local r2, c2 = unpack(p2)
+    return r1 == r2 and c1 == c2
+  end
+
+  local goto_error_then_hint = function()
+    local pos = vim.api.nvim_win_get_cursor(0)
+    vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR, wrap = true })
+    local pos2 = vim.api.nvim_win_get_cursor(0)
+    if pos_equal(pos, pos2) then
+      vim.diagnostic.goto_next({ wrap = true })
+    end
+  end
+  vim.keymap.set("n", "]e", goto_error_then_hint)
+end)();
+
+(function()
+  local pos_equal = function(p1, p2)
+    local r1, c1 = unpack(p1)
+    local r2, c2 = unpack(p2)
+    return r1 == r2 and c1 == c2
+  end
+
+  local goto_error_then_hint_prev = function()
+    local pos = vim.api.nvim_win_get_cursor(0)
+    vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR, wrap = true })
+    local pos2 = vim.api.nvim_win_get_cursor(0)
+    if pos_equal(pos, pos2) then
+      vim.diagnostic.goto_prev({ wrap = true })
+    end
+  end
+  vim.keymap.set("n", "[e", goto_error_then_hint_prev)
+end)()
 
 return {
+  {
+    "ray-x/lsp_signature.nvim",
+    event = "VeryLazy",
+    opts = {},
+    config = function()
+      require("lsp_signature").setup({
+        floating_window = false,
+        hint_prefix = "", -- Panda for parameter, NOTE: for the terminal not support emoji, might crash
+        -- or, provide a table with 3 icons
+        -- hint_prefix = {
+        --     above = "↙ ",  -- when the hint is on the line above the current line
+        --     current = "← ",  -- when the hint is on the same line
+        --     below = "↖ "  -- when the hint is on the line below the current line
+        -- }
+        hint_scheme = "String",
+        hint_inline = function()
+          return false
+        end,
+      })
+    end,
+  },
   {
     "williamboman/mason.nvim",
     opts = { ensure_installed = { "prettier" } },

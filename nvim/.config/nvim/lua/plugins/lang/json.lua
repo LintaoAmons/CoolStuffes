@@ -1,3 +1,18 @@
+(function()
+  local a = function()
+    local sys = require("util.base.sys")
+    local editor = require("util.editor")
+
+    vim.ui.input({ prompt = 'Query pattern, e.g. `.[] | .["@message"].message`' }, function(pattern)
+      local absPath = editor.buf.read.get_buf_abs_path()
+      local stdout, _, stderr = sys.run_sync({ "jq", pattern, absPath }, ".")
+      local result = stdout or stderr
+      editor.split_and_write(result, { vertical = true, ft = "json" })
+    end)
+  end
+  vim.keymap.set({ "n", "v" }, "rq", a)
+end)()
+
 return {
   -- treesitter syntax hightlight
   {
