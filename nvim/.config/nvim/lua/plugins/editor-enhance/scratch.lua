@@ -22,7 +22,7 @@ return {
           },
         },
       },
-      window_cmd = "rightbelow vsplit", -- 'vsplit' | 'split' | 'edit' | 'tabedit' | 'rightbelow vsplit'
+      window_cmd = "edit", -- 'vsplit' | 'split' | 'edit' | 'tabedit' | 'rightbelow vsplit'
       file_picker = "fzflua",
       localKeys = {
         {

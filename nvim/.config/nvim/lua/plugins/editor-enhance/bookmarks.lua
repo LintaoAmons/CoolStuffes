@@ -5,13 +5,14 @@ vim.keymap.set("n", "mo", "<cmd>" .. "BookmarksGoto" .. "<cr>")
 
 return {
   {
-    -- "LintaoAmons/bookmarks.nvim",
+    "LintaoAmons/bookmarks.nvim",
+    branch = "dev",
     event = "VeryLazy",
-    dir = "/Volumes/t7ex/Documents/oatnil/beta/bookmarks.nvim",
+    -- dir = "/Volumes/t7ex/Documents/oatnil/beta/bookmarks.nvim",
     dependencies = {
       { "nvim-neo-tree/neo-tree.nvim" },
+      { "ibhagwan/fzf-lua" },
     },
-    -- branch = "dev",
     config = function()
       require("bookmarks").setup({
         json_db_path = vim.fn.stdpath("data") .. "/bookmarks.db.json",

@@ -10,6 +10,19 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 })
 
 return {
+  -- {
+  --   dir = "/Volumes/t7ex/Documents/oatnil/beta/context-menu.nvim",
+  --   opts = function(_, opts)
+  --     local new_item = {
+  --       cmd = "test",
+  --       callback = function(_)
+  --         vim.print("test")
+  --       end,
+  --     }
+  --     opts.add_menu_items = opts.add_menu_items or {}
+  --     table.insert(opts.add_menu_items, new_item)
+  --   end,
+  -- },
   -- treesitter syntax hightlight
   {
     "nvim-treesitter/nvim-treesitter",

@@ -1,7 +1,7 @@
 return {
   {
-    -- "LintaoAmons/cd-project.nvim",
-    dir = "/Volumes/t7ex/Documents/oatnil/release/cd-project.nvim",
+    "LintaoAmons/cd-project.nvim",
+    -- dir = "/Volumes/t7ex/Documents/oatnil/release/cd-project.nvim",
     init = function()
       require("cd-project").setup({
         projects_config_filepath = vim.fn.stdpath("data") .. "/cd-project.nvim.json",

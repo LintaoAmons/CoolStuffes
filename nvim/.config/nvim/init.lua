@@ -18,3 +18,8 @@ require("lazy").setup({
     notify = false, -- get a notification when changes are found
   },
 })
+
+-- don't know why, have to put it here
+vim.keymap.set({ "n", "x", "o" }, "/", function()
+  require("flash").jump()
+end, {})
