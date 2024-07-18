@@ -9,6 +9,86 @@ end
 vim.keymap.set("n", "gj", next_hunk)
 
 return {
+  {
+    dir = "/Volumes/t7ex/Documents/oatnil/beta/context-menu.nvim",
+    opts = function(_, opts)
+      local new_items = {
+        {
+          cmd = "Git",
+          order = 85,
+          action = {
+            type = "sub_cmds",
+            sub_cmds = {
+              {
+                cmd = "Commit Log Diagram",
+                order = 86,
+                action = {
+                  type = "callback",
+                  callback = function(_)
+                    vim.cmd([[Flog]])
+                  end,
+                },
+              },
+              {
+                cmd = "Git :: Blame",
+                order = 85,
+                action = {
+                  type = "callback",
+                  callback = function(_)
+                    vim.cmd([[Gitsigns blame]])
+                  end,
+                },
+              },
+              {
+                cmd = "Git :: Peek",
+                order = 80,
+                action = {
+                  type = "callback",
+                  callback = function(_)
+                    vim.cmd([[Gitsigns preview_hunk]])
+                  end,
+                },
+              },
+              {
+                cmd = "Git :: Reset Hunk",
+                order = 81,
+                action = {
+                  type = "callback",
+                  callback = function(_)
+                    vim.cmd([[Gitsigns reset_hunk]])
+                  end,
+                },
+              },
+              {
+                cmd = "Git :: Reset Buffer",
+                order = 82,
+                action = {
+                  type = "callback",
+                  callback = function(_)
+                    vim.cmd([[Gitsigns reset_buffer]])
+                  end,
+                },
+              },
+              {
+                cmd = "Git :: Diff Current Buffer",
+                order = 83,
+                action = {
+                  type = "callback",
+                  callback = function(_)
+                    require("gitsigns").diffthis()
+                  end,
+                },
+              },
+            },
+          },
+        },
+      }
+      opts.add_menu_items = opts.add_menu_items or {}
+      for _, i in ipairs(new_items) do
+        table.insert(opts.add_menu_items, i)
+      end
+    end,
+  },
   -- git signs highlights text that has changed since the list
   -- git commit, and also lets you interactively stage & unstage
   -- hunks in a commit.
@@ -23,27 +103,6 @@ return {
         changedelete = { text = "▎" },
         untracked = { text = "▎" },
       },
-      on_attach = function(buffer)
-        local gs = require("gitsigns")
-
-        local function map(mode, l, r, desc)
-          vim.keymap.set(mode, l, r, { buffer = buffer, desc = desc })
-        end
-
-                -- stylua: ignore start
-                map("n", "]h", gs.next_hunk, "Next Hunk")
-                map("n", "[h", gs.prev_hunk, "Prev Hunk")
-                map({ "n", "v" }, "<leader>ghs", ":Gitsigns stage_hunk<CR>", "Stage Hunk")
-                map({ "n", "v" }, "<leader>ghr", ":Gitsigns reset_hunk<CR>", "Reset Hunk")
-                map("n", "<leader>ghS", gs.stage_buffer, "Stage Buffer")
-                map("n", "<leader>ghu", gs.undo_stage_hunk, "Undo Stage Hunk")
-                map("n", "<leader>ghR", gs.reset_buffer, "Reset Buffer")
-                map("n", "<leader>ghp", gs.preview_hunk_inline, "Preview Hunk Inline")
-                map("n", "<leader>ghb", function() gs.blame_line({ full = true }) end, "Blame Line")
-                map("n", "<leader>ghd", gs.diffthis, "Diff This")
-                map("n", "<leader>ghD", function() gs.diffthis("~") end, "Diff This ~")
-                map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", "GitSigns Select Hunk")
-      end,
     },
   },
 }

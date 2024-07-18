@@ -1,20 +1,28 @@
--- use as example to show how to create a language autocmd group
-local name = "langHttp"
-vim.api.nvim_create_augroup(name, { clear = true })
-
-vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-  group = name,
-  pattern = {
-    "*.http",
+return {
+  {
+    dir = "/Volumes/t7ex/Documents/oatnil/beta/context-menu.nvim",
+    opts = function(_, opts)
+      local new_item = {
+        cmd = "Send HTTP Request",
+        ft = {"http"},
+        action = {
+          type = "callback",
+          callback = function(_)
+            require("kulala").run()
+          end,
+        },
+      }
+      opts.add_menu_items = opts.add_menu_items or {}
+      table.insert(opts.add_menu_items, new_item)
+    end,
   },
-  callback = function()
-    vim.keymap.set("n", "<M-r>", "<Cmd>Rest run<CR>", {
-      noremap = true,
-      silent = true,
-      nowait = true,
-      buffer = vim.api.nvim_get_current_buf(),
-    })
-  end,
-})
 
-return {}
+  -- HTTP REST-Client Interface
+  {
+    "mistweaverco/kulala.nvim",
+    config = function()
+      -- Setup is required, even if you don't pass any options
+      require("kulala").setup()
+    end,
+  },
+}

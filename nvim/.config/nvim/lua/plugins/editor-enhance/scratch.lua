@@ -5,7 +5,7 @@ return {
   config = function()
     require("scratch").setup({
       scratch_file_dir = vim.fn.stdpath("cache") .. "/scratch.nvim", -- where your scratch files will be put
-      filetypes = { "lua", "js", "sh", "ts", "md" }, -- you can simply put filetype here
+      filetypes = { "lua", "js", "sh", "ts", "md", "txt"}, -- you can simply put filetype here
       filetype_details = { -- or, you can have more control here
         json = {}, -- empty table is fine
         ["project-name.md"] = {

@@ -1,3 +1,7 @@
+vim.api.nvim_create_user_command("PutMessage", function()
+  vim.cmd([[put =execute('messages')]])
+end, {})
+
 return {
   {
     "folke/lazydev.nvim",

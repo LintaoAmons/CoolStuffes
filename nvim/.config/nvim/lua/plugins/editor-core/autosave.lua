@@ -25,3 +25,6 @@ function ToggleAutoSave()
 end
 
 ToggleAutoSave()
+vim.api.nvim_create_user_command("ToggleAutoSave", ToggleAutoSave, {})
+
+return {}

@@ -25,6 +25,14 @@ return {
   -- },
   -- treesitter syntax hightlight
   {
+    "stevearc/conform.nvim",
+
+    opts = function(_, opts)
+      opts.formatters_by_ft["lua"] = { "stylua" }
+    end,
+  },
+
+  {
     "nvim-treesitter/nvim-treesitter",
     opts = function(_, opts)
       if type(opts.ensure_installed) == "table" then

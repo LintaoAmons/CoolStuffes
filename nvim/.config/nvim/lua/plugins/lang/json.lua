@@ -2,7 +2,7 @@ local jq_query = function()
   local sys = require("util.base.sys")
   local editor = require("util.editor")
 
-  vim.ui.input({ prompt = 'Query pattern, e.g. `.[] | .["@message"].message`' }, function(pattern)
+  vim.ui.input({ prompt = 'Query pattern, e.g. `.[] | .["@message"].message` ' }, function(pattern)
     local absPath = editor.buf.read.get_buf_abs_path()
     local stdout, _, stderr = sys.run_sync({ "jq", pattern, absPath }, ".")
     local result = stdout or stderr
@@ -11,14 +11,6 @@ local jq_query = function()
 end
 vim.keymap.set({ "n", "v" }, "rq", jq_query)
 
-local function menu_item_routine(func, context)
-  vim.api.nvim_set_current_buf(context.buffer)
-  vim.api.nvim_set_current_win(context.window)
-  vim.api.nvim_win_close(context.menu_window, true)
-  vim.api.nvim_buf_delete(context.menu_buffer, {})
-  func()
-end
-
 return {
   {
     dir = "/Volumes/t7ex/Documents/oatnil/beta/context-menu.nvim",
@@ -26,9 +18,12 @@ return {
       local new_item = {
         cmd = "jq_query",
         ft = { "json" },
-        callback = function(context)
-          menu_item_routine(jq_query, context)
-        end,
+        action = {
+          type = "callback",
+          callback = function(_)
+            jq_query()
+          end,
+        },
       }
       opts.add_menu_items = opts.add_menu_items or {}
       table.insert(opts.add_menu_items, new_item)

@@ -3,19 +3,6 @@ vim.keymap.set("n", "<M-0>", "<cmd>" .. gitStatus .. "<cr>")
 vim.api.nvim_create_user_command("GitStatus", gitStatus, {})
 
 return {
-  {
-    "rbong/vim-flog",
-    event = "VeryLazy",
-    cmd = { "Flog", "Flogsplit", "Floggit" },
-    dependencies = {
-      "tpope/vim-fugitive",
-    },
-  },
-
-  {
-    "FabijanZulj/blame.nvim",
-    event = "VeryLazy",
-  },
 
   {
     "sindrets/diffview.nvim",

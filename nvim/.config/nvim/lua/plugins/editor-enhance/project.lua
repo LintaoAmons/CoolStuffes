@@ -12,7 +12,10 @@ return {
         hooks = {
           {
             callback = function(_)
-              vim.cmd("Telescope fd")
+              require("telescope").extensions.smart_open.smart_open({
+                cwd_only = true,
+                filename_first = false,
+              })
             end,
           },
         },

@@ -7,7 +7,18 @@ local function context_dir(state)
   return node.path:gsub("/[^/]*$", "") -- go up one level
 end
 
+vim.keymap.set("n", "<leader>e", function ()
+  require("dropbar.api").pick()
+end)
+
 return {
+  {
+    -- breadcrumbs
+    "Bekaboo/dropbar.nvim",
+    cond = function()
+      return vim.fn.has("nvim-0.10") == 1
+    end,
+  },
   {
     "s1n7ax/nvim-window-picker",
     name = "window-picker",

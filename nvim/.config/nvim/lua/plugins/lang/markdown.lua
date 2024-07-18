@@ -1,5 +1,27 @@
 return {
   {
+    dir = "/Volumes/t7ex/Documents/oatnil/beta/context-menu.nvim",
+    opts = function(_, opts)
+      local new_item = {
+        cmd = "Toggle Markdown View",
+        ft = { "markdown" },
+        action = {
+          type = "callback",
+          callback = function(_)
+            if vim.opt.conceallevel == 2 then
+              vim.opt.conceallevel = 0
+            else
+              vim.opt.conceallevel = 2
+            end
+            vim.cmd([[Markview]])
+          end,
+        },
+      }
+      opts.add_menu_items = opts.add_menu_items or {}
+      table.insert(opts.add_menu_items, new_item)
+    end,
+  },
+  {
     "OXY2DEV/markview.nvim",
 
     dependencies = {

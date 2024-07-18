@@ -68,7 +68,6 @@ vim.keymap.set("n", "<M-1>", "<cmd>Neotree toggle<cr>", { desc = "ExplorerToggle
 vim.keymap.set("n", "<C-M-l>", "<cmd>vertical resize +5<cr>", { desc = "Increase window width" })
 vim.keymap.set("n", "<C-M-h>", "<cmd>vertical resize -5<cr>", { desc = "Decrease window width" })
 
-vim.keymap.set("n", "<leader>e", ":Triptych<CR>", { silent = true })
 
 local command_keymappings = {
   ["Scratch"] = "<M-C-n>",

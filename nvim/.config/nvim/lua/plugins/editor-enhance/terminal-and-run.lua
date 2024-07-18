@@ -2,9 +2,19 @@ local editor = require("util.editor")
 local log = require("util.log")
 
 local disposible_terminal = function()
-  vim.cmd("split")
-  vim.cmd("terminal")
-  vim.api.nvim_feedkeys("i", "n", true) -- 在普通模式下发送字符 'a'
+  local current_config = vim.g.lintao_config or {}
+  local bufnr = current_config.tmp_term_bufnr
+  if bufnr and vim.api.nvim_buf_is_valid(bufnr) then
+    vim.cmd("split")
+    vim.api.nvim_set_current_buf(bufnr)
+    vim.api.nvim_feedkeys("i", "n", true)
+  else
+    vim.cmd("split")
+    vim.cmd("terminal")
+    vim.api.nvim_feedkeys("i", "n", true)
+    current_config.tmp_term_bufnr = vim.api.nvim_get_current_buf()
+    vim.g.lintao_config = current_config
+  end
 end
 vim.keymap.set("n", "<leader>ii", disposible_terminal)
 vim.api.nvim_create_user_command("DisposibleTerminal", disposible_terminal, {})
@@ -53,10 +63,23 @@ vim.keymap.set({ "n", "v" }, "<leader>rk", run_selected)
 vim.api.nvim_create_user_command("RunSelected", run_selected, {});
 
 (function()
+  local function cd_to_buffer_location()
+    local editor = require("util.editor")
+    local cmd = "cd " .. editor.buf.read.get_buf_abs_dir_path()
+    local terminal = editor.get_first_visible_terminal()
+    if not terminal then
+      return log.error("No visible terminal found")
+    end
+    editor.buf.write.send_to_terminal_buf(terminal.id, cmd)
+  end
+  vim.keymap.set({ "n", "v" }, "<leader>si", cd_to_buffer_location)
+end)();
+
+(function()
   local a = require("features.terminal-and-run").run_file
   vim.keymap.set({ "n", "v" }, "<M-r>", a)
   vim.api.nvim_create_user_command("RunFile", a, {})
-end)();
+end)()
 
 -- REF: https://github.com/AstroNvim/astrocommunity/blob/d64d788e163f6d759e8a1adf4281dd5dd2841a78/lua/astrocommunity/terminal-integration/toggleterm-manager-nvim/init.lua
 -- if you only want these mappings for toggle term use term://*toggleterm#* instead
@@ -68,8 +91,29 @@ function _G.set_terminal_keymaps()
   vim.keymap.set("t", "<C-k>", [[<Cmd>wincmd k<CR>]], opts)
   vim.keymap.set("t", "<C-l>", [[<Cmd>wincmd l<CR>]], opts)
   vim.keymap.set("t", "<C-t>", [[<C-\><C-n><C-t>]], opts)
+  vim.keymap.set("t", "<M-w>", [[<Cmd>wincmd c<CR>]], opts)
 end
 
 vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
 
-return {}
+return {
+  {
+    dir = "/Volumes/t7ex/Documents/oatnil/beta/context-menu.nvim",
+    opts = function(_, opts)
+      local new_item = {
+        cmd = "Run File",
+        action = {
+          type = "callback",
+          callback = function(context)
+            if context.ft == "lua" then
+              vim.cmd([[source %]])
+            end
+          end,
+        },
+      }
+
+      opts.add_menu_items = opts.add_menu_items or {}
+      table.insert(opts.add_menu_items, new_item)
+    end,
+  },
+}
