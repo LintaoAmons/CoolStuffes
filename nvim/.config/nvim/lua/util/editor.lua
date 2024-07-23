@@ -308,8 +308,9 @@ end
 --- Create a new horizontal splitted buffer
 --- and write the content into the buffer
 ---@param content string[]
----@param opts {vertical: boolean, ft?: string}
+---@param opts? {vertical?: boolean, ft?: string}
 local function split_and_write(content, opts)
+  opts = opts or {}
   if opts.vertical then
     vim.cmd("vnew")
   else

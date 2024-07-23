@@ -1,3 +1,5 @@
+vim.keymap.set({ "n", "v" }, "<C-q>", "<cmd>CdProject<cr>")
+
 return {
   {
     "LintaoAmons/cd-project.nvim",

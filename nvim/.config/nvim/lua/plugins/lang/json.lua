@@ -15,20 +15,23 @@ return {
   {
     dir = "/Volumes/t7ex/Documents/oatnil/beta/context-menu.nvim",
     opts = function(_, opts)
-      local new_item = {
-        cmd = "jq_query",
-        ft = { "json" },
-        action = {
-          type = "callback",
-          callback = function(_)
-            jq_query()
-          end,
+      require("context-menu").setup({
+        menu_items = {
+          {
+            cmd = "Jq Query",
+            ft = { "json" },
+            action = {
+              type = "callback",
+              callback = function(_)
+                jq_query()
+              end,
+            },
+          },
         },
-      }
-      opts.add_menu_items = opts.add_menu_items or {}
-      table.insert(opts.add_menu_items, new_item)
+      })
     end,
   },
+
   -- treesitter syntax hightlight
   {
     "nvim-treesitter/nvim-treesitter",
@@ -47,14 +50,5 @@ return {
         json = { "jq" },
       },
     },
-  },
-
-  -- mason lsp,debugger install
-  {
-    "williamboman/mason.nvim",
-    opts = function(_, opts)
-      opts.ensure_installed = opts.ensure_installed or {}
-      table.insert(opts.ensure_installed, "js-debug-adapter")
-    end,
   },
 }

@@ -10,13 +10,8 @@ local function copy_line_ref()
   if git_dir ~= "" then
     local project_root = vim.fn.fnamemodify(git_dir, ":p:h:h") -- Get the project root directory
     -- Get the absolute path of the current file
-    local current_file_absolute = vim.fn.expand("%:p")
-
-    -- Calculate the relative path from the project root to the current file
+    local current_file_absolute = vim.fn.expand("%:p") -- Calculate the relative path from the project root to the current file
     local relative_path = string.sub(current_file_absolute, string.len(project_root) + 2)
-    -- vim.print(git_dir)
-    -- vim.print(current_file_absolute)
-    -- vim.print(relative_path)
 
     -- Get the current line and column in the same line by unpacking the cursor position
     local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -67,68 +62,69 @@ vim.api.nvim_create_user_command("CopyBufRelativeDirPath", copy_buf_relative_dir
 return {
   {
     dir = "/Volumes/t7ex/Documents/oatnil/beta/context-menu.nvim",
-    opts = function(_, opts)
-      local new_item = {
-        cmd = "Copy",
-        action = {
-          type = "sub_cmds",
-          sub_cmds = {
-            {
-              cmd = "Copy Line Ref",
-              order = 91,
-              action = {
-                type = "callback",
-                callback = function(_)
-                  copy_line_ref()
-                end,
-              },
-            },
-            {
-              cmd = "Copy Buf Name",
-              order = 92,
-              action = {
-                type = "callback",
-                callback = function(_)
-                  copy_buf_name()
-                end,
-              },
-            },
-            {
-              cmd = "Copy Buf Abs Path",
-              order = 92,
-              action = {
-                type = "callback",
-                callback = function(_)
-                  copy_buf_abs_path()
-                end,
-              },
-            },
-            {
-              cmd = "Copy Buf Abs Dir Path",
-              order = 92,
-              action = {
-                type = "callback",
-                callback = function(_)
-                  copy_buf_abs_dir_path()
-                end,
-              },
-            },
-            {
-              cmd = "Copy Buf Relative Dir Path",
-              order = 92,
-              action = {
-                type = "callback",
-                callback = function(_)
-                  copy_buf_relative_dir_path()
-                end,
+    opts = function(_)
+      require("context-menu").setup({
+        menu_items = {
+          {
+            cmd = "Copy",
+            action = {
+              type = "sub_cmds",
+              sub_cmds = {
+                {
+                  cmd = "Copy Line Ref",
+                  order = 91,
+                  action = {
+                    type = "callback",
+                    callback = function(_)
+                      copy_line_ref()
+                    end,
+                  },
+                },
+                {
+                  cmd = "Copy Buf Name",
+                  order = 92,
+                  action = {
+                    type = "callback",
+                    callback = function(_)
+                      copy_buf_name()
+                    end,
+                  },
+                },
+                {
+                  cmd = "Copy Buf Abs Path",
+                  order = 92,
+                  action = {
+                    type = "callback",
+                    callback = function(_)
+                      copy_buf_abs_path()
+                    end,
+                  },
+                },
+                {
+                  cmd = "Copy Buf Abs Dir Path",
+                  order = 92,
+                  action = {
+                    type = "callback",
+                    callback = function(_)
+                      copy_buf_abs_dir_path()
+                    end,
+                  },
+                },
+                {
+                  cmd = "Copy Buf Relative Dir Path",
+                  order = 92,
+                  action = {
+                    type = "callback",
+                    callback = function(_)
+                      copy_buf_relative_dir_path()
+                    end,
+                  },
+                },
               },
             },
           },
         },
-      }
-
-      opts.add_menu_items = opts.add_menu_items or {}
-      table.insert(opts.add_menu_items, new_item)
+      })
     end,
   },
 }

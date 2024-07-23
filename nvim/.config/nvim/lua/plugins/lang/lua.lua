@@ -6,7 +6,7 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   pattern = {
     "*.lua",
   },
-  command = "setlocal shiftwidth=2 tabstop=2",
+  command = "setlocal shiftwidth=2 tabstop=2 expandtab",
 })
 
 return {

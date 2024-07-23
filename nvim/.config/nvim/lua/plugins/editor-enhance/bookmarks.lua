@@ -6,9 +6,7 @@ vim.keymap.set("n", "mo", "<cmd>" .. "BookmarksGoto" .. "<cr>")
 return {
   {
     "LintaoAmons/bookmarks.nvim",
-    branch = "dev",
     event = "VeryLazy",
-    -- dir = "/Volumes/t7ex/Documents/oatnil/beta/bookmarks.nvim",
     dependencies = {
       { "nvim-neo-tree/neo-tree.nvim" },
       { "ibhagwan/fzf-lua" },

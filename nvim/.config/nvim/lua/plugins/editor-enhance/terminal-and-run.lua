@@ -93,27 +93,51 @@ function _G.set_terminal_keymaps()
   vim.keymap.set("t", "<C-t>", [[<C-\><C-n><C-t>]], opts)
   vim.keymap.set("t", "<M-w>", [[<Cmd>wincmd c<CR>]], opts)
 end
-
 vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
 
 return {
   {
     dir = "/Volumes/t7ex/Documents/oatnil/beta/context-menu.nvim",
-    opts = function(_, opts)
-      local new_item = {
-        cmd = "Run File",
-        action = {
-          type = "callback",
-          callback = function(context)
-            if context.ft == "lua" then
-              vim.cmd([[source %]])
-            end
-          end,
+    opts = function()
+      require("context-menu").setup({
+        menu_items = {
+          {
+            cmd = "Run File",
+            not_ft = { "markdown" },
+            action = {
+              type = "callback",
+              callback = function(context)
+                if context.ft == "lua" then
+                  return vim.cmd([[source %]])
+                elseif context.ft == "javascript" then
+                  local stdout = vim.fn.system("node " .. vim.fn.expand("%:p"))
+                  local result = require("util.base.strings").split_into_lines(stdout)
+                  require("util.editor").split_and_write(result, {})
+                elseif context.ft == "typescript" then
+                  local stdout = vim.fn.system("ts-node " .. vim.fn.expand("%:p"))
+                  local result = require("util.base.strings").split_into_lines(stdout)
+                  require("util.editor").split_and_write(result, {})
+                end
+              end,
+            },
+          },
         },
-      }
-
-      opts.add_menu_items = opts.add_menu_items or {}
-      table.insert(opts.add_menu_items, new_item)
+      })
     end,
   },
+
+  -- {
+  --   "michaelb/sniprun",
+  --   branch = "master",
+  --
+  --   build = "sh install.sh",
+  --   -- do 'sh install.sh 1' if you want to force compile locally
+  --   -- (instead of fetching a binary from the github release). Requires Rust >= 1.65
+  --
+  --   config = function()
+  --     require("sniprun").setup({
+  --       -- your options
+  --     })
+  --   end,
+  -- },
 }

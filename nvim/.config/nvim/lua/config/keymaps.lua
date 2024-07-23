@@ -73,7 +73,6 @@ local command_keymappings = {
   ["Scratch"] = "<M-C-n>",
   ["ScratchOpen"] = "<M-C-o>",
   ["Rename"] = "<leader>rn",
-  ["CdProjectTab"] = "<C-q>",
 
   -- HACK: GIT
   ["GitDiff"] = "<M-0>",

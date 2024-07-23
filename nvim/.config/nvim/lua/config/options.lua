@@ -17,7 +17,7 @@ opt.cmdheight      = 0
 opt.clipboard      = ""
 
 -- UI =========================================================================
-vim.opt.conceallevel = 0
+opt.conceallevel = 0
 opt.breakindent      = true     -- Indent wrapped lines to match line start
 opt.cursorline       = true     -- Enable highlighting of the current line
 opt.laststatus       = 3        -- show statusline in last window

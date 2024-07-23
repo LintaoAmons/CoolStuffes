@@ -1,5 +1,8 @@
-local goto_definition = "Lspsaga goto_definition"
-vim.keymap.set("n", "gd", "<cmd>" .. goto_definition .. "<cr>")
+local goto_definition = function()
+  vim.cmd("Lspsaga goto_definition")
+  vim.cmd([[normal! zz]])
+end
+vim.keymap.set("n", "gd", goto_definition)
 vim.api.nvim_create_user_command("GotoDefinition", goto_definition, {})
 
 local goto_function_name = "AerialPrev"
