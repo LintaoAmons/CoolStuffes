@@ -1,43 +1,46 @@
-local toggle_debug_ui = function()
-  require("dapui").toggle()
-end
-vim.api.nvim_create_user_command("ToggleDebugUI", toggle_debug_ui, {})
+local function setup_keybinding_and_commands()
+  local toggle_debug_ui = function()
+    require("dapui").toggle()
+  end
+  vim.api.nvim_create_user_command("ToggleDebugUI", toggle_debug_ui, {})
 
-local eval = function()
-  require("dapui").eval()
-end
-vim.keymap.set("n", "<M-5>", eval)
-vim.api.nvim_create_user_command("DebugEval", eval, {})
+  local eval = function()
+    require("dapui").eval()
+  end
+  vim.keymap.set("n", "<M-5>", eval)
+  vim.api.nvim_create_user_command("DebugEval", eval, {})
 
-local start_or_continue = function()
-  require("dap").continue()
-end
-vim.keymap.set("n", "<F5>", start_or_continue)
-vim.api.nvim_create_user_command("DebugStartOrContinue", start_or_continue, {})
+  local start_or_continue = function()
+    require("dap").continue()
+  end
+  vim.keymap.set("n", "<F5>", start_or_continue)
+  vim.api.nvim_create_user_command("DebugStartOrContinue", start_or_continue, {})
 
-local step_over = function()
-  require("dap").step_over()
-end
-vim.keymap.set("n", "<F8>", step_over)
-vim.api.nvim_create_user_command("DebugStepOver", step_over, {})
+  local step_over = function()
+    require("dap").step_over()
+  end
+  vim.keymap.set("n", "<F8>", step_over)
+  vim.api.nvim_create_user_command("DebugStepOver", step_over, {})
 
-local step_into = function()
-  require("dap").step_into()
-end
-vim.keymap.set("n", "<F7>", step_into)
-vim.api.nvim_create_user_command("DebugStepInto", step_into, {})
+  local step_into = function()
+    require("dap").step_into()
+  end
+  vim.keymap.set("n", "<F7>", step_into)
+  vim.api.nvim_create_user_command("DebugStepInto", step_into, {})
 
-local terminate = function()
-  require("dap").terminate()
-end
-vim.keymap.set("n", "<M-F2>", terminate)
-vim.api.nvim_create_user_command("DebugStop", terminate, {})
+  local terminate = function()
+    require("dap").terminate()
+  end
+  vim.keymap.set("n", "<M-F2>", terminate)
+  vim.api.nvim_create_user_command("DebugStop", terminate, {})
 
-local toggle_break_point = function()
-  require("dap").toggle_breakpoint()
+  local toggle_break_point = function()
+    require("dap").toggle_breakpoint()
+  end
+  vim.keymap.set("n", "<F9>", toggle_break_point)
+  vim.api.nvim_create_user_command("DebugToggleBreakpoint", toggle_break_point, {})
 end
-vim.keymap.set("n", "<F9>", toggle_break_point)
-vim.api.nvim_create_user_command("DebugToggleBreakpoint", toggle_break_point, {})
+setup_keybinding_and_commands()
 
 return {
   -- fancy UI for the debugger
@@ -127,10 +130,10 @@ return {
 
     config = function()
       -- stylua ignore
-      vim.fn.sign_define("DapBreakpoint", { text = "🔴", linehl = "DapBreakpoint", })
-      vim.fn.sign_define("DapStopped", { text = "▶️", linehl = "DapBreakpointStopped", })
-      vim.fn.sign_define("DapBreakpointCondition", { text = " ", })
-      vim.fn.sign_define("DapLogPoint", { text = ".>", })
+      vim.fn.sign_define("DapBreakpoint", { text = "🔴", linehl = "DapBreakpoint" })
+      vim.fn.sign_define("DapStopped", { text = "▶️", linehl = "DapBreakpointStopped" })
+      vim.fn.sign_define("DapBreakpointCondition", { text = " " })
+      vim.fn.sign_define("DapLogPoint", { text = ".>" })
     end,
   },
 }

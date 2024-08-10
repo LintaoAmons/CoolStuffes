@@ -5,6 +5,7 @@ vim.keymap.set({ "n", "x", "o" }, "sj", function() require("flash").jump() end, 
 
 return {
   "folke/flash.nvim",
+  -- enabled = false,
   event = "VeryLazy",
 
   ---@type Flash.Config

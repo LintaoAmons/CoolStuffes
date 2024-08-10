@@ -1,3 +1,5 @@
+vim.keymap.set({"n", "v"}, "<leader>ev", "Refactor extract_var", {})
+
 return {
   {
     "ThePrimeagen/refactoring.nvim",
@@ -6,7 +8,7 @@ return {
       "nvim-treesitter/nvim-treesitter",
     },
     config = function()
-      require("refactoring").setup()
+      require("refactoring").setup({})
     end,
   },
 }

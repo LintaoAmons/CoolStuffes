@@ -5,7 +5,7 @@ local disposible_terminal = function()
   local current_config = vim.g.lintao_config or {}
   local bufnr = current_config.tmp_term_bufnr
   if bufnr and vim.api.nvim_buf_is_valid(bufnr) then
-    vim.cmd("split")
+    vim.cmd("split") -- TODO: check if the window is opened or not
     vim.api.nvim_set_current_buf(bufnr)
     vim.api.nvim_feedkeys("i", "n", true)
   else

@@ -14,13 +14,6 @@ local smart_open_cmd = function()
 end
 vim.keymap.set("n", "<C-p>", smart_open_cmd, { silent = true })
 
-local smart_open_all = function()
-  require("telescope").extensions.smart_open.smart_open({
-    cwd_only = false,
-    filename_first = false,
-  })
-end
-vim.api.nvim_create_user_command("SmartOpenAll", smart_open_all, {})
 
 local command1 = "split"
 vim.keymap.set("n", "<leader>ws", "<cmd>" .. command1 .. "<cr>")
@@ -65,14 +58,11 @@ vim.keymap.set("n", "<M-1>", "<cmd>Neotree toggle<cr>", { desc = "ExplorerToggle
 
 -- diagnostic
 
-vim.keymap.set("n", "<C-M-l>", "<cmd>vertical resize +5<cr>", { desc = "Increase window width" })
-vim.keymap.set("n", "<C-M-h>", "<cmd>vertical resize -5<cr>", { desc = "Decrease window width" })
 
 
 local command_keymappings = {
   ["Scratch"] = "<M-C-n>",
   ["ScratchOpen"] = "<M-C-o>",
-  ["Rename"] = "<leader>rn",
 
   -- HACK: GIT
   ["GitDiff"] = "<M-0>",

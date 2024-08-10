@@ -2,13 +2,16 @@
 -- stylua: ignore start
 -- Leader key =================================================================
 vim.g.mapleader    = " "
+vim.g.maplocalleader  = ","
 vim.g.autoformat   = false
 local opt = vim.opt
 
 -- General ====================================================================
 opt.backup         = false    -- Don't store backup
 opt.mouse          = 'a'      -- Enable mouse
-opt.switchbuf      = 'usetab' -- Use already opened buffers when switching
+-- https://github.com/mfussenegger/nvim-dap/blob/master/doc/dap.txt
+-- error: Stopped at line 2 but `switchbuf` setting prevented jump to location. Target buffer 55 not open in any window?
+-- opt.switchbuf      = 'usetab' -- Use already opened buffers when switching
 opt.writebackup    = false    -- Don't store backup
 opt.undofile       = true     -- Enable persistent undo
 opt.swapfile       = false

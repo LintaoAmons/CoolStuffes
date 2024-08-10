@@ -11,10 +11,11 @@ return { -- Multi Cursor
       -- TODO: fix mappings <C-q> already been used to check project
       -- permanent mappings
       ["Find Under"] = "<M-b>",
-      ["Find Subword Under"] = "<M-b>", -- firstly select some text, then <M-b>
+      ["Find Subword Under"] = "<M-b>", -- select some text firstly , then <M-b>
 
-      ["Select Cursor Down"] = "<M-C-j>", -- switch upper and lower window with <C-w>jk
-      ["Select Cursor Up"] = "<M-C-k>",
+      -- ["Select Cursor Down"] = "<C-S-j>", -- switch upper and lower window with <C-w>jk
+      -- ["Select Cursor Up"] = "<C-S-k>",
+      ["Select Cursor Down"] = "<C-S-j>",
 
       -- ["Start Regex Search"] = "<C-q>/",
       ["Visual All"] = "\\A", --  1. selected some text in visual mode 2. press <C-q>j to select all

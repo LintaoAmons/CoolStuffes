@@ -1,3 +1,16 @@
+local group_name = "langHttp"
+vim.api.nvim_create_augroup(group_name, { clear = true })
+
+-- Set indentation to 2 spaces
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  group = group_name,
+  pattern = {
+    "*.http",
+  },
+  command = "setlocal ft=http",
+})
+
+
 return {
   {
     dir = "/Volumes/t7ex/Documents/oatnil/beta/context-menu.nvim",

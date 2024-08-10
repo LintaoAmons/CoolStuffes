@@ -2,6 +2,30 @@ return {
   -- use CmpStatus to check the running cmp sources
   -- auto completion
   {
+    "onsails/lspkind-nvim",
+    event = "InsertEnter",
+    config = function()
+      local lspkind = require("lspkind")
+      local cmp = require("cmp")
+      cmp.setup({
+        formatting = {
+          format = lspkind.cmp_format({
+            mode = "symbol", -- show only symbol annotations
+            maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+            -- can also be a function to dynamically calculate max width such as
+            -- maxwidth = function() return math.floor(0.45 * vim.o.columns) end,
+            ellipsis_char = "...", -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
+            show_labelDetails = true, -- show labelDetails in menu. Disabled by default
+            symbol_map = { Supermaven = "" },
+
+            -- The function below will be called before any actual modifications from lspkind
+            -- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
+          }),
+        },
+      })
+    end,
+  },
+  {
     "hrsh7th/nvim-cmp",
     version = false, -- last release is way too old
     event = "InsertEnter",
@@ -35,18 +59,10 @@ return {
         sources = cmp.config.sources({
           { name = "nvim_lsp" },
           { name = "path" },
+          { name = "supermaven" },
         }, {
           { name = "buffer" },
         }),
-        -- formatting = {
-        -- 	format = function(_, item)
-        -- 		local icons = require("azyvim.config").icons.kinds
-        -- 		if icons[item.kind] then
-        -- 			item.kind = icons[item.kind] .. item.kind
-        -- 		end
-        -- 		return item
-        -- 	end,
-        -- },
         -- experimental = {
         --   ghost_text = {
         --     hl_group = "CmpGhostText",
@@ -101,9 +117,13 @@ return {
               end,
             },
             ["<Tab>"] = {
-              c = function()
-                cmp.select_next_item()
-                cmp.select_prev_item()
+              c = function(fallback)
+                if cmp.visible() then
+                  cmp.select_next_item()
+                  cmp.select_prev_item()
+                else
+                  fallback()
+                end
               end,
             },
           }),

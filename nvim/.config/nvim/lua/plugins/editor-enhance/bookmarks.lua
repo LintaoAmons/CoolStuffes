@@ -5,8 +5,10 @@ vim.keymap.set("n", "mo", "<cmd>" .. "BookmarksGoto" .. "<cr>")
 
 return {
   {
-    "LintaoAmons/bookmarks.nvim",
+    -- "LintaoAmons/bookmarks.nvim",
+    -- branch = "dev",
     event = "VeryLazy",
+    dir = "/Volumes/t7ex/Documents/oatnil/beta/bookmarks.nvim",
     dependencies = {
       { "nvim-neo-tree/neo-tree.nvim" },
       { "ibhagwan/fzf-lua" },
@@ -14,10 +16,23 @@ return {
     config = function()
       require("bookmarks").setup({
         json_db_path = vim.fn.stdpath("data") .. "/bookmarks.db.json",
-        signs = {
-          mark = {
-            icon = "󰃁",
-            color = "red",
+        mark = { icon = "󰃁", color = "red", line_bg = "#572626" },
+        picker = {
+          -- choose built-in sort logic by name: string, find all the sort logics in `bookmarks.adapter.sort-logic`
+          -- or custom sort logic: function(bookmarks: Bookmarks.Bookmark[]): nil
+          sort_by = "created_at",
+        },
+        treeview = {
+          keymap = {
+            quit = { "q", "<ESC>" },
+            refresh = "R",
+            create_folder = "a",
+            tree_cut = "x",
+            tree_paste = "p",
+            collapse = "o",
+            delete = "d",
+            active = "s",
+            copy = "c",
           },
         },
         hooks = {

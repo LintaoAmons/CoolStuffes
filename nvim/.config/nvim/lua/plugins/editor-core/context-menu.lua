@@ -1,4 +1,4 @@
-vim.keymap.set({ "v", "n" }, "<M-l>", function()
+vim.keymap.set({ "v", "n" }, "<M-l>", function() -- use wezterm remapping <c-enter> to "<M-l>"
   require("context-menu").trigger_context_menu()
 end, {})
 

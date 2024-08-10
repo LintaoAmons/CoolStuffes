@@ -186,6 +186,7 @@ local function close_all_other_windows(ignore_patterns)
       ipairs(ignore_patterns or {
         "filesystem", -- neo-tree
         "Trouble",
+        "term",
       })
     do
       if string.find(buf_name, pattern) then

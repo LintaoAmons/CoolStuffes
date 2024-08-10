@@ -35,15 +35,13 @@ return {
     end,
   },
   {
-    "OXY2DEV/markview.nvim",
-
-    dependencies = {
-      -- You may not need this if you don't lazy load
-      -- Or if the parsers are in your $RUNTIMEPATH
-      "nvim-treesitter/nvim-treesitter",
-
-      "nvim-tree/nvim-web-devicons",
-    },
+    "MeanderingProgrammer/markdown.nvim",
+    main = "render-markdown",
+    opts = {},
+    name = "render-markdown", -- Only needed if you have another plugin named markdown.nvim
+    dependencies = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.nvim" }, -- if you use the mini.nvim suite
+    -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' }, -- if you use standalone mini plugins
+    -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
   },
   {
     "williamboman/mason.nvim",
@@ -63,8 +61,16 @@ return {
     event = "BufEnter",
     branch = "fix/insert-base64-markup",
     opts = {
+      filetypes = {
+        markdown = {
+          relative_to_current_file = true,
+          dir_path = function()
+            return "asset_" .. vim.fn.expand("%:t:r")
+          end,
+        },
+      },
       default = {
-        dir_path = "static", -- directory path to save images to, can be relative (cwd or current file) or absolute
+        dir_path = "relative", -- directory path to save images to, can be relative (cwd or current file) or absolute
         file_name = "%Y-%m-%d-%H-%M-%S", -- file name format (see lua.org/pil/22.1.html)
         url_encode_path = false, -- encode spaces and special characters in file path
         use_absolute_path = false, -- expands dir_path to an absolute path
@@ -76,7 +82,7 @@ return {
         insert_mode_after_paste = true, -- enter insert mode after pasting the markup code
         embed_image_as_base64 = true, -- paste image as base64 string instead of saving to file
         -- process_cmd = "convert -quality 25 - -",
-        max_base64_size = 500, -- max size of base64 string in KB
+        max_base64_size = 200, -- max size of base64 string in KB
         template = "$FILE_PATH", -- default template
 
         drag_and_drop = {

@@ -7,16 +7,75 @@ local function context_dir(state)
   return node.path:gsub("/[^/]*$", "") -- go up one level
 end
 
-vim.keymap.set("n", "<leader>e", function ()
+vim.keymap.set("n", "<leader>e", function()
   require("dropbar.api").pick()
 end)
 
 return {
   {
-    -- breadcrumbs
     "Bekaboo/dropbar.nvim",
     cond = function()
       return vim.fn.has("nvim-0.10") == 1
+    end,
+    opts = function()
+      local utils = require("dropbar.utils")
+      return {
+        menu = {
+          -- When on, preview the symbol under the cursor on CursorMoved
+          preview = true,
+          -- When on, automatically set the cursor to the closest previous/next
+          -- clickable component in the direction of cursor movement on CursorMoved
+          quick_navigation = true,
+          entry = {
+            padding = {
+              left = 1,
+              right = 1,
+            },
+          },
+          -- Menu scrollbar options
+          scrollbar = {
+            enable = true,
+            -- The background / gutter of the scrollbar
+            -- When false, only the scrollbar thumb is shown.
+            background = true,
+          },
+          ---@type table<string, string|function|table<string, string|function>>
+          keymaps = {
+            ["q"] = "<C-w>q",
+            ["<Esc>"] = "<C-w>q",
+            ["h"] = "<C-w>q",
+            ["<CR>"] = function()
+              local menu = utils.menu.get_current()
+              if not menu then
+                return
+              end
+              local cursor = vim.api.nvim_win_get_cursor(menu.win)
+              local component = menu.entries[cursor[1]]:first_clickable(cursor[2])
+              if component then
+                menu:click_on(component, nil, 1, "l")
+              end
+            end,
+            ["l"] = function()
+              local menu = utils.menu.get_current()
+              if not menu then
+                return
+              end
+              local cursor = vim.api.nvim_win_get_cursor(menu.win)
+              local component = menu.entries[cursor[1]]:first_clickable(cursor[2])
+              if component then
+                menu:click_on(component, nil, 1, "l")
+              end
+            end,
+            ["i"] = function()
+              local menu = utils.menu.get_current()
+              if not menu then
+                return
+              end
+              menu:fuzzy_find_open()
+            end,
+          },
+        },
+      }
     end,
   },
   {
@@ -99,19 +158,9 @@ return {
               function(state)
                 local node = state.tree:get_node()
                 if node.type == "directory" then
-                  require("spectre").open({
-                    cwd = node.path,
-                    is_close = true, -- close an exists instance of spectre and open new
-                    is_insert_mode = false,
-                    path = "",
-                  })
+                  require("grug-far").grug_far({ prefills = { paths = node.path } })
                 else
-                  require("spectre").open({
-                    cwd = context_dir(state),
-                    is_close = true, -- close an exists instance of spectre and open new
-                    is_insert_mode = false,
-                    path = node.path:match("^.+/(.+)$"),
-                  })
+                  require("grug-far").grug_far({ prefills = { paths = context_dir(state) } })
                 end
                 -- close neo-tree
                 vim.cmd("Neotree close")

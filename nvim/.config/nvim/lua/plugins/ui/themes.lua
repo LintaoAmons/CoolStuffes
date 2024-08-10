@@ -1,6 +1,17 @@
 -- vim.api.nvim_set_hl(0, "IncSearch", { bg = "#c14a4a" }) -- test color
+-- vim.api.nvim_set_hl(0, "Visual", { bg = "#c14a4a" }) -- test color
 
 return {
+  -- "rktjmp/lush.nvim",
+  -- {
+  --   "ab-dx/ares.nvim",
+  --   name = "ares",
+  --   priority = 1000,
+  --   init = function()
+  --     vim.cmd.colorscheme("ares")
+  --   end,
+  -- },
+  
   {
     "catppuccin/nvim",
     name = "catppuccin",
@@ -371,6 +382,7 @@ return {
       }
     end,
   },
+
   -- {
   --   "AlexvZyl/nordic.nvim",
   --   lazy = false,

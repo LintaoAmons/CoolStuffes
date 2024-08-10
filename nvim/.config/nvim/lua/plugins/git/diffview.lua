@@ -4,7 +4,8 @@ vim.api.nvim_create_user_command("GitStatus", gitStatus, {})
 
 return {
   {
-    "LintaoAmons/context-menu.nvim",
+    dir = "/Volumes/t7ex/Documents/oatnil/beta/context-menu.nvim",
+    -- "LintaoAmons/context-menu.nvim",
     opts = function()
       require("context-menu").setup({
         menu_items = {
@@ -73,20 +74,21 @@ return {
           },
           file_panel = {
             -- stash staged changes
-            ["<M-k>s"] = function()
-              vim.ui.input({ prompt = "Stash msg: " }, function(msg)
-                local Job = require("plenary.job")
-                local stderr = {}
-                Job:new({
-                  command = "git",
-                  args = { "stash", "-m", msg },
-                  cwd = ".",
-                  on_stderr = function(_, data)
-                    table.insert(stderr, data)
-                  end,
-                }):sync()
-              end)
-            end,
+            -- TODO: Add context menu
+            -- ["<M-k>S"] = function()
+            --   vim.ui.input({ prompt = "Stash msg: " }, function(msg)
+            --     local Job = require("plenary.job")
+            --     local stderr = {}
+            --     Job:new({
+            --       command = "git",
+            --       args = { "stash", "-m", msg },
+            --       cwd = ".",
+            --       on_stderr = function(_, data)
+            --         table.insert(stderr, data)
+            --       end,
+            --     }):sync()
+            --   end)
+            -- end,
 
             ["c"] = function()
               vim.ui.input({ prompt = "Commit msg: " }, function(msg)
@@ -104,6 +106,7 @@ return {
             end,
 
             ["p"] = function()
+              vim.notify("Start to push")
               local Job = require("plenary.job")
               local stderr = {}
               Job:new({
@@ -111,13 +114,12 @@ return {
                 args = { "push" },
                 cwd = ".",
                 on_stdout = function(_, data)
-                  vim.print("Pushed to remote")
-                  vim.print(data)
+                  vim.notify("Pushed to remote")
                 end,
                 on_stderr = function(_, data)
                   table.insert(stderr, data)
                 end,
-              }):sync()
+              }):start()
             end,
           },
         },
