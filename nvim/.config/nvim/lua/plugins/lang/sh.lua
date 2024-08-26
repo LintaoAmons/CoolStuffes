@@ -4,6 +4,7 @@ return {
 
     opts = function(_, opts)
       opts.formatters_by_ft["sh"] = { "shfmt" }
+      opts.formatters_by_ft["zsh"] = { "shfmt" }
     end,
   },
   {
@@ -12,14 +13,18 @@ return {
       require("context-menu").setup({
         menu_items = {
           {
-            cmd = "Run As CMD",
+            cmd = "RunCurrentLine",
+            fix = 1,
             ft = { "sh" },
-            callback = function(context)
-              local stdout = vim.fn.system(context.line)
-              local lines = require("util.base.strings").split_into_lines(stdout)
-              vim.api.nvim_set_current_buf(context.buffer)
-              vim.api.nvim_put(lines, "l", true, true)
-            end,
+            action = {
+              type = "callback",
+              callback = function(context)
+                local stdout = vim.fn.system(context.line)
+                local lines = require("util.base.strings").split_into_lines(stdout)
+                vim.api.nvim_set_current_buf(context.buffer)
+                vim.api.nvim_put(lines, "l", true, true)
+              end,
+            },
           },
         },
       })

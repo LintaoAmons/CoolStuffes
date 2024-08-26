@@ -332,9 +332,9 @@ return {
     "nvimdev/lspsaga.nvim",
     config = function()
       require("lspsaga").setup({
-        symbol_in_winbar = {
-          enable = false,
-        },
+        -- symbol_in_winbar = {
+        --   enable = false,
+        -- },
         lightbulb = {
           enable = false,
           enable_in_insert = false,

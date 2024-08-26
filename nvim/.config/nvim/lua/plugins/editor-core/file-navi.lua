@@ -7,75 +7,70 @@ local function context_dir(state)
   return node.path:gsub("/[^/]*$", "") -- go up one level
 end
 
-vim.keymap.set("n", "<leader>e", function()
-  require("dropbar.api").pick()
-end)
+local function open_mini_files()
+  local cmd = function()
+    require("mini.files").open(vim.api.nvim_buf_get_name(0), true)
+  end
+
+  vim.keymap.set("n", "<leader>e", cmd, { noremap = true, silent = true })
+end
+open_mini_files()
+
+-- {
+--   "<leader>e",
+--   function()
+--     require("mini.files").open(vim.api.nvim_buf_get_name(0), true)
+--   end,
+--   desc = "Open mini.files (Directory of Current File)",
+-- },
+-- {
+--   "<leader>E",
+--   function()
+--     require("mini.files").open(vim.uv.cwd(), true)
+--   end,
+--   desc = "Open mini.files (cwd)",
+-- },
 
 return {
   {
-    "Bekaboo/dropbar.nvim",
-    cond = function()
-      return vim.fn.has("nvim-0.10") == 1
-    end,
-    opts = function()
-      local utils = require("dropbar.utils")
-      return {
-        menu = {
-          -- When on, preview the symbol under the cursor on CursorMoved
-          preview = true,
-          -- When on, automatically set the cursor to the closest previous/next
-          -- clickable component in the direction of cursor movement on CursorMoved
-          quick_navigation = true,
-          entry = {
-            padding = {
-              left = 1,
-              right = 1,
-            },
-          },
-          -- Menu scrollbar options
-          scrollbar = {
-            enable = true,
-            -- The background / gutter of the scrollbar
-            -- When false, only the scrollbar thumb is shown.
-            background = true,
-          },
-          ---@type table<string, string|function|table<string, string|function>>
-          keymaps = {
-            ["q"] = "<C-w>q",
-            ["<Esc>"] = "<C-w>q",
-            ["h"] = "<C-w>q",
-            ["<CR>"] = function()
-              local menu = utils.menu.get_current()
-              if not menu then
-                return
-              end
-              local cursor = vim.api.nvim_win_get_cursor(menu.win)
-              local component = menu.entries[cursor[1]]:first_clickable(cursor[2])
-              if component then
-                menu:click_on(component, nil, 1, "l")
-              end
-            end,
-            ["l"] = function()
-              local menu = utils.menu.get_current()
-              if not menu then
-                return
-              end
-              local cursor = vim.api.nvim_win_get_cursor(menu.win)
-              local component = menu.entries[cursor[1]]:first_clickable(cursor[2])
-              if component then
-                menu:click_on(component, nil, 1, "l")
-              end
-            end,
-            ["i"] = function()
-              local menu = utils.menu.get_current()
-              if not menu then
-                return
-              end
-              menu:fuzzy_find_open()
-            end,
-          },
+    -- https://github.com/linkarzu/dotfiles-latest/blob/64707e247c71a2536327e33effab57641c54d001/neovim/neobean/lua/plugins/mini-files.lua#L62
+    "echasnovski/mini.files",
+    version = false,
+    config = function()
+      require("mini.files").setup({ -- General options
+        mappings = {
+          close = "q",
+          -- Use this if you want to open several files
+          -- go_in = "l",
+          -- This opens the file, but quits out of mini.files (default L)
+          go_in_plus = "l",
+          -- I swapped the following 2 (default go_out: h)
+          -- go_out_plus: when you go out, it shows you only 1 item to the right
+          -- go_out: shows you all the items to the right
+          go_out = "H",
+          go_out_plus = "h",
+          -- Default <BS>
+          reset = ",",
+          -- Default @
+          reveal_cwd = ".",
+          show_help = "g?",
+          -- Default =
+          synchronize = "s",
+          trim_left = "<",
+          trim_right = ">",
         },
-      }
+        windows = {
+          preview = true,
+          width_focus = 30,
+          width_preview = 80,
+        },
+        options = {
+          -- Whether to delete permanently or move into module-specific trash
+          permanent_delete = false,
+          -- Whether to use for editing directories
+          use_as_default_explorer = true,
+        },
+      })
     end,
   },
   {
@@ -330,4 +325,71 @@ return {
       })
     end,
   },
+
+  --   {
+  --   "Bekaboo/dropbar.nvim",
+  --   cond = function()
+  --     return vim.fn.has("nvim-0.10") == 1
+  --   end,
+  --   opts = function()
+  --     local utils = require("dropbar.utils")
+  --     return {
+  --       menu = {
+  --         -- When on, preview the symbol under the cursor on CursorMoved
+  --         preview = true,
+  --         -- When on, automatically set the cursor to the closest previous/next
+  --         -- clickable component in the direction of cursor movement on CursorMoved
+  --         quick_navigation = true,
+  --         entry = {
+  --           padding = {
+  --             left = 1,
+  --             right = 1,
+  --           },
+  --         },
+  --         -- Menu scrollbar options
+  --         scrollbar = {
+  --           enable = true,
+  --           -- The background / gutter of the scrollbar
+  --           -- When false, only the scrollbar thumb is shown.
+  --           background = true,
+  --         },
+  --         ---@type table<string, string|function|table<string, string|function>>
+  --         keymaps = {
+  --           ["q"] = "<C-w>q",
+  --           ["<Esc>"] = "<C-w>q",
+  --           ["h"] = "<C-w>q",
+  --           ["<CR>"] = function()
+  --             local menu = utils.menu.get_current()
+  --             if not menu then
+  --               return
+  --             end
+  --             local cursor = vim.api.nvim_win_get_cursor(menu.win)
+  --             local component = menu.entries[cursor[1]]:first_clickable(cursor[2])
+  --             if component then
+  --               menu:click_on(component, nil, 1, "l")
+  --             end
+  --           end,
+  --           ["l"] = function()
+  --             local menu = utils.menu.get_current()
+  --             if not menu then
+  --               return
+  --             end
+  --             local cursor = vim.api.nvim_win_get_cursor(menu.win)
+  --             local component = menu.entries[cursor[1]]:first_clickable(cursor[2])
+  --             if component then
+  --               menu:click_on(component, nil, 1, "l")
+  --             end
+  --           end,
+  --           ["i"] = function()
+  --             local menu = utils.menu.get_current()
+  --             if not menu then
+  --               return
+  --             end
+  --             menu:fuzzy_find_open()
+  --           end,
+  --         },
+  --       },
+  --     }
+  --   end,
+  -- },
 }

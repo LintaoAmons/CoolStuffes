@@ -67,6 +67,7 @@ return {
         menu_items = {
           {
             cmd = "Copy",
+            keymap = "c",
             action = {
               type = "sub_cmds",
               sub_cmds = {

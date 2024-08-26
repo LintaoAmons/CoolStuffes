@@ -377,7 +377,7 @@ return {
         dim_inactive = {
           enabled = true, -- dims the background color of inactive window
           shade = "light",
-          percentage = 0.35, -- percentage of the shade to apply to the inactive window
+          percentage = 0.5, -- percentage of the shade to apply to the inactive window
         },
       }
     end,

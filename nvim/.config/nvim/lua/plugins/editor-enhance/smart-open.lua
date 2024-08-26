@@ -4,6 +4,7 @@ local smart_open_all = function()
     filename_first = false,
   })
 end
+vim.keymap.set("n", "<leader>fp", smart_open_all)
 vim.api.nvim_create_user_command("SmartOpenAll", smart_open_all, {})
 
 return {

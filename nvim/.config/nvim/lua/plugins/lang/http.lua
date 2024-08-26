@@ -10,7 +10,6 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   command = "setlocal ft=http",
 })
 
-
 return {
   {
     dir = "/Volumes/t7ex/Documents/oatnil/beta/context-menu.nvim",
@@ -19,6 +18,7 @@ return {
         menu_items = {
           {
             cmd = "Send HTTP Request",
+            fix = 1,
             ft = { "http" },
             action = {
               type = "callback",

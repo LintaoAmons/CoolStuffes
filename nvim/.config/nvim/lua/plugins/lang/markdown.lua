@@ -21,6 +21,7 @@ return {
             },
           },
           {
+            fix = 1,
             cmd = "Markdown Preview",
             ft = { "markdown" },
             action = {
@@ -30,18 +31,43 @@ return {
               end,
             },
           },
+          {
+            fix = 1,
+            cmd = "Markdown TOC generation",
+            ft = { "markdown" },
+            action = {
+              type = "callback",
+              callback = function(_)
+                vim.cmd([[Mtoc]])
+              end,
+            },
+          },
         },
       })
     end,
   },
   {
-    "MeanderingProgrammer/markdown.nvim",
-    main = "render-markdown",
-    opts = {},
-    name = "render-markdown", -- Only needed if you have another plugin named markdown.nvim
-    dependencies = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.nvim" }, -- if you use the mini.nvim suite
-    -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' }, -- if you use standalone mini plugins
-    -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
+    -- dir = "/Volumes/t7ex/Documents/Github/markdown-toc.nvim",
+    "LintaoAmons/markdown-toc.nvim",
+    ft = "markdown", -- Lazy load on markdown filetype
+    cmd = { "Mtoc" }, -- Or, lazy load on "Mtoc" command
+    opts = {
+      headings = {
+        -- Include headings before the ToC (or current line for `:Mtoc insert`)
+        before_toc = false,
+        -- Either list of lua patterns,
+        -- or a function that returns boolean (true means to EXCLUDE heading)
+        exclude = {},
+        pattern = "^(#+)%s+(.+)$",
+      },
+    },
+  },
+  {
+    "MeanderingProgrammer/render-markdown.nvim",
+    opts = {
+      file_types = { "markdown", "Avante" },
+    },
+    ft = { "markdown", "Avante" },
   },
   {
     "williamboman/mason.nvim",

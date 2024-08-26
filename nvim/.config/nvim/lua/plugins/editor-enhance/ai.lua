@@ -1,17 +1,81 @@
 return {
   {
+    "yetone/avante.nvim",
+    event = "VeryLazy",
+    build = "make",
+    opts = {
+      provider = "openai",
+      openai = {
+        endpoint = "https://api.openai.com/v1",
+        model = "gpt-4o-mini",
+        timeout = 30000, -- Timeout in milliseconds
+        temperature = 0,
+        max_tokens = 4096,
+        ["local"] = false,
+      },
+      mappings = {
+        ask = "<leader>aa",
+        edit = "<leader>ae",
+        refresh = "<leader>ar",
+        --- @class AvanteConflictMappings
+        diff = {
+          ours = "co",
+          theirs = "ct",
+          none = "c0",
+          both = "cb",
+          next = "]x",
+          prev = "[x",
+        },
+        jump = {
+          next = "]]",
+          prev = "[[",
+        },
+        submit = {
+          normal = "<CR>",
+          insert = "<C-g>",
+        },
+        toggle = {
+          debug = "<leader>ad",
+          hint = "<leader>ah",
+        },
+      },
+    },
+    dependencies = {
+      "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
+      "stevearc/dressing.nvim",
+      "nvim-lua/plenary.nvim",
+      "MunifTanjim/nui.nvim",
+      --- The below is optional, make sure to setup it properly if you have lazy=true
+      {
+        "MeanderingProgrammer/render-markdown.nvim",
+        opts = {
+          file_types = { "markdown", "Avante" },
+        },
+        ft = { "markdown", "Avante" },
+      },
+    },
+  },
+  {
     "supermaven-inc/supermaven-nvim",
     config = function()
-        require("supermaven-nvim").setup({
-            disable_keymaps = true,
-            log_level = "error",
-        })
+      require("supermaven-nvim").setup({
+        disable_keymaps = true,
+        log_level = "error",
+      })
 
-        local completion_preview = require("supermaven-nvim.completion_preview")
-        vim.keymap.set('i', '<c-a>', completion_preview.on_accept_suggestion,
-            { noremap = true, silent = true })
-        vim.keymap.set('i', '<c-j>', completion_preview.on_accept_suggestion_word,
-            { noremap = true, silent = true })
+      local completion_preview = require("supermaven-nvim.completion_preview")
+      vim.keymap.set(
+        "i",
+        "<c-a>",
+        completion_preview.on_accept_suggestion,
+        { noremap = true, silent = true }
+      )
+      vim.keymap.set(
+        "i",
+        "<c-j>",
+        completion_preview.on_accept_suggestion_word,
+        { noremap = true, silent = true }
+      )
     end,
   },
   {
@@ -98,7 +162,7 @@ return {
               我希望你扮演我的英语老师，给我出一些适用于日常交流的中文到英文翻译题目。
               在我提供翻译答案后，请分析并指出我的错误，同时提出实用的改进建议，
               以帮助我提高我的英语表达能力，而不是单纯的考试翻译技巧。
-              同时还需要给出你觉得更简练自然的句子，不局限于我给出的翻译，并给出解释.
+              同时还需要给出你觉得更简练自然日常口语化的句子，不局限于我给出的翻译，并给出解释.
               题目的话题或主题应该在大范围内随机生成，
               题目的句型与语法特点也应有变化,并在解释的时候说明考察的句型和语法特点.
               我发出start指令后，从你开始给出随机的题目,句子构成以及难度应该偏难，以长句为主,

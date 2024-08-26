@@ -1,4 +1,4 @@
-vim.keymap.set({ "v", "n" }, "<M-l>", function() -- use wezterm remapping <c-enter> to "<M-l>"
+vim.keymap.set({ "v", "n", "t" }, "<M-l>", function() -- use wezterm remapping <c-enter> to "<M-l>"
   require("context-menu").trigger_context_menu()
 end, {})
 
@@ -11,7 +11,7 @@ return {
         {
           order = 1,
           cmd = "Code Action",
-          not_ft = { "markdown" },
+          not_ft = { "markdown", "toggleterm" },
           action = {
             type = "callback",
             callback = function(_)

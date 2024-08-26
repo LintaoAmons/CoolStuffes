@@ -12,10 +12,4 @@ function M.run_current_line()
   pcall(sys.copy_to_system_clipboard, stringUtil.join(result, "\n"))
 end
 
-function M.run_file()
-  if vim.bo.ft == "javascript" then
-    vim.cmd([[!node %]])
-  end
-end
-
 return M
