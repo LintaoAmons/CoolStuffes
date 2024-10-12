@@ -16,20 +16,14 @@ local function open_mini_files()
 end
 open_mini_files()
 
--- {
---   "<leader>e",
---   function()
---     require("mini.files").open(vim.api.nvim_buf_get_name(0), true)
---   end,
---   desc = "Open mini.files (Directory of Current File)",
--- },
--- {
---   "<leader>E",
---   function()
---     require("mini.files").open(vim.uv.cwd(), true)
---   end,
---   desc = "Open mini.files (cwd)",
--- },
+local function reveal_current_file()
+  local command = "Neotree reveal reveal_force_cwd"
+  vim.keymap.set("n", "<leader>fl", "<cmd>" .. command .. "<cr>", { noremap = true, silent = true })
+  vim.api.nvim_create_user_command("LocateCurrentBuf", command, {})
+end
+reveal_current_file()
+
+vim.keymap.set("n", "<M-1>", "<cmd>Neotree toggle<cr>", { desc = "ExplorerToggle" })
 
 return {
   {
@@ -71,6 +65,9 @@ return {
           use_as_default_explorer = true,
         },
       })
+
+      vim.api.nvim_set_hl(0, 'MiniFilesNormal', { bg = '#111111' })
+      vim.api.nvim_set_hl(0, 'MiniFilesBorder', { bg = '#111111' })
     end,
   },
   {
@@ -215,12 +212,13 @@ return {
               --"node_modules"
             },
             hide_by_pattern = { -- uses glob style patterns
-              "._*", -- mac file info on exFat external disk
+              -- "._*", -- mac file info on exFat external disk
               --"*.meta",
               --"*/src/*/tsconfig.json",
             },
             always_show = { -- remains visible even if other settings would normally hide it
-              --".gitignored",
+              ".gitignored",
+              ".dockerignore",
             },
             never_show = { -- remains hidden even if visible is toggled to true, this overrides always_show
               ".DS_Store",
@@ -235,7 +233,7 @@ return {
             --               -- the current file is changed while the tree is open.
             leave_dirs_open = false, -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
           },
-          group_empty_dirs = false, -- when true, empty folders will be grouped together
+          group_empty_dirs = true, -- when true, empty folders will be grouped together
           hijack_netrw_behavior = "open_default", -- netrw disabled, opening a directory opens neo-tree
           -- in whatever position is specified in window.position
           -- "open_current",  -- netrw disabled, opening a directory opens within the

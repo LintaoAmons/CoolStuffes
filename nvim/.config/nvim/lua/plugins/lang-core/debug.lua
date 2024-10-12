@@ -11,6 +11,10 @@ local function setup_keybinding_and_commands()
   vim.api.nvim_create_user_command("DebugEval", eval, {})
 
   local start_or_continue = function()
+    if vim.fn.filereadable("./vscode/launch.json") then
+      local dap_vscode = require("dap.ext.vscode")
+      dap_vscode.load_launchjs(nil, {})
+    end
     require("dap").continue()
   end
   vim.keymap.set("n", "<F5>", start_or_continue)

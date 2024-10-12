@@ -92,7 +92,7 @@ vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
 
 return {
   {
-    dir = "/Volumes/t7ex/Documents/oatnil/beta/context-menu.nvim",
+"LintaoAmons/context-menu.nvim",
     opts = function()
       require("context-menu").setup({
         menu_items = {
@@ -126,6 +126,49 @@ return {
               callback = function(context)
                 vim.cmd("bd!")
               end,
+            },
+          },
+          {
+            cmd = "Terminal",
+            keymap = "t",
+            action = {
+              type = "sub_cmds",
+              sub_cmds = {
+                {
+                  cmd = "Select Terminal",
+                  action = {
+                    type = "callback",
+                    callback = function(_)
+                      vim.cmd("TermSelect")
+                    end,
+                  },
+                },
+                {
+                  cmd = "New Terminal :: Tab",
+                  action = {
+                    type = "callback",
+                    callback = function(_)
+                      require("toggleterm.terminal").Terminal
+                        :new({
+                          display_name = "Tab",
+                          direction = "tab",
+                          dir = vim.fn.expand("%:p:h"),
+                          auto_scroll = true, -- automatically scroll to the bottom on terminal output
+                        })
+                        :toggle()
+                    end,
+                  },
+                },
+                {
+                  cmd = "Close Terminal",
+                  action = {
+                    type = "callback",
+                    callback = function(_)
+                      vim.cmd("bd!")
+                    end,
+                  },
+                },
+              },
             },
           },
           -- {

@@ -1,33 +1,7 @@
--- Move Lines
-vim.keymap.set("n", "<A-j>", "<cmd>m .+1<cr>==", { desc = "Move Down" })
-vim.keymap.set("n", "<A-k>", "<cmd>m .-2<cr>==", { desc = "Move Up" })
-vim.keymap.set("i", "<A-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move Down" })
-vim.keymap.set("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move Up" })
-vim.keymap.set("v", "<A-j>", ":m '>+1<cr>gv=gv", { desc = "Move Down" })
-vim.keymap.set("v", "<A-k>", ":m '<-2<cr>gv=gv", { desc = "Move Up" })
-
-local smart_open_cmd = function()
-  require("telescope").extensions.smart_open.smart_open({
-    cwd_only = true,
-    filename_first = false,
-  })
-end
-vim.keymap.set("n", "<C-p>", smart_open_cmd, { silent = true })
-
-
 local command1 = "split"
 vim.keymap.set("n", "<leader>ws", "<cmd>" .. command1 .. "<cr>")
 vim.api.nvim_create_user_command("SplitHorizotally", command1, {})
 
-local command2 = "AerialToggle"
-vim.keymap.set("n", "<leader>ss", "<cmd>" .. command2 .. "<cr>")
-vim.api.nvim_create_user_command("ToggleOutline", command2, {})
-local command3 = "Lspsaga peek_definition"
-vim.keymap.set("n", "<leader>ss", "<cmd>" .. command3 .. "<cr>")
-vim.api.nvim_create_user_command("PeekDefinition", command3, {})
-local command4 = "Neotree reveal reveal_force_cwd"
-vim.keymap.set("n", "<leader>fl", "<cmd>" .. command4 .. "<cr>")
-vim.api.nvim_create_user_command("LocateCurrentBuf", command4, {})
 local command5 = "FzfLua live_grep"
 vim.keymap.set("n", "<leader>ff", "<cmd>" .. command5 .. "<cr>")
 vim.api.nvim_create_user_command("LiveGrepInProject", command5, {})
@@ -54,47 +28,3 @@ vim.keymap.set("i", "jk", exit_alias)
 local reload_buffer = "checktime"
 vim.api.nvim_create_user_command("ReloadBuffer", reload_buffer, {})
 
-vim.keymap.set("n", "<M-1>", "<cmd>Neotree toggle<cr>", { desc = "ExplorerToggle" })
-
--- diagnostic
-
-
-
-local command_keymappings = {
-  ["Scratch"] = "<M-C-n>",
-  ["ScratchOpen"] = "<M-C-o>",
-
-  -- HACK: GIT
-  ["GitDiff"] = "<M-0>",
-  ["GitStatus"] = "<leader>gs",
-  ["Git"] = "<leader>gg",
-  ["BlameLine"] = "<leader>gl",
-}
-
--- neovide use <D-key> represents the cmd key in mac
-local function convertNeovideCMDKey(key)
-  if vim.g.neovide then
-    return string.gsub(key, "M%-", "D-")
-  else
-    return key
-  end
-end
-
-local function getKey(keybinding)
-  if type(keybinding) == "string" then
-    return keybinding
-  else
-    return keybinding.keys
-  end
-end
-
-local function registerKeys()
-  for command, keybinding in pairs(command_keymappings) do
-    local key = convertNeovideCMDKey(getKey(keybinding))
-
-    local modes = keybinding.modes and vim.split(keybinding.modes, ",") or { "n" }
-    vim.keymap.set(modes, key, "<CMD>" .. command .. "<CR>", {})
-  end
-end
-
-registerKeys()

@@ -1,3 +1,6 @@
+vim.keymap.set({ "n", "v", "i" }, "<M-C-n>", "<cmd>Scratch<cr>")
+vim.keymap.set({ "n", "v", "i" }, "<M-C-o>", "<cmd>ScratchOpen<cr>")
+
 return {
   "LintaoAmons/scratch.nvim",
   -- branch = "dev",
@@ -5,7 +8,15 @@ return {
   config = function()
     require("scratch").setup({
       scratch_file_dir = vim.fn.stdpath("cache") .. "/scratch.nvim", -- where your scratch files will be put
-      filetypes = { "lua", "js", "sh", "ts", "md", "txt", "http", "html"}, -- you can simply put filetype here
+      filetypes = { "lua", "js", "sh", "ts", "md", "txt", "http", "html", "puml", "py" }, -- you can simply put filetype here
+      hooks = {
+        {
+          callback = function()
+            vim.print("hello")
+            vim.api.nvim_buf_set_lines(0, 0, -1, false, { "hello", "world" })
+          end,
+        },
+      },
       filetype_details = { -- or, you can have more control here
         json = {}, -- empty table is fine
         ["project-name.md"] = {

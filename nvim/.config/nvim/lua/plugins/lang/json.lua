@@ -12,8 +12,29 @@ end
 vim.keymap.set({ "n", "v" }, "rq", jq_query)
 
 return {
+  -- # Syntax hightlight
   {
-    dir = "/Volumes/t7ex/Documents/oatnil/beta/context-menu.nvim",
+    "nvim-treesitter/nvim-treesitter",
+    opts = function(_, opts)
+      -- ## use opts to extend the ensure_installed table
+      vim.g.config_utils.opts_ensure_installed(opts, { "json", "jsonc" })
+    end,
+  },
+
+  -- # Format
+  {
+    "stevearc/conform.nvim",
+    opts = {
+      formatters_by_ft = {
+        json = { "jq", "prettierd", stop_after_first = true },
+        json5 = { "prettierd" },
+        jsonc = { "prettierd" },
+      },
+    },
+  },
+
+  {
+"LintaoAmons/context-menu.nvim",
     opts = function(_, opts)
       require("context-menu").setup({
         menu_items = {
@@ -30,25 +51,5 @@ return {
         },
       })
     end,
-  },
-
-  -- treesitter syntax hightlight
-  {
-    "nvim-treesitter/nvim-treesitter",
-    opts = function(_, opts)
-      if type(opts.ensure_installed) == "table" then
-        vim.list_extend(opts.ensure_installed, { "json", "jsonc" })
-      end
-    end,
-  },
-
-  -- format
-  {
-    "stevearc/conform.nvim",
-    opts = {
-      formatters_by_ft = {
-        json = { "jq" },
-      },
-    },
   },
 }

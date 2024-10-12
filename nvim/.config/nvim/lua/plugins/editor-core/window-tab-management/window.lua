@@ -86,7 +86,6 @@ local open_in_popup_window = {
     })
   end,
   actions = function(cmd)
-    vim.keymap.set("n", "<M-C-p>", cmd)
     vim.api.nvim_create_user_command("OpenInPopupWindow", cmd, {})
   end,
 }

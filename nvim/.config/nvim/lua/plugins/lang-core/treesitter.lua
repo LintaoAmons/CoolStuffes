@@ -20,8 +20,8 @@ return {
   },
   {
     "nvim-treesitter/nvim-treesitter",
-    config = function()
-      require("nvim-treesitter.configs").setup({
+    config = function(_, opts)
+      local config = {
         incremental_selection = {
           enable = true,
           keymaps = {
@@ -30,20 +30,7 @@ return {
           },
         },
 
-        -- A list of parser names, or "all" (the five listed parsers should always be installed)
-        ensure_installed = {
-          "c",
-          "lua",
-          "vim",
-          "vimdoc",
-          "luadoc",
-
-          "query",
-          "terraform",
-          "hcl",
-          "lua",
-          "markdown",
-        },
+        ensure_installed = opts.ensure_installed,
 
         -- Install parsers synchronously (only applied to `ensure_installed`)
         sync_install = false,
@@ -84,7 +71,9 @@ return {
           -- Instead of true it can also be a list of languages
           additional_vim_regex_highlighting = false,
         },
-      })
+      }
+      -- vim.print(config) -- uncomment to see the final config
+      require("nvim-treesitter.configs").setup(config)
     end,
     dependencies = {
       { "nvim-treesitter/nvim-treesitter-textobjects" },

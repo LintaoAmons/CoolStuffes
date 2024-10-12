@@ -1,4 +1,4 @@
-vim.keymap.set({ "n", "x" }, "sc", "<cmd>TextCaseOpenTelescope<CR>")
+vim.keymap.set({ "n", "x" }, "<leader>sc", "<cmd>TextCaseOpenTelescope<CR>")
 
 return {
   {

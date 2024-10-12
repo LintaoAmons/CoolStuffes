@@ -3,51 +3,7 @@ vim.keymap.set("n", "<M-0>", "<cmd>" .. gitStatus .. "<cr>")
 vim.api.nvim_create_user_command("GitStatus", gitStatus, {})
 
 return {
-  {
-    dir = "/Volumes/t7ex/Documents/oatnil/beta/context-menu.nvim",
-    -- "LintaoAmons/context-menu.nvim",
-    opts = function()
-      require("context-menu").setup({
-        menu_items = {
-          {
-            cmd = "Git",
-            action = {
-              type = "sub_cmds",
-              sub_cmds = {
-                {
-                  cmd = "Git Status",
-                  action = {
-                    type = "callback",
-                    callback = function(_)
-                      vim.cmd([[DiffviewOpen]])
-                    end,
-                  },
-                },
-                {
-                  cmd = "Branch History",
-                  action = {
-                    type = "callback",
-                    callback = function(_)
-                      vim.cmd([[DiffviewFileHistory]])
-                    end,
-                  },
-                },
-                {
-                  cmd = "Current File Commit History",
-                  action = {
-                    type = "callback",
-                    callback = function(_)
-                      vim.cmd([[DiffviewFileHistory %]])
-                    end,
-                  },
-                },
-              },
-            },
-          },
-        },
-      })
-    end,
-  },
+  
   {
     "sindrets/diffview.nvim",
     event = "VeryLazy",

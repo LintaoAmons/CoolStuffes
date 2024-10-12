@@ -61,7 +61,7 @@ vim.api.nvim_create_user_command("CopyBufRelativeDirPath", copy_buf_relative_dir
 
 return {
   {
-    dir = "/Volumes/t7ex/Documents/oatnil/beta/context-menu.nvim",
+"LintaoAmons/context-menu.nvim",
     opts = function(_)
       require("context-menu").setup({
         menu_items = {

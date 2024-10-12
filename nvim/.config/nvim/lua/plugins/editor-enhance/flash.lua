@@ -1,11 +1,12 @@
 -- stylua: ignore start
-vim.keymap.set({ "n", "x", "o" }, "ss", function() require("flash").treesitter() end, {})
-vim.keymap.set({ "n", "x", "o" }, "sj", function() require("flash").jump() end, {})
+-- vim.keymap.set({ "n", "x", "o" }, "ss", function() require("flash").treesitter() end, {})
 -- stylua: ignore end
+if true then
+  return {}
+end
 
 return {
   "folke/flash.nvim",
-  -- enabled = false,
   event = "VeryLazy",
 
   ---@type Flash.Config

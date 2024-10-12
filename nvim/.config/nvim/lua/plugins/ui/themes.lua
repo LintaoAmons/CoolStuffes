@@ -11,7 +11,7 @@ return {
   --     vim.cmd.colorscheme("ares")
   --   end,
   -- },
-  
+
   {
     "catppuccin/nvim",
     name = "catppuccin",

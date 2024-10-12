@@ -2,7 +2,9 @@ return {
   { "towolf/vim-helm", ft = "helm" },
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = { ensure_installed = { "helm" } },
+    opts = function(_, opts)
+      vim.g.config_utils.opts_ensure_installed(opts, { "helm" })
+    end,
   },
 
   {

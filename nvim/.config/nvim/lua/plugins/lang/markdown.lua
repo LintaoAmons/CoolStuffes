@@ -1,6 +1,67 @@
 return {
+
+  -- # Syntax hightlight
   {
-    dir = "/Volumes/t7ex/Documents/oatnil/beta/context-menu.nvim",
+    "nvim-treesitter/nvim-treesitter",
+    opts = function(_, opts)
+      -- ## use opts to extend the ensure_installed table
+      vim.g.config_utils.opts_ensure_installed(opts, {
+        "markdown",
+        "markdown_inline",
+      })
+    end,
+  },
+
+  -- # LSP
+  -- ## ensure_install lang specfic LSP
+  {
+    "williamboman/mason.nvim",
+    opts = function(_, opts)
+      vim.g.config_utils.opts_ensure_installed(opts, { "marksman" })
+    end,
+  },
+  {
+    "williamboman/mason-lspconfig.nvim",
+    opts = function(_, opts)
+      -- ## use opts to extend the ensure_installed table
+      vim.g.config_utils.opts_ensure_installed(opts, { "marksman" })
+    end,
+  },
+
+  -- # Format
+  {
+    "stevearc/conform.nvim",
+    -- use opts to extend the formatters_by_ft table
+    opts = function(_, opts)
+      opts.formatters_by_ft["markdown"] = { "prettierd" }
+    end,
+  },
+
+  {
+    -- dir = "/Volumes/t7ex/Documents/Github/markdown-toc.nvim",
+    "LintaoAmons/markdown-toc.nvim",
+    ft = "markdown", -- Lazy load on markdown filetype
+    cmd = { "Mtoc" }, -- Or, lazy load on "Mtoc" command
+    opts = {
+      headings = {
+        -- Include headings before the ToC (or current line for `:Mtoc insert`)
+        before_toc = false,
+        -- Either list of lua patterns,
+        -- or a function that returns boolean (true means to EXCLUDE heading)
+        exclude = {},
+        pattern = "^(#+)%s+(.+)$",
+      },
+    },
+  },
+  {
+    "MeanderingProgrammer/render-markdown.nvim",
+    opts = {
+      file_types = { "markdown", "Avante" },
+    },
+    ft = { "markdown", "Avante" },
+  },
+  {
+"LintaoAmons/context-menu.nvim",
     opts = function()
       require("context-menu").setup({
         menu_items = {
@@ -44,36 +105,6 @@ return {
           },
         },
       })
-    end,
-  },
-  {
-    -- dir = "/Volumes/t7ex/Documents/Github/markdown-toc.nvim",
-    "LintaoAmons/markdown-toc.nvim",
-    ft = "markdown", -- Lazy load on markdown filetype
-    cmd = { "Mtoc" }, -- Or, lazy load on "Mtoc" command
-    opts = {
-      headings = {
-        -- Include headings before the ToC (or current line for `:Mtoc insert`)
-        before_toc = false,
-        -- Either list of lua patterns,
-        -- or a function that returns boolean (true means to EXCLUDE heading)
-        exclude = {},
-        pattern = "^(#+)%s+(.+)$",
-      },
-    },
-  },
-  {
-    "MeanderingProgrammer/render-markdown.nvim",
-    opts = {
-      file_types = { "markdown", "Avante" },
-    },
-    ft = { "markdown", "Avante" },
-  },
-  {
-    "williamboman/mason.nvim",
-    opts = function(_, opts)
-      opts.ensure_installed = opts.ensure_installed or {}
-      table.insert(opts.ensure_installed, "marksman")
     end,
   },
 
